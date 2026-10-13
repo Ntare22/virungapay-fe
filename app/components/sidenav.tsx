@@ -16,8 +16,7 @@ const operatorNav: NavItem[] = [
   { label: "Itineraries", href: "/itineraries" },
   { label: "Wallets", href: "/wallets" },
   { label: "Payments", href: "/payments" },
-  { label: "Park fees" },
-  { label: "Guides" },
+  { label: "Guides", href: "/guides" },
   { label: "Profile", href: "/profile" },
 ];
 
@@ -171,11 +170,6 @@ function NavIcon({ name }: { name: string }) {
       <>
         <rect x="3" y="5" width="18" height="14" rx="1" />
         <path d="M3 10h18" />
-      </>
-    ),
-    "Park fees": (
-      <>
-        <path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z" />
       </>
     ),
     Guides: (

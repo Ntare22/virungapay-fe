@@ -3,16 +3,7 @@
 import Link from "next/link";
 import { useId, useState, type FormEvent } from "react";
 import { registerOperator } from "../lib/api";
-
-const countryCodes = [
-  { code: "+256", flag: "🇺🇬" },
-  { code: "+254", flag: "🇰🇪" },
-  { code: "+255", flag: "🇹🇿" },
-  { code: "+250", flag: "🇷🇼" },
-  // { code: "+257", flag: "🇧🇮" },
-  // { code: "+243", flag: "🇨🇩" },
-  // { code: "+211", flag: "🇸🇸" },
-] as const;
+import { internationalPhone, PhoneField, type CountryCode } from "./phone-field";
 
 const points = [
   "Send itineraries tourists can pay",
@@ -24,7 +15,7 @@ export function SignupScreen() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [countryCode, setCountryCode] = useState<(typeof countryCodes)[number]["code"]>("+256");
+  const [countryCode, setCountryCode] = useState<CountryCode>("+256");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -56,7 +47,6 @@ export function SignupScreen() {
       setNotice("Passwords do not match.");
       return;
     }
-    const localPhone = phone.trim().replace(/^0+/, "");
     setPending(true);
     setNotice("");
     try {
@@ -64,7 +54,7 @@ export function SignupScreen() {
         firstName: firstName.trim(),
         lastName: lastName.trim(),
         email: email.trim(),
-        phone: localPhone ? `${countryCode}${localPhone}` : "",
+        phone: internationalPhone(countryCode, phone),
         password,
       });
       setCreatedEmail(result.user.email);
@@ -176,36 +166,8 @@ export function SignupScreen() {
               onChange={(event) => setEmail(event.target.value)}
               className="mt-3 h-12 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
             />
-            <div className="mt-3 flex gap-2">
-              <label htmlFor="country-code" className="sr-only">
-                Country code
-              </label>
-              <select
-                id="country-code"
-                name="countryCode"
-                value={countryCode}
-                onChange={(event) => setCountryCode(event.target.value as (typeof countryCodes)[number]["code"])}
-                className="h-12 border-2 border-[#1B2129] bg-white px-2 font-mono text-sm outline-none"
-              >
-                {countryCodes.map((country) => (
-                  <option key={country.code} value={country.code}>
-                    {country.flag} {country.code}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor={phoneId} className="sr-only">
-                Phone
-              </label>
-              <input
-                id={phoneId}
-                name="phone"
-                type="tel"
-                autoComplete="tel-national"
-                placeholder="Phone"
-                value={phone}
-                onChange={(event) => setPhone(event.target.value)}
-                className="h-12 min-w-0 flex-1 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
-              />
+            <div className="mt-3">
+              <PhoneField id={phoneId} code={countryCode} onCode={setCountryCode} number={phone} onNumber={setPhone} />
             </div>
             <label htmlFor={passwordId} className="sr-only">
               Password

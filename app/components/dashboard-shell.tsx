@@ -46,7 +46,7 @@ export function DashboardShell({
   children,
 }: {
   title: string;
-  active: "Dashboard" | "Profile" | "Tariffs" | "Itineraries" | "Payments" | "Tour operators" | "Wallets" | "Platform wallets" | "Fees" | "Transactions" | "Forex bureaus";
+  active: "Dashboard" | "Profile" | "Tariffs" | "Itineraries" | "Payments" | "Guides" | "Tour operators" | "Wallets" | "Platform wallets" | "Fees" | "Transactions" | "Forex bureaus";
   audience?: Audience;
   children: ReactNode;
 }) {

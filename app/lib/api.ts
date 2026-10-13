@@ -25,9 +25,11 @@ export function saveSession(session: Session, audience: "operator" | "admin" = "
 export type Wallet = {
   id: string;
   kind?: string;
+  name?: string;
   currency: string;
   balance: string;
   is_default: boolean;
+  username?: string;
 };
 
 export type Company = {
@@ -153,6 +155,31 @@ export function myCompany() {
   return get<Company>("/v1/companies/mine", operatorToken());
 }
 
+export type CrewMember = {
+  user_id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  role: string;
+  status: string;
+  wallet_currency: string;
+  wallet_balance: string;
+  username?: string;
+};
+
+export function listCrew() {
+  return get<{ crew: CrewMember[] }>("/v1/companies/crew", operatorToken());
+}
+
+export function inviteCrew(input: { name: string; email: string; phone?: string; role: "guide" | "driver" }) {
+  return send<{ user_id: string; email: string; role: string; status: string }>("/v1/companies/invites", "POST", operatorToken(), {
+    name: input.name,
+    email: input.email,
+    role: input.role,
+    ...(input.phone ? { phone: input.phone } : {}),
+  });
+}
+
 export function moveWallets(fromWalletId: string, toWalletId: string, amount: string) {
   return send<Company>("/v1/wallets/moves", "POST", operatorToken(), {
     from_wallet_id: fromWalletId,
@@ -163,6 +190,10 @@ export function moveWallets(fromWalletId: string, toWalletId: string, amount: st
 
 export function requestEurWallet() {
   return send<Company>("/v1/wallets", "POST", operatorToken(), { currency: "EUR" });
+}
+
+export function renameWallet(id: string, input: { name: string; username: string }) {
+  return send<Wallet>(`/v1/wallets/${id}`, "PATCH", operatorToken(), input);
 }
 
 export function createCompany(input: { name: string; country: string; association: string }) {
@@ -216,6 +247,7 @@ export type Itinerary = {
   amount_due: string;
   invoice_number?: string;
   status: "draft" | "sent" | "paid";
+  tourist_user_id?: string;
   business_name?: string;
   days: TripDay[];
   inclusions: string[];
@@ -249,6 +281,17 @@ export type OperatorPayment = {
   counterparty?: string;
   created_at: string;
 };
+
+export type TouristAccount = {
+  id: string;
+  name: string;
+  email: string;
+  username?: string;
+};
+
+export function listTourists() {
+  return get<{ tourists: TouristAccount[] }>("/v1/tourists", operatorToken());
+}
 
 export function listPackages() {
   return get<{ packages: TripPackage[] }>("/v1/packages", operatorToken());
@@ -284,6 +327,10 @@ export function sendItinerary(id: string) {
   return send<Itinerary>(`/v1/itineraries/${id}/send`, "POST", operatorToken(), {});
 }
 
+export function assignItinerary(id: string, touristId: string) {
+  return send<Itinerary>(`/v1/itineraries/${id}/assign`, "POST", operatorToken(), { tourist_id: touristId });
+}
+
 export function loadPayPage(token: string) {
   return getPublic(token);
 }
@@ -304,6 +351,23 @@ export function listOperatorPayments() {
 
 export function listTransactions() {
   return get<{ transactions: PlatformTransaction[] }>("/admin/v1/transactions", adminToken());
+}
+
+export type PersonWallet = {
+  id: string;
+  kind: string;
+  name: string;
+  username?: string;
+  currency: string;
+  balance: string;
+  holder_name: string;
+  holder_email: string;
+  holder_role: string;
+  holder_status: string;
+};
+
+export function listPersonWallets() {
+  return get<{ wallets: PersonWallet[] }>("/admin/v1/person-wallets", adminToken());
 }
 
 export function listBusinesses() {

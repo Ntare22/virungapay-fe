@@ -196,20 +196,24 @@ export function DayEditor({ days, onChange, disabled = false }: { days: TripDay[
       <legend className="text-sm font-medium">Days</legend>
       {days.map((day, index) => (
         <div key={index} className="mt-3 grid gap-2 border-2 border-[#1B2129] p-3">
-          <input
-            value={day.title}
-            placeholder={`Day ${index + 1} title`}
-            onChange={(event) => onChange(days.map((item, itemIndex) => (itemIndex === index ? { ...item, title: event.target.value, day_number: index + 1 } : item)))}
-            className="h-11 border-2 border-[#1B2129] px-3"
-            readOnly={disabled}
-          />
-          <textarea
-            value={day.body}
-            placeholder="What happens this day"
-            readOnly={disabled}
-            onChange={(event) => onChange(days.map((item, itemIndex) => (itemIndex === index ? { ...item, body: event.target.value } : item)))}
-            className="min-h-20 border-2 border-[#1B2129] px-3 py-2"
-          />
+          <label className="text-sm">
+            Day {index + 1} title
+            <input
+              value={day.title}
+              onChange={(event) => onChange(days.map((item, itemIndex) => (itemIndex === index ? { ...item, title: event.target.value, day_number: index + 1 } : item)))}
+              className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3"
+              readOnly={disabled}
+            />
+          </label>
+          <label className="text-sm">
+            What happens this day
+            <textarea
+              value={day.body}
+              readOnly={disabled}
+              onChange={(event) => onChange(days.map((item, itemIndex) => (itemIndex === index ? { ...item, body: event.target.value } : item)))}
+              className="mt-1 min-h-20 w-full border-2 border-[#1B2129] px-3 py-2"
+            />
+          </label>
           {disabled ? null : (
             <button type="button" onClick={() => onChange(days.filter((_, itemIndex) => itemIndex !== index))} className="text-left text-sm font-semibold text-[#2A2AFF]">
               Remove day

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
-import { getItinerary, listInquiries, listPackages, readSession, saveItinerary, sendItinerary, type Inquiry, type Itinerary, type TripPackage } from "../lib/api";
+import { assignItinerary, getItinerary, listInquiries, listPackages, listTourists, readSession, saveItinerary, sendItinerary, type Inquiry, type Itinerary, type TouristAccount, type TripPackage } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
 import { DayEditor, Lines } from "./packages-screen";
 
@@ -30,6 +30,7 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
   const [item, setItem] = useState<Itinerary>({ ...blank, package_id: packageId, inquiry_id: inquiryId });
   const [packages, setPackages] = useState<TripPackage[]>([]);
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+  const [tourists, setTourists] = useState<TouristAccount[]>([]);
   const [notice, setNotice] = useState("");
   const [pending, setPending] = useState(false);
   const locked = item.status === "sent" || item.status === "paid";
@@ -45,11 +46,12 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
       return;
     }
     let cancelled = false;
-    Promise.all([listPackages(), listInquiries(), itineraryId ? getItinerary(itineraryId) : Promise.resolve(null)])
-      .then(([packageList, inquiryList, existing]) => {
+    Promise.all([listPackages(), listInquiries(), listTourists().catch(() => ({ tourists: [] as TouristAccount[] })), itineraryId ? getItinerary(itineraryId) : Promise.resolve(null)])
+      .then(([packageList, inquiryList, touristList, existing]) => {
         if (cancelled) return;
         setPackages(packageList.packages);
         setInquiries(inquiryList.inquiries);
+        setTourists(touristList.tourists ?? []);
         if (existing) {
           setItem(existing);
           return;
@@ -177,14 +179,35 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
               ))}
             </select>
           </label>
-          <input value={item.title} disabled={locked} onChange={(event) => setItem({ ...item, title: event.target.value })} placeholder="Title" className="h-11 border-2 border-[#1B2129] px-3" />
-          <input value={item.customer_name} disabled={locked} onChange={(event) => setItem({ ...item, customer_name: event.target.value })} placeholder="Customer name" className="h-11 border-2 border-[#1B2129] px-3" />
-          <input value={item.customer_email} disabled={locked} onChange={(event) => setItem({ ...item, customer_email: event.target.value })} placeholder="Customer email" className="h-11 border-2 border-[#1B2129] px-3" />
-          <input type="number" min={1} value={item.party_size} disabled={locked} onChange={(event) => setItem({ ...item, party_size: Number(event.target.value) })} className="h-11 border-2 border-[#1B2129] px-3" />
-          <input type="date" value={item.starts_on} disabled={locked} onChange={(event) => setItem({ ...item, starts_on: event.target.value })} className="h-11 border-2 border-[#1B2129] px-3" />
-          <input type="date" value={item.ends_on} disabled={locked} onChange={(event) => setItem({ ...item, ends_on: event.target.value })} className="h-11 border-2 border-[#1B2129] px-3" />
+          <label className="text-sm">
+            Title
+            <input value={item.title} disabled={locked} onChange={(event) => setItem({ ...item, title: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+          </label>
+          <label className="text-sm">
+            Customer name
+            <input value={item.customer_name} disabled={locked} onChange={(event) => setItem({ ...item, customer_name: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+          </label>
+          <label className="text-sm">
+            Customer email
+            <input type="email" value={item.customer_email} disabled={locked} onChange={(event) => setItem({ ...item, customer_email: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+          </label>
+          <label className="text-sm">
+            Travellers
+            <input type="number" min={1} value={item.party_size} disabled={locked} onChange={(event) => setItem({ ...item, party_size: Number(event.target.value) })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+          </label>
+          <label className="text-sm">
+            Starts
+            <input type="date" value={item.starts_on} disabled={locked} onChange={(event) => setItem({ ...item, starts_on: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+          </label>
+          <label className="text-sm">
+            Ends
+            <input type="date" value={item.ends_on} disabled={locked} onChange={(event) => setItem({ ...item, ends_on: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+          </label>
         </div>
-        <textarea value={item.summary} disabled={locked} onChange={(event) => setItem({ ...item, summary: event.target.value })} placeholder="Summary" className="mt-3 min-h-24 w-full border-2 border-[#1B2129] px-3 py-2" />
+        <label className="mt-3 block text-sm">
+          Summary
+          <textarea value={item.summary} disabled={locked} onChange={(event) => setItem({ ...item, summary: event.target.value })} className="mt-1 min-h-24 w-full border-2 border-[#1B2129] px-3 py-2" />
+        </label>
         <DayEditor days={item.days} onChange={(days) => setItem({ ...item, days })} disabled={locked} />
         <Lines label="Inclusions" value={item.inclusions} onChange={(inclusions) => setItem({ ...item, inclusions })} disabled={locked} />
         <Lines label="Exclusions" value={item.exclusions} onChange={(exclusions) => setItem({ ...item, exclusions })} disabled={locked} />
@@ -199,7 +222,7 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
           </label>
           <label className="text-sm">
             Amount due
-            <input value={item.amount_due} disabled={locked} onChange={(event) => setItem({ ...item, amount_due: event.target.value })} placeholder="Amount" className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+            <input value={item.amount_due} disabled={locked} onChange={(event) => setItem({ ...item, amount_due: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
           </label>
         </div>
         {locked ? null : (
@@ -214,6 +237,43 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
         )}
         {locked ? <p className="mt-4 text-sm font-semibold uppercase">{item.status}</p> : null}
       </form>
+      {item.status === "paid" ? (
+        <section className="mt-4 bg-white p-5 shadow-sm">
+          <h2 className="text-lg font-medium">Assign to a tourist</h2>
+          <p className="mt-1 text-sm text-[#6c757d]">The trip is paid. Choose their account and it shows on their Home. If they sign up later with {item.customer_email}, it is assigned on its own.</p>
+          <label className="mt-4 block text-sm">
+            Tourist account
+            <select
+              value={item.tourist_user_id ?? ""}
+              onChange={(event) => setItem({ ...item, tourist_user_id: event.target.value })}
+              className="mt-1 h-11 w-full border-2 border-[#1B2129] bg-white px-3"
+            >
+              <option value="">{tourists.length === 0 ? "No tourist accounts yet" : "Choose a tourist"}</option>
+              {tourists.map((tourist) => (
+                <option key={tourist.id} value={tourist.id}>
+                  {tourist.name} · {tourist.email}{tourist.username ? ` · @${tourist.username}` : ""}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            type="button"
+            disabled={pending || !item.tourist_user_id}
+            onClick={() => {
+              if (!item.id || !item.tourist_user_id) return;
+              setPending(true);
+              setNotice("");
+              assignItinerary(item.id, item.tourist_user_id)
+                .then((saved) => setItem(saved))
+                .catch((error: unknown) => setNotice(error instanceof Error ? error.message : "Something went wrong. Try again."))
+                .finally(() => setPending(false));
+            }}
+            className="mt-4 h-11 border-2 border-[#1B2129] bg-[#4BFF2A] px-4 text-sm font-bold uppercase disabled:opacity-60"
+          >
+            {pending ? "Please wait" : "Assign"}
+          </button>
+        </section>
+      ) : null}
       {notice ? <p className="mt-4 text-sm">{notice}</p> : null}
     </DashboardShell>
   );

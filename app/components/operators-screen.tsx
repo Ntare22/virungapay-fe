@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useId, useState, type FormEvent, type ReactNode } from "react";
 import {
   addBureau,
   approveBusiness,
@@ -15,6 +15,7 @@ import {
   type Business,
 } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
+import { internationalPhone, PhoneField, type CountryCode } from "./phone-field";
 
 const pageSize = 8;
 
@@ -149,7 +150,9 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
   const [country, setCountry] = useState("UG");
   const [owner, setOwner] = useState("");
   const [email, setEmail] = useState("");
+  const [countryCode, setCountryCode] = useState<CountryCode>("+256");
   const [phone, setPhone] = useState("");
+  const phoneId = useId();
   const [notice, setNotice] = useState("");
   const [pending, setPending] = useState(false);
 
@@ -168,7 +171,7 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
     setPending(true);
     setNotice("");
     try {
-      onCreated(await addBureau({ name: name.trim(), country, owner: owner.trim(), email: email.trim(), phone: phone.trim() }));
+      onCreated(await addBureau({ name: name.trim(), country, owner: owner.trim(), email: email.trim(), phone: internationalPhone(countryCode, phone) }));
       setName("");
       setOwner("");
       setEmail("");
@@ -232,10 +235,12 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
                 Email
                 <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 outline-none" />
               </label>
-              <label className="block text-sm font-semibold">
+              <div className="block text-sm font-semibold">
                 Phone
-                <input value={phone} onChange={(event) => setPhone(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 outline-none" />
-              </label>
+                <div className="mt-2">
+                  <PhoneField id={phoneId} code={countryCode} onCode={setCountryCode} number={phone} onNumber={setPhone} />
+                </div>
+              </div>
             </div>
             <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-6 text-sm font-bold uppercase disabled:opacity-60">
               {pending ? "Please wait" : "Add bureau"}

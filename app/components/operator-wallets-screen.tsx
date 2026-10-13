@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
-import { listOperatorPayments, moveWallets, myCompany, readSession, requestEurWallet, todayTariff, type Company, type OperatorPayment, type Tariff, type Wallet } from "../lib/api";
+import { listOperatorPayments, moveWallets, myCompany, readSession, renameWallet, requestEurWallet, todayTariff, type Company, type OperatorPayment, type Tariff, type Wallet } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
 
 const currencyOrder = ["USD", "EUR", "UGX"];
@@ -76,7 +76,17 @@ export function OperatorWalletsScreen() {
         <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center">
           {slots.map((slot) =>
             slot.kind === "wallet" ? (
-              <WalletCard key={slot.wallet.id} wallet={slot.wallet} />
+              <WalletCard
+                key={slot.wallet.id}
+                wallet={slot.wallet}
+                onRenamed={(next) =>
+                  setCompany((current) =>
+                    current
+                      ? { ...current, wallets: current.wallets.map((item) => (item.id === next.id ? { ...item, name: next.name, username: next.username } : item)) }
+                      : current,
+                  )
+                }
+              />
             ) : (
               <ExchangeButton
                 key={slot.pair}
@@ -210,14 +220,119 @@ function when(value: string) {
   return date.toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" });
 }
 
-function WalletCard({ wallet }: { wallet: Wallet }) {
+function WalletCard({ wallet, onRenamed }: { wallet: Wallet; onRenamed: (wallet: Wallet) => void }) {
+  const [open, setOpen] = useState(false);
+  const label = wallet.name?.trim() || `${wallet.currency} wallet`;
   return (
     <article className="min-w-0 flex-1 bg-white p-5 shadow-sm">
-      <p className="text-sm text-[#6c757d]">{wallet.currency}</p>
+      <div className="flex items-start justify-between gap-3">
+        <p className="text-base font-medium">{label}</p>
+        <button type="button" onClick={() => setOpen(true)} className="shrink-0 text-sm font-bold uppercase text-[#2A2AFF]">
+          Edit
+        </button>
+      </div>
+      <p className="mt-1 text-sm text-[#6c757d]">{wallet.currency}</p>
+      <p className="mt-1 break-all font-mono text-sm text-[#2A2AFF]">@{wallet.username || "no username"}</p>
       <p className="mt-3 text-2xl font-semibold tracking-tight">
         {wallet.currency} {wallet.balance || "0.00"}
       </p>
+      {open ? (
+        <UsernameModal
+          wallet={wallet}
+          onClose={() => setOpen(false)}
+          onSaved={(saved) => {
+            onRenamed(saved);
+            setOpen(false);
+          }}
+        />
+      ) : null}
     </article>
+  );
+}
+
+function UsernameModal({
+  wallet,
+  onClose,
+  onSaved,
+}: {
+  wallet: Wallet;
+  onClose: () => void;
+  onSaved: (wallet: Wallet) => void;
+}) {
+  const [name, setName] = useState(wallet.name || "");
+  const [username, setUsername] = useState(wallet.username || "");
+  const [notice, setNotice] = useState("");
+  const [pending, setPending] = useState(false);
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!username.trim()) {
+      setNotice("Enter a username.");
+      return;
+    }
+    setPending(true);
+    setNotice("");
+    try {
+      onSaved(await renameWallet(wallet.id, { name: name.trim(), username: username.trim() }));
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "Something went wrong. Try again.");
+      setPending(false);
+    }
+  }
+
+  function close() {
+    if (pending) return;
+    onClose();
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-[#1B2129]/40 p-4" onMouseDown={close}>
+      <form
+        onSubmit={onSubmit}
+        onMouseDown={(event) => event.stopPropagation()}
+        className="w-full max-w-lg border-2 border-[#1B2129] bg-white p-6 shadow-[6px_6px_0_#4BFF2A]"
+        noValidate
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="edit-username-title"
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h2 id="edit-username-title" className="text-lg font-medium">Edit username</h2>
+            <p className="mt-1 text-sm text-[#6c757d]">Senders find this wallet by the username.</p>
+          </div>
+          <button type="button" onClick={close} aria-label="Close" className="grid size-9 shrink-0 place-items-center text-xl leading-none">
+            ×
+          </button>
+        </div>
+        <label className="mt-4 block text-sm font-semibold" htmlFor={`wallet-name-${wallet.id}`}>
+          Wallet name
+          <input
+            id={`wallet-name-${wallet.id}`}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            maxLength={60}
+            className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 font-normal outline-none"
+          />
+        </label>
+        <label className="mt-4 block text-sm font-semibold" htmlFor={`wallet-username-${wallet.id}`}>
+          Username
+          <input
+            id={`wallet-username-${wallet.id}`}
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            maxLength={30}
+            autoCapitalize="none"
+            spellCheck={false}
+            className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 font-mono font-normal outline-none"
+          />
+        </label>
+        {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
+        <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-6 text-sm font-bold uppercase disabled:opacity-60">
+          {pending ? "Saving" : "Save"}
+        </button>
+      </form>
+    </div>
   );
 }
 
