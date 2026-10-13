@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #28313d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: #1b2129;
+  --color-body: #28313d;
+  --color-primary: #2a2aff;
+  --color-neon: #4bff2a;
+  --color-mist: #f8f8ff;
+  --font-sans: var(--font-open-sans);
+  --font-mono: var(--font-roboto-mono);
+}
+
+body {
+  background: #ffffff;
+  color: #28313d;
+  font-family: var(--font-open-sans), "Open Sans", sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-roboto-mono), ui-monospace, monospace;
+}
+
+@keyframes caret-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.caret {
+  display: block;
+  width: 22px;
+  height: 13px;
+  background: #4bff2a;
+  animation: caret-blink 0.9s infinite both;
+}
