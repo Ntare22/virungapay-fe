@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
-import { listOperatorPayments, moveWallets, myCompany, readSession, renameWallet, requestEurWallet, todayTariff, type Company, type OperatorPayment, type Tariff, type Wallet } from "../lib/api";
+import { listOperatorPayments, moveWallets, myCompany, readSession, renameWallet, todayTariff, type Company, type OperatorPayment, type Tariff, type Wallet } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
 
-const currencyOrder = ["USD", "EUR", "UGX"];
+const currencyOrder = ["USD", "UGX"];
 
 function ordered(wallets: Wallet[]) {
   return [...wallets].sort((left, right) => currencyOrder.indexOf(left.currency) - currencyOrder.indexOf(right.currency));
@@ -18,8 +18,6 @@ export function OperatorWalletsScreen() {
   const [payments, setPayments] = useState<OperatorPayment[]>([]);
   const [notice, setNotice] = useState("");
   const [ready, setReady] = useState(false);
-  const [operator, setOperator] = useState(false);
-  const [requesting, setRequesting] = useState(false);
   const [move, setMove] = useState<{ fromId: string; toId: string } | null>(null);
 
   useEffect(() => {
@@ -32,7 +30,6 @@ export function OperatorWalletsScreen() {
       router.replace("/admin/wallets");
       return;
     }
-    setOperator(saved.session.user.role === "operator_owner");
     let cancelled = false;
     Promise.all([myCompany(), todayTariff().catch(() => ({ tariffs: [] as Tariff[] })), listOperatorPayments().catch(() => ({ payments: [] as OperatorPayment[] }))])
       .then(([loaded, rates, activity]) => {
@@ -55,19 +52,6 @@ export function OperatorWalletsScreen() {
   const wallets = ordered(company?.wallets ?? []);
   const approved = company?.status === "approved";
   const slots = exchangeSlots(wallets);
-  const canRequestEur = operator && approved && !wallets.some((wallet) => wallet.currency === "EUR");
-
-  async function requestEur() {
-    setRequesting(true);
-    setNotice("");
-    try {
-      setCompany(await requestEurWallet());
-    } catch (error) {
-      setNotice(error instanceof Error ? error.message : "Something went wrong. Try again.");
-    } finally {
-      setRequesting(false);
-    }
-  }
 
   return (
     <DashboardShell title="Wallets" active="Wallets">
@@ -98,16 +82,6 @@ export function OperatorWalletsScreen() {
             ),
           )}
         </div>
-      ) : null}
-      {canRequestEur ? (
-        <button
-          type="button"
-          onClick={requestEur}
-          disabled={requesting}
-          className="mt-4 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-4 text-sm font-bold uppercase disabled:opacity-60"
-        >
-          {requesting ? "Please wait" : "Request EUR wallet"}
-        </button>
       ) : null}
       {ready && wallets.length === 0 && !notice ? <p className="text-sm text-[#6c757d]">No wallets yet.</p> : null}
       {move && approved ? (
@@ -227,12 +201,12 @@ function WalletCard({ wallet, onRenamed }: { wallet: Wallet; onRenamed: (wallet:
     <article className="min-w-0 flex-1 bg-white p-5 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <p className="text-base font-medium">{label}</p>
-        <button type="button" onClick={() => setOpen(true)} className="shrink-0 text-sm font-bold uppercase text-[#2A2AFF]">
+        <button type="button" onClick={() => setOpen(true)} className="shrink-0 text-sm font-bold uppercase text-[#1F4D3A]">
           Edit
         </button>
       </div>
       <p className="mt-1 text-sm text-[#6c757d]">{wallet.currency}</p>
-      <p className="mt-1 break-all font-mono text-sm text-[#2A2AFF]">@{wallet.username || "no username"}</p>
+      <p className="mt-1 break-all font-mono text-sm text-[#1F4D3A]">@{wallet.username || "no username"}</p>
       <p className="mt-3 text-2xl font-semibold tracking-tight">
         {wallet.currency} {wallet.balance || "0.00"}
       </p>
@@ -286,11 +260,11 @@ function UsernameModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-[#1B2129]/40 p-4" onMouseDown={close}>
+    <div className="fixed inset-0 z-50 grid place-items-center bg-[#1C2416]/40 p-4" onMouseDown={close}>
       <form
         onSubmit={onSubmit}
         onMouseDown={(event) => event.stopPropagation()}
-        className="w-full max-w-lg border-2 border-[#1B2129] bg-white p-6 shadow-[6px_6px_0_#4BFF2A]"
+        className="w-full max-w-lg border-2 border-[#1C2416] bg-white p-6 shadow-[6px_6px_0_#E2B15A]"
         noValidate
         role="dialog"
         aria-modal="true"
@@ -312,7 +286,7 @@ function UsernameModal({
             value={name}
             onChange={(event) => setName(event.target.value)}
             maxLength={60}
-            className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 font-normal outline-none"
+            className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 font-normal outline-none"
           />
         </label>
         <label className="mt-4 block text-sm font-semibold" htmlFor={`wallet-username-${wallet.id}`}>
@@ -324,11 +298,11 @@ function UsernameModal({
             maxLength={30}
             autoCapitalize="none"
             spellCheck={false}
-            className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 font-mono font-normal outline-none"
+            className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 font-mono font-normal outline-none"
           />
         </label>
         {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
-        <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-6 text-sm font-bold uppercase disabled:opacity-60">
+        <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
           {pending ? "Saving" : "Save"}
         </button>
       </form>
@@ -345,7 +319,7 @@ function ExchangeButton({ pair, rate, disabled, onOpen }: { pair: string; rate?:
         onClick={onOpen}
         disabled={disabled}
         aria-label={`Exchange at ${pair}`}
-        className="border-2 border-[#1B2129] bg-white px-4 py-3 text-center shadow-[4px_4px_0_#4BFF2A] disabled:opacity-60"
+        className="border-2 border-[#1C2416] bg-white px-4 py-3 text-center shadow-[4px_4px_0_#E2B15A] disabled:opacity-60"
       >
         <span className="block text-xs font-bold uppercase">{pair}</span>
         <span className="mt-1 block text-lg font-semibold">{rate ? showRate(rate) : "No rate"}</span>
@@ -359,7 +333,7 @@ function Arrow({ direction }: { direction: "left" | "right" }) {
   const points = direction === "right" ? "4,8 28,20 4,32" : "32,8 8,20 32,32";
   return (
     <svg viewBox="0 0 36 40" className="h-8 w-7 shrink-0" aria-hidden="true">
-      <polygon points={points} fill="#2A2AFF" />
+      <polygon points={points} fill="#1F4D3A" />
     </svg>
   );
 }
@@ -413,11 +387,11 @@ function MoveModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-[#1B2129]/40 p-4" onMouseDown={close}>
+    <div className="fixed inset-0 z-50 grid place-items-center bg-[#1C2416]/40 p-4" onMouseDown={close}>
     <form
       onSubmit={onSubmit}
       onMouseDown={(event) => event.stopPropagation()}
-      className="w-full max-w-lg border-2 border-[#1B2129] bg-white p-6 shadow-[6px_6px_0_#4BFF2A]"
+      className="w-full max-w-lg border-2 border-[#1C2416] bg-white p-6 shadow-[6px_6px_0_#E2B15A]"
       noValidate
       role="dialog"
       aria-modal="true"
@@ -427,7 +401,7 @@ function MoveModal({
         <div>
           <h2 id="move-money-title" className="text-lg font-medium">Move money</h2>
           <p className="mt-2 text-sm text-[#6c757d]">
-            {tariff ? `Using ${tariff.pair} at ${showRate(tariff.customer_rate)}.` : "USD and EUR each move to or from UGX."}
+            {tariff ? `Using ${tariff.pair} at ${showRate(tariff.customer_rate)}.` : "USD moves to or from UGX."}
           </p>
         </div>
         <button type="button" onClick={close} aria-label="Close" className="grid size-9 shrink-0 place-items-center text-xl leading-none">
@@ -437,7 +411,7 @@ function MoveModal({
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <label className="block text-sm font-semibold">
           From
-          <select value={fromId} onChange={(event) => setFromId(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] bg-white px-3">
+          <select value={fromId} onChange={(event) => setFromId(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1C2416] bg-white px-3">
             {wallets.map((wallet) => (
               <option key={wallet.id} value={wallet.id}>
                 {wallet.currency}
@@ -447,7 +421,7 @@ function MoveModal({
         </label>
         <label className="block text-sm font-semibold">
           To
-          <select value={toId} onChange={(event) => setToId(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] bg-white px-3">
+          <select value={toId} onChange={(event) => setToId(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1C2416] bg-white px-3">
             {wallets.map((wallet) => (
               <option key={wallet.id} value={wallet.id}>
                 {wallet.currency}
@@ -464,9 +438,9 @@ function MoveModal({
         inputMode="decimal"
         value={amount}
         onChange={(event) => setAmount(event.target.value)}
-        className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 outline-none"
+        className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none"
       />
-      <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-6 text-sm font-bold uppercase disabled:opacity-60">
+      <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
         {pending ? "Please wait" : "Move"}
       </button>
       {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
@@ -478,7 +452,6 @@ function MoveModal({
 function exchangeSlots(wallets: Wallet[]) {
   const ugx = wallets.find((wallet) => wallet.currency === "UGX");
   const usd = wallets.find((wallet) => wallet.currency === "USD");
-  const eur = wallets.find((wallet) => wallet.currency === "EUR");
   const slots: Array<{ kind: "wallet"; wallet: Wallet } | { kind: "rate"; pair: string; fromId: string; toId: string }> = [];
   function pushWallet(wallet?: Wallet) {
     if (!wallet || slots.some((slot) => slot.kind === "wallet" && slot.wallet.id === wallet.id)) return;
@@ -489,13 +462,10 @@ function exchangeSlots(wallets: Wallet[]) {
     slots.push({ kind: "rate", pair: "USD/UGX", fromId: usd.id, toId: ugx.id });
     pushWallet(ugx);
   }
-  if (eur && ugx) {
-    pushWallet(ugx);
-    slots.push({ kind: "rate", pair: "EUR/UGX", fromId: eur.id, toId: ugx.id });
-    pushWallet(eur);
-  }
   if (slots.length === 0) {
-    for (const wallet of wallets) pushWallet(wallet);
+    for (const wallet of wallets) {
+      if (wallet.currency === "USD" || wallet.currency === "UGX") pushWallet(wallet);
+    }
   }
   return slots;
 }
@@ -508,6 +478,5 @@ function showRate(rate: string) {
 function ratePair(from?: string, to?: string) {
   if (!from || !to) return "";
   if ((from === "USD" && to === "UGX") || (from === "UGX" && to === "USD")) return "USD/UGX";
-  if ((from === "EUR" && to === "UGX") || (from === "UGX" && to === "EUR")) return "EUR/UGX";
   return "";
 }

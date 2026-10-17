@@ -54,7 +54,7 @@ export function PlatformStatementScreen({ walletId }: { walletId: string }) {
 
   return (
     <DashboardShell title={title} active="Platform wallets" audience="admin">
-      <Link href="/admin/platform" className="mb-4 inline-block text-sm font-semibold text-[#2A2AFF]">
+      <Link href="/admin/platform" className="mb-4 inline-block text-sm font-semibold text-[#1F4D3A]">
         Back to platform wallets
       </Link>
       {!ready ? <p className="text-sm text-[#6c757d]">Loading statement.</p> : null}

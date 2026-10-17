@@ -17,7 +17,7 @@ const robotoMono = Roboto_Mono({
 export const metadata: Metadata = {
   title: "VirungaPay",
   description:
-    "Tour operators send an itinerary. Tourists pay by card in USD or EUR. The operator then pays lodges, drivers, fuel, and guides.",
+    "Tour operators send an itinerary. Tourists pay by card in USD. The operator then pays lodges, drivers, fuel, and guides.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -25,6 +25,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${openSans.variable} ${robotoMono.variable} h-full scroll-smooth antialiased`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans text-body">
         <DeviceGate>

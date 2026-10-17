@@ -98,12 +98,12 @@ export function AdminScreen() {
   function sortControls() {
     return (
       <div className="flex flex-wrap items-center justify-end gap-2">
-        <select value={span} onChange={(event) => setSpan(event.target.value as "month" | "year")} aria-label="Sort by" className="h-9 border-2 border-[#1B2129] bg-white px-2 text-sm">
+        <select value={span} onChange={(event) => setSpan(event.target.value as "month" | "year")} aria-label="Sort by" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
           <option value="month">By month</option>
           <option value="year">By year</option>
         </select>
         {span === "month" ? (
-          <select value={selectedMonth} onChange={(event) => setMonth(Number(event.target.value))} aria-label="Month" className="h-9 border-2 border-[#1B2129] bg-white px-2 text-sm">
+          <select value={selectedMonth} onChange={(event) => setMonth(Number(event.target.value))} aria-label="Month" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
             {monthNames.map((name, index) => (
               <option key={name} value={index + 1}>
                 {name}
@@ -111,7 +111,7 @@ export function AdminScreen() {
             ))}
           </select>
         ) : null}
-        <select value={selectedYear} onChange={(event) => setYear(Number(event.target.value))} aria-label="Year" className="h-9 border-2 border-[#1B2129] bg-white px-2 text-sm">
+        <select value={selectedYear} onChange={(event) => setYear(Number(event.target.value))} aria-label="Year" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
           {years.map((value) => (
             <option key={value} value={value}>
               {value}
@@ -128,8 +128,8 @@ export function AdminScreen() {
       {ready ? (
         <>
           <section className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            <Summary label="Money in" lines={moneyLines(moneyIn)} detail={`Card payments collected into the USD, EUR, and UGX wallets during ${periodLabel}.`} />
-            <Summary label="Money out" lines={moneyLines(moneyOut)} detail={`Withdrawals and tips paid out of the USD, EUR, and UGX wallets during ${periodLabel}.`} />
+            <Summary label="Money in" lines={moneyLines(moneyIn)} detail={`Card payments collected into the USD and UGX wallets during ${periodLabel}.`} />
+            <Summary label="Money out" lines={moneyLines(moneyOut)} detail={`Withdrawals and tips paid out of the USD and UGX wallets during ${periodLabel}.`} />
             <Summary label="VirungaPay revenue" lines={moneyLines(fees)} detail={`Revenue VirungaPay earned on payments in each wallet during ${periodLabel}.`} />
             {counts.map((item) => (
               <Summary key={item.label} label={item.label} value={item.value} detail={item.detail} />
@@ -142,7 +142,7 @@ export function AdminScreen() {
           <article className="mt-6 overflow-x-auto bg-white shadow-sm">
             <div className="flex items-center justify-between border-b border-[#e5e7eb] px-5 py-4">
               <h2 className="text-base font-medium">Recent transactions</h2>
-              <Link href="/admin/transactions" className="text-sm font-semibold text-[#2A2AFF]">
+              <Link href="/admin/transactions" className="text-sm font-semibold text-[#1F4D3A]">
                 Transactions
               </Link>
             </div>
@@ -226,7 +226,7 @@ function AdminStats({ businesses }: { businesses: Business[] }) {
             <p className="text-sm font-semibold text-[#98a6ad]">{stat.label}</p>
             <p className="mt-1 text-xl font-semibold">{stat.value}</p>
           </div>
-          <div className="bg-[#f8f9fa] px-5 py-4 text-sm font-semibold text-[#2A2AFF]">{stat.note}</div>
+          <div className="bg-[#f8f9fa] px-5 py-4 text-sm font-semibold text-[#1F4D3A]">{stat.note}</div>
           <HoverDetail text={stat.detail} />
         </article>
       ))}

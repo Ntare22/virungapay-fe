@@ -90,7 +90,7 @@ export function WalletsScreen() {
                     <div>{person ? person.holder_name : business?.owner_name}</div>
                     <div className="text-xs text-[#98a6ad]">{person ? person.holder_email : business?.owner_email}</div>
                   </td>
-                  <td className="px-5 py-3 font-mono text-[#2A2AFF]">{wallet.username ? `@${wallet.username}` : "—"}</td>
+                  <td className="px-5 py-3 font-mono text-[#1F4D3A]">{wallet.username ? `@${wallet.username}` : "—"}</td>
                   <td className="px-5 py-3 font-semibold">{wallet.currency}</td>
                   <td className="px-5 py-3">{wallet.balance || "0.00"}</td>
                   <td className="px-5 py-3">{person ? walletRole(person) : wallet.is_default ? "Default · receives payments" : "Open"}</td>
@@ -118,7 +118,7 @@ export function WalletsScreen() {
               type="button"
               disabled={current === 0}
               onClick={() => setPage(current - 1)}
-              className="h-9 border-2 border-[#1B2129] px-3 font-semibold disabled:opacity-40"
+              className="h-9 border-2 border-[#1C2416] px-3 font-semibold disabled:opacity-40"
             >
               Previous
             </button>
@@ -126,7 +126,7 @@ export function WalletsScreen() {
               type="button"
               disabled={current >= pages - 1}
               onClick={() => setPage(current + 1)}
-              className="h-9 border-2 border-[#1B2129] px-3 font-semibold disabled:opacity-40"
+              className="h-9 border-2 border-[#1C2416] px-3 font-semibold disabled:opacity-40"
             >
               Next
             </button>

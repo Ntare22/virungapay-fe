@@ -61,7 +61,7 @@ export function TariffScreen({ audience }: { audience: "operator" | "admin" }) {
   );
 }
 
-const pairs = ["USD/UGX", "EUR/UGX"];
+const pairs = ["USD/UGX"];
 
 function TariffBoard({
   tariffs,
@@ -128,7 +128,7 @@ function TariffBoard({
             id="pair"
             value={pair}
             onChange={(event) => setPair(event.target.value)}
-            className="mt-2 h-12 w-full border-2 border-[#1B2129] bg-white px-3 outline-none"
+            className="mt-2 h-12 w-full border-2 border-[#1C2416] bg-white px-3 outline-none"
           >
             {pairs.map((name) => (
               <option key={name} value={name}>
@@ -144,7 +144,7 @@ function TariffBoard({
             inputMode="decimal"
             value={quotation}
             onChange={(event) => setQuotation(event.target.value)}
-            className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 outline-none"
+            className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none"
           />
           <label className="mt-4 block text-sm font-semibold" htmlFor="markup">
             Markup in basis points
@@ -154,13 +154,13 @@ function TariffBoard({
             inputMode="numeric"
             value={markup}
             onChange={(event) => setMarkup(event.target.value)}
-            className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 outline-none"
+            className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none"
           />
           <p className="mt-2 text-sm text-[#6c757d]">50 basis points adds 0.5% to the quotation. 100 adds 1%.</p>
           <button
             type="submit"
             disabled={pending}
-            className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-6 text-sm font-bold uppercase disabled:opacity-60"
+            className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60"
           >
             {pending ? "Please wait" : "Save tariff"}
           </button>

@@ -155,6 +155,29 @@ export function myCompany() {
   return get<Company>("/v1/companies/mine", operatorToken());
 }
 
+export async function downloadStatement(walletId: string, filename: string) {
+  const response = await fetch(`/v1/wallets/${walletId}/statement?format=pdf`, {
+    headers: { authorization: `Bearer ${operatorToken()}` },
+  });
+  if (!response.ok) {
+    let message = "The statement could not be generated.";
+    try {
+      const body = (await response.json()) as { error?: { message?: string } };
+      if (body.error?.message) message = body.error.message;
+    } catch {
+      // keep the fallback
+    }
+    throw new ApiError(message, "statement_failed");
+  }
+  const blob = await response.blob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
 export type CrewMember = {
   user_id: string;
   name: string;
@@ -186,10 +209,6 @@ export function moveWallets(fromWalletId: string, toWalletId: string, amount: st
     to_wallet_id: toWalletId,
     amount,
   });
-}
-
-export function requestEurWallet() {
-  return send<Company>("/v1/wallets", "POST", operatorToken(), { currency: "EUR" });
 }
 
 export function renameWallet(id: string, input: { name: string; username: string }) {
@@ -382,7 +401,7 @@ export function disableBusiness(id: string) {
   return send<Business>(`/admin/v1/businesses/${id}/disable`, "POST", adminToken(), {});
 }
 
-export function openWallet(id: string, currency: "USD" | "EUR") {
+export function openWallet(id: string, currency: "USD") {
   return send<Business>(`/admin/v1/businesses/${id}/wallets`, "POST", adminToken(), { currency });
 }
 

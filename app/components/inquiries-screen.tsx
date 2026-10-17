@@ -77,19 +77,19 @@ export function InquiriesScreen() {
   return (
     <DashboardShell title="Inquiries" active="Itineraries">
       <div className="mb-4 flex items-center justify-between gap-3">
-        <Link href="/itineraries" className="text-sm font-semibold text-[#2A2AFF]">
+        <Link href="/itineraries" className="text-sm font-semibold text-[#1F4D3A]">
           Back to itineraries
         </Link>
-        <button type="button" onClick={() => setOpen(true)} className="h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-5 text-sm font-bold uppercase">
+        <button type="button" onClick={() => setOpen(true)} className="h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-5 text-sm font-bold uppercase">
           Record an inquiry
         </button>
       </div>
       {open ? (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-[#1B2129]/40 p-4" onMouseDown={close}>
+        <div className="fixed inset-0 z-50 grid place-items-center bg-[#1C2416]/40 p-4" onMouseDown={close}>
           <form
             onSubmit={onSubmit}
             onMouseDown={(event) => event.stopPropagation()}
-            className="w-full max-w-lg border-2 border-[#1B2129] bg-white p-6 shadow-[6px_6px_0_#4BFF2A]"
+            className="w-full max-w-lg border-2 border-[#1C2416] bg-white p-6 shadow-[6px_6px_0_#E2B15A]"
             noValidate
             role="dialog"
             aria-modal="true"
@@ -107,16 +107,16 @@ export function InquiriesScreen() {
               </button>
             </div>
             <div className="mt-4 grid gap-3">
-              <input value={name} onChange={(event) => setName(event.target.value)} placeholder="Customer name" aria-label="Customer name" className="h-11 border-2 border-[#1B2129] px-3" />
-              <input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" aria-label="Email" className="h-11 border-2 border-[#1B2129] px-3" />
+              <input value={name} onChange={(event) => setName(event.target.value)} placeholder="Customer name" aria-label="Customer name" className="h-11 border-2 border-[#1C2416] px-3" />
+              <input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" aria-label="Email" className="h-11 border-2 border-[#1C2416] px-3" />
               <div className="grid gap-3 sm:grid-cols-2">
-                <input type="date" value={startsOn} onChange={(event) => setStartsOn(event.target.value)} aria-label="Starts on" className="h-11 border-2 border-[#1B2129] px-3" />
-                <input type="date" value={endsOn} onChange={(event) => setEndsOn(event.target.value)} aria-label="Ends on" className="h-11 border-2 border-[#1B2129] px-3" />
+                <input type="date" value={startsOn} onChange={(event) => setStartsOn(event.target.value)} aria-label="Starts on" className="h-11 border-2 border-[#1C2416] px-3" />
+                <input type="date" value={endsOn} onChange={(event) => setEndsOn(event.target.value)} aria-label="Ends on" className="h-11 border-2 border-[#1C2416] px-3" />
               </div>
-              <input value={partySize} onChange={(event) => setPartySize(event.target.value)} placeholder="Party size" aria-label="Party size" className="h-11 border-2 border-[#1B2129] px-3" />
-              <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="What they asked for" aria-label="What they asked for" className="min-h-24 w-full border-2 border-[#1B2129] px-3 py-2" />
+              <input value={partySize} onChange={(event) => setPartySize(event.target.value)} placeholder="Party size" aria-label="Party size" className="h-11 border-2 border-[#1C2416] px-3" />
+              <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="What they asked for" aria-label="What they asked for" className="min-h-24 w-full border-2 border-[#1C2416] px-3 py-2" />
             </div>
-            <button type="submit" disabled={pending} className="mt-4 h-11 border-2 border-[#1B2129] bg-[#4BFF2A] px-4 text-sm font-bold uppercase disabled:opacity-60">
+            <button type="submit" disabled={pending} className="mt-4 h-11 border-2 border-[#1C2416] bg-[#E2B15A] px-4 text-sm font-bold uppercase disabled:opacity-60">
               {pending ? "Please wait" : "Save inquiry"}
             </button>
             {formNotice ? <p className="mt-3 text-sm">{formNotice}</p> : null}
@@ -145,7 +145,7 @@ export function InquiriesScreen() {
                 </td>
                 <td className="px-5 py-3">
                   <div>{row.notes}</div>
-                  <Link href={`/itineraries/new?inquiry=${row.id}`} className="font-semibold text-[#2A2AFF]">
+                  <Link href={`/itineraries/new?inquiry=${row.id}`} className="font-semibold text-[#1F4D3A]">
                     Build itinerary
                   </Link>
                 </td>

@@ -71,7 +71,7 @@ export function DashboardShell({
         <button
           type="button"
           aria-label="Close menu"
-          className="fixed inset-0 z-30 bg-[#1B2129]/40 lg:hidden"
+          className="fixed inset-0 z-30 bg-[#1C2416]/40 lg:hidden"
           onClick={() => setMenuOpen(false)}
         />
       ) : null}
@@ -100,11 +100,11 @@ export function DashboardShell({
             <Link
               href="/profile"
               aria-label="Profile"
-              className="grid size-10 place-items-center rounded-full bg-[#2A2AFF] text-sm font-semibold text-white"
+              className="grid size-10 place-items-center rounded-full bg-[#1F4D3A] text-sm font-semibold text-white"
             >
               {initials(name)}
             </Link>
-            <button type="button" onClick={logout} className="text-sm font-semibold text-[#2A2AFF]">
+            <button type="button" onClick={logout} className="text-sm font-semibold text-[#1F4D3A]">
               Logout
             </button>
           </div>

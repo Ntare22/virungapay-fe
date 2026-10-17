@@ -123,7 +123,7 @@ export function OperatorsScreen({ bureau = false }: { bureau?: boolean }) {
                 type="button"
                 disabled={current === 0}
                 onClick={() => setPage(current - 1)}
-                className="h-9 border-2 border-[#1B2129] px-3 font-semibold disabled:opacity-40"
+                className="h-9 border-2 border-[#1C2416] px-3 font-semibold disabled:opacity-40"
               >
                 Previous
               </button>
@@ -131,7 +131,7 @@ export function OperatorsScreen({ bureau = false }: { bureau?: boolean }) {
                 type="button"
                 disabled={current >= pages - 1}
                 onClick={() => setPage(current + 1)}
-                className="h-9 border-2 border-[#1B2129] px-3 font-semibold disabled:opacity-40"
+                className="h-9 border-2 border-[#1C2416] px-3 font-semibold disabled:opacity-40"
               >
                 Next
               </button>
@@ -187,16 +187,16 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
   return (
     <>
       <div className="mb-4 flex justify-end">
-        <button type="button" onClick={() => setOpen(true)} className="h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-5 text-sm font-bold uppercase">
+        <button type="button" onClick={() => setOpen(true)} className="h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-5 text-sm font-bold uppercase">
           Add forex bureau
         </button>
       </div>
       {open ? (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-[#1B2129]/40 p-4" onMouseDown={close}>
+        <div className="fixed inset-0 z-50 grid place-items-center bg-[#1C2416]/40 p-4" onMouseDown={close}>
           <form
             onSubmit={onSubmit}
             onMouseDown={(event) => event.stopPropagation()}
-            className="w-full max-w-lg border-2 border-[#1B2129] bg-white p-6 shadow-[6px_6px_0_#4BFF2A]"
+            className="w-full max-w-lg border-2 border-[#1C2416] bg-white p-6 shadow-[6px_6px_0_#E2B15A]"
             noValidate
             role="dialog"
             aria-modal="true"
@@ -216,11 +216,11 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
             <div className="mt-4 grid gap-4">
               <label className="block text-sm font-semibold">
                 Bureau name
-                <input value={name} onChange={(event) => setName(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 outline-none" />
+                <input value={name} onChange={(event) => setName(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none" />
               </label>
               <label className="block text-sm font-semibold">
                 Country
-                <select value={country} onChange={(event) => setCountry(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] bg-white px-3">
+                <select value={country} onChange={(event) => setCountry(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1C2416] bg-white px-3">
                   <option value="UG">Uganda</option>
                   <option value="KE">Kenya</option>
                   <option value="TZ">Tanzania</option>
@@ -229,11 +229,11 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
               </label>
               <label className="block text-sm font-semibold">
                 Owner
-                <input value={owner} onChange={(event) => setOwner(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 outline-none" />
+                <input value={owner} onChange={(event) => setOwner(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none" />
               </label>
               <label className="block text-sm font-semibold">
                 Email
-                <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 outline-none" />
+                <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none" />
               </label>
               <div className="block text-sm font-semibold">
                 Phone
@@ -242,7 +242,7 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
                 </div>
               </div>
             </div>
-            <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-6 text-sm font-bold uppercase disabled:opacity-60">
+            <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
               {pending ? "Please wait" : "Add bureau"}
             </button>
             {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
@@ -299,11 +299,6 @@ function OperatorRow({
                   <PlusIcon />
                 </ActionButton>
               )}
-              {business.wallets.some((wallet) => wallet.currency === "EUR") ? null : (
-                <ActionButton label="Open EUR" busy={busy} onClick={() => onRun(business.id, () => openWallet(business.id, "EUR"))}>
-                  <PlusIcon />
-                </ActionButton>
-              )}
               <ActionButton label="Disable" busy={busy} onClick={() => onRun(business.id, () => disableBusiness(business.id))}>
                 <BanIcon />
               </ActionButton>
@@ -353,15 +348,15 @@ function ActionButton({
         onBlur={() => setTip(null)}
         className={
           tone === "approve"
-            ? "grid size-9 place-items-center border-2 border-[#1B2129] bg-[#4BFF2A] text-[#1B2129] disabled:opacity-40"
-            : "grid size-9 place-items-center text-[#2A2AFF] hover:bg-[#f4f6f8] disabled:opacity-40"
+            ? "grid size-9 place-items-center border-2 border-[#1C2416] bg-[#E2B15A] text-[#1C2416] disabled:opacity-40"
+            : "grid size-9 place-items-center text-[#1F4D3A] hover:bg-[#f4f6f8] disabled:opacity-40"
         }
       >
         {children}
       </button>
       {tip ? (
         <span
-          className="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-full border-2 border-[#1B2129] bg-[#1B2129] px-2 py-1 text-xs font-semibold whitespace-nowrap text-white"
+          className="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-full border-2 border-[#1C2416] bg-[#1C2416] px-2 py-1 text-xs font-semibold whitespace-nowrap text-white"
           style={{ left: tip.x, top: tip.y - 8 }}
         >
           {label}

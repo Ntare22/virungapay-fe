@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import { Mark } from "../components/mark";
 
 export const metadata: Metadata = {
   title: "Verify email · VirungaPay",
@@ -42,12 +43,10 @@ async function Verified({ searchParams }: { searchParams: Promise<{ token?: stri
 
 function Frame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="fixed inset-0 flex flex-col bg-[#F8F8FF] text-[#28313D] lg:flex-row">
-      <section className="relative hidden flex-col justify-between overflow-hidden bg-[#2A2AFF] px-6 py-8 text-white sm:px-10 lg:flex lg:min-h-0 lg:w-1/2 lg:px-14 lg:py-10">
+    <div className="fixed inset-0 flex flex-col bg-[#F6F1E7] text-[#1C2416] lg:flex-row">
+      <section className="relative hidden flex-col justify-between overflow-hidden bg-[#1F4D3A] px-6 py-8 text-white sm:px-10 lg:flex lg:min-h-0 lg:w-1/2 lg:px-14 lg:py-10">
         <Link href="/" className="relative z-10 flex items-center gap-2 font-mono text-lg text-white">
-          <span className="grid size-9 place-items-center border-2 border-[#1B2129] bg-[#4BFF2A] font-mono text-xs font-bold text-[#1B2129] shadow-[3px_3px_0_#1B2129]">
-            VP
-          </span>
+          <Mark tone="cream" />
           VirungaPay
         </Link>
         <div className="relative z-10 max-w-md py-10">
@@ -62,10 +61,10 @@ function Frame({ children }: { children: React.ReactNode }) {
 
       <section className="flex min-h-0 flex-1 flex-col overflow-auto bg-white px-6 py-6 sm:px-10 lg:w-1/2 lg:px-14">
         <header className="flex items-center justify-between">
-          <Link href="/" className="font-mono text-sm text-[#1B2129] hover:text-[#2A2AFF]">
+          <Link href="/" className="font-mono text-sm text-[#1C2416] hover:text-[#1F4D3A]">
             Back home
           </Link>
-          <Link href="/login" className="font-mono text-sm font-bold text-[#2A2AFF]">
+          <Link href="/login" className="font-mono text-sm font-bold text-[#1F4D3A]">
             Login
           </Link>
         </header>
@@ -77,12 +76,12 @@ function Frame({ children }: { children: React.ReactNode }) {
 
 function Card({ title, body }: { title: string; body: string }) {
   return (
-    <div className="border-2 border-[#1B2129] bg-white p-8 text-center shadow-[6px_6px_0_#4BFF2A]">
-      <h2 className="font-mono text-3xl font-medium text-[#1B2129]">{title}</h2>
+    <div className="border-2 border-[#1C2416] bg-white p-8 text-center shadow-[6px_6px_0_#E2B15A]">
+      <h2 className="font-mono text-3xl font-medium text-[#1C2416]">{title}</h2>
       <p className="mt-4 text-sm">{body}</p>
       <Link
         href="/login"
-        className="mt-6 inline-flex h-12 items-center border-2 border-[#1B2129] bg-[#4BFF2A] px-8 text-sm font-bold uppercase text-[#1B2129] shadow-[3px_3px_0_#4BFF2A] hover:shadow-[6px_6px_0_#1B2129]"
+        className="mt-6 inline-flex h-12 items-center border-2 border-[#1C2416] bg-[#E2B15A] px-8 text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416]"
       >
         Login
       </Link>

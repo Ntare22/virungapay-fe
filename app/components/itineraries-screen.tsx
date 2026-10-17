@@ -41,13 +41,13 @@ export function ItinerariesScreen() {
   return (
     <DashboardShell title="Itineraries" active="Itineraries">
       <div className="mb-4 flex flex-wrap gap-3">
-        <Link href="/itineraries/packages" className="border-2 border-[#1B2129] bg-white px-4 py-2 text-sm font-semibold">
+        <Link href="/itineraries/packages" className="border-2 border-[#1C2416] bg-white px-4 py-2 text-sm font-semibold">
           Packages
         </Link>
-        <Link href="/itineraries/inquiries" className="border-2 border-[#1B2129] bg-white px-4 py-2 text-sm font-semibold">
+        <Link href="/itineraries/inquiries" className="border-2 border-[#1C2416] bg-white px-4 py-2 text-sm font-semibold">
           Inquiries
         </Link>
-        <Link href="/itineraries/new" className="border-2 border-[#1B2129] bg-[#4BFF2A] px-4 py-2 text-sm font-bold uppercase">
+        <Link href="/itineraries/new" className="border-2 border-[#1C2416] bg-[#E2B15A] px-4 py-2 text-sm font-bold uppercase">
           New itinerary
         </Link>
       </div>
@@ -68,7 +68,7 @@ export function ItinerariesScreen() {
               {rows.map((row) => (
                 <tr key={row.id} className="border-b border-[#e5e7eb]">
                   <td className="px-5 py-3">
-                    <Link href={`/itineraries/${row.id}`} className="font-medium text-[#2A2AFF]">
+                    <Link href={`/itineraries/${row.id}`} className="font-medium text-[#1F4D3A]">
                       {row.title}
                     </Link>
                     <div className="text-xs text-[#98a6ad]">

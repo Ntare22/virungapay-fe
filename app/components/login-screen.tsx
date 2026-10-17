@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { adminForgotPassword, adminLogin, forgotPassword, login, saveSession } from "../lib/api";
+import { Mark } from "./mark";
 
 const languages = [
   { code: "EN", label: "English" },
@@ -13,7 +14,7 @@ const languages = [
 
 const points = [
   "Operator sends the itinerary",
-  "Tourist pays by card in USD or EUR",
+  "Tourist pays by card in USD",
   "Operator pays the lodge, driver, fuel, and guide",
 ];
 
@@ -89,10 +90,10 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
   }
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-[#F8F8FF] text-[#28313D] lg:flex-row">
-      <section className="relative hidden flex-col justify-between overflow-hidden bg-[#2A2AFF] px-6 py-8 text-white sm:px-10 lg:flex lg:min-h-0 lg:w-1/2 lg:px-14 lg:py-10">
+    <div className="fixed inset-0 flex flex-col bg-[#F6F1E7] text-[#1C2416] lg:flex-row">
+      <section className="relative hidden flex-col justify-between overflow-hidden bg-[#1F4D3A] px-6 py-8 text-white sm:px-10 lg:flex lg:min-h-0 lg:w-1/2 lg:px-14 lg:py-10">
         <Link href="/" className="relative z-10 flex items-center gap-2 font-mono text-lg text-white">
-          <Mark />
+          <Mark tone="cream" />
           VirungaPay
         </Link>
         <div className="relative z-10 max-w-md py-10">
@@ -101,12 +102,12 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
           </h1>
           <p className="relative mt-8 pt-6 text-base font-semibold">
             <span className="caret absolute top-0 left-0" />
-            Sign in to send a trip plan, take a card payment in USD or EUR, and pay the people on the tour.
+            Sign in to send a trip plan, take a card payment in USD, and pay the people on the tour.
           </p>
           <ul className="mt-8 space-y-3 font-bold">
             {points.map((point) => (
               <li key={point} className="flex items-center gap-3">
-                <span className="grid size-6 place-items-center border-2 border-[#1B2129] bg-[#4BFF2A] text-sm text-[#1B2129]">
+                <span className="grid size-6 place-items-center border-2 border-[#1C2416] bg-[#E2B15A] text-sm text-[#1C2416]">
                   ✓
                 </span>
                 {point}
@@ -119,7 +120,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
 
       <section className="flex min-h-0 flex-1 flex-col overflow-auto bg-white px-6 py-6 sm:px-10 lg:w-1/2 lg:px-14">
         <header className="flex items-center justify-between">
-          <Link href="/" className="font-mono text-sm text-[#1B2129] hover:text-[#2A2AFF]">
+          <Link href="/" className="font-mono text-sm text-[#1C2416] hover:text-[#1F4D3A]">
             Back home
           </Link>
           <div className="relative" ref={menuRef}>
@@ -128,7 +129,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
               aria-haspopup="listbox"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((open) => !open)}
-              className="flex items-center gap-2 border-2 border-[#1B2129] bg-white px-3 py-1.5 font-mono text-sm text-[#1B2129] shadow-[3px_3px_0_#4BFF2A]"
+              className="flex items-center gap-2 border-2 border-[#1C2416] bg-white px-3 py-1.5 font-mono text-sm text-[#1C2416] shadow-[3px_3px_0_#E2B15A]"
             >
               {language}
               <Chevron />
@@ -137,7 +138,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
               <ul
                 role="listbox"
                 aria-label="Language"
-                className="absolute right-0 z-10 mt-2 w-44 border-2 border-[#1B2129] bg-white shadow-[3px_3px_0_#2A2AFF]"
+                className="absolute right-0 z-10 mt-2 w-44 border-2 border-[#1C2416] bg-white shadow-[3px_3px_0_#1F4D3A]"
               >
                 {languages.map((item) => (
                   <li key={item.code}>
@@ -149,10 +150,10 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
                         setLanguage(item.code);
                         setMenuOpen(false);
                       }}
-                      className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-[#F8F8FF]"
+                      className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-[#F6F1E7]"
                     >
                       {item.label}
-                      <span className="font-mono text-xs text-[#28313D]/60">{item.code}</span>
+                      <span className="font-mono text-xs text-[#1C2416]/60">{item.code}</span>
                     </button>
                   </li>
                 ))}
@@ -162,14 +163,14 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
         </header>
 
         <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col justify-center py-8">
-          <h2 className="text-center font-mono text-4xl font-medium text-[#1B2129] sm:text-5xl">
+          <h2 className="text-center font-mono text-4xl font-medium text-[#1C2416] sm:text-5xl">
             {resetting ? "Reset password" : "Sign in"}
           </h2>
           <p className="mt-3 text-center text-sm">
             {resetting ? "We’ll email you a reset link" : staff ? "VirungaPay staff" : "Operators, guides, and suppliers"}
           </p>
-          <p className="mt-2 text-center font-mono text-xs tracking-[0.14em] text-[#2A2AFF] uppercase">
-            USD · EUR
+          <p className="mt-2 text-center font-mono text-xs tracking-[0.14em] text-[#1F4D3A] uppercase">
+            USD · UGX
           </p>
 
           {resetting ? (
@@ -185,12 +186,12 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
                 placeholder="Email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                className="h-12 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
+                className="h-12 border-2 border-[#1C2416] px-3 text-[15px] outline-none placeholder:text-[#1C2416]/45"
               />
               <button
                 type="submit"
                 disabled={pending}
-                className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] text-sm font-bold uppercase text-[#1B2129] shadow-[3px_3px_0_#4BFF2A] hover:shadow-[6px_6px_0_#1B2129] disabled:opacity-60"
+                className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416] disabled:opacity-60"
               >
                 {pending ? "Please wait" : "Send link"}
               </button>
@@ -204,7 +205,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
                     setResetting(false);
                     setNotice("");
                   }}
-                  className="font-bold text-[#2A2AFF]"
+                  className="font-bold text-[#1F4D3A]"
                 >
                   Back to sign in
                 </button>
@@ -223,7 +224,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
               placeholder="Email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="h-12 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
+              className="h-12 border-2 border-[#1C2416] px-3 text-[15px] outline-none placeholder:text-[#1C2416]/45"
             />
             <label htmlFor={passwordId} className="sr-only">
               Password
@@ -236,7 +237,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
               placeholder="Password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="mt-3 h-12 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
+              className="mt-3 h-12 border-2 border-[#1C2416] px-3 text-[15px] outline-none placeholder:text-[#1C2416]/45"
             />
             <div className="mt-2 flex justify-end">
               <button
@@ -245,7 +246,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
                   setResetting(true);
                   setNotice("");
                 }}
-                className="text-[13px] font-bold text-[#2A2AFF]"
+                className="text-[13px] font-bold text-[#1F4D3A]"
               >
                 Forgot password?
               </button>
@@ -254,7 +255,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
             <button
               type="submit"
               disabled={pending}
-              className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] text-sm font-bold uppercase text-[#1B2129] shadow-[3px_3px_0_#4BFF2A] hover:shadow-[6px_6px_0_#1B2129] disabled:opacity-60"
+              className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416] disabled:opacity-60"
             >
               {pending ? "Please wait" : "Login"}
             </button>
@@ -265,14 +266,14 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
 
             {staff ? (
               <p className="mt-2 text-center text-[13px]">
-                <Link href="/login" className="font-bold text-[#2A2AFF]">
+                <Link href="/login" className="font-bold text-[#1F4D3A]">
                   Operator login
                 </Link>
               </p>
             ) : (
               <p className="mt-2 text-center text-[13px]">
                 Don&apos;t have an account?{" "}
-                <Link href="/signup" className="font-bold text-[#2A2AFF]">
+                <Link href="/signup" className="font-bold text-[#1F4D3A]">
                   Sign up
                 </Link>
               </p>
@@ -300,14 +301,6 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
   );
 }
 
-function Mark() {
-  return (
-    <span className="grid size-9 place-items-center border-2 border-[#1B2129] bg-[#4BFF2A] font-mono text-xs font-bold text-[#1B2129] shadow-[3px_3px_0_#1B2129]">
-      VP
-    </span>
-  );
-}
-
 function Chevron() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
@@ -321,7 +314,7 @@ function SocialLink({ label, children }: { label: string; children: ReactNode })
     <button
       type="button"
       aria-label={label}
-      className="grid size-9 place-items-center border-2 border-[#1B2129] text-[#1B2129] hover:bg-[#F8F8FF]"
+      className="grid size-9 place-items-center border-2 border-[#1C2416] text-[#1C2416] hover:bg-[#F6F1E7]"
     >
       {children}
     </button>

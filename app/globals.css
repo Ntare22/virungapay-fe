@@ -2,24 +2,24 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #28313d;
+  --foreground: #1c2416;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-ink: #1b2129;
-  --color-body: #28313d;
-  --color-primary: #2a2aff;
-  --color-neon: #4bff2a;
-  --color-mist: #f8f8ff;
+  --color-ink: #1c2416;
+  --color-body: #1c2416;
+  --color-primary: #1f4d3a;
+  --color-neon: #e2b15a;
+  --color-mist: #f6f1e7;
   --font-sans: var(--font-open-sans);
   --font-mono: var(--font-roboto-mono);
 }
 
 body {
   background: #ffffff;
-  color: #28313d;
+  color: #1c2416;
   font-family: var(--font-open-sans), "Open Sans", sans-serif;
 }
 
@@ -45,6 +45,6 @@ body {
   display: block;
   width: 22px;
   height: 13px;
-  background: #4bff2a;
+  background-color: #e2b15a;
   animation: caret-blink 0.9s infinite both;
 }

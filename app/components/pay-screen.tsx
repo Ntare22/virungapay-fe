@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { loadPayPage, payItinerary, type Itinerary } from "../lib/api";
+import { Mark } from "./mark";
 
 export function PayScreen({ token }: { token: string }) {
   const [item, setItem] = useState<Itinerary | null>(null);
@@ -39,13 +40,13 @@ export function PayScreen({ token }: { token: string }) {
   }
 
   return (
-    <main className="min-h-screen bg-[#F8F8FF] px-4 py-10 text-[#1B2129]">
-      <article className="mx-auto max-w-2xl border-2 border-[#1B2129] bg-white p-6">
+    <main className="min-h-screen bg-[#F6F1E7] px-4 py-10 text-[#1C2416]">
+      <article className="mx-auto max-w-2xl border-2 border-[#1C2416] bg-white p-6">
         <Processor />
         {!ready ? <p className="mt-6 text-sm text-[#6c757d]">Loading the itinerary.</p> : null}
         {item ? (
           <>
-            <p className="mt-6 text-xs font-bold uppercase tracking-widest text-[#2A2AFF]">{item.invoice_number}</p>
+            <p className="mt-6 text-xs font-bold uppercase tracking-widest text-[#1F4D3A]">{item.invoice_number}</p>
             <h1 className="mt-2 text-3xl font-semibold">{item.title}</h1>
             <p className="mt-2 text-sm text-[#6c757d]">{item.business_name}</p>
             <dl className="mt-4 space-y-1 text-sm">
@@ -81,7 +82,7 @@ export function PayScreen({ token }: { token: string }) {
             {item.status === "paid" ? (
               <p className="mt-4 font-semibold">Payment received. This is a simulated card payment. The receipt is on its way to your email.</p>
             ) : (
-              <button type="button" disabled={pending} onClick={onPay} className="mt-4 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-5 text-sm font-bold uppercase disabled:opacity-60">
+              <button type="button" disabled={pending} onClick={onPay} className="mt-4 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-5 text-sm font-bold uppercase disabled:opacity-60">
                 {pending ? "Please wait" : `Pay ${item.currency} ${item.amount_due}`}
               </button>
             )}
@@ -95,11 +96,9 @@ export function PayScreen({ token }: { token: string }) {
 
 function Processor() {
   return (
-    <header className="flex items-start justify-between gap-4 border-b-2 border-[#1B2129] pb-4">
+    <header className="flex items-start justify-between gap-4 border-b-2 border-[#1C2416] pb-4">
       <div className="flex items-start gap-3">
-        <span className="grid size-10 shrink-0 place-items-center border-2 border-[#1B2129] bg-[#4BFF2A] font-mono text-xs font-bold text-[#1B2129] shadow-[3px_3px_0_#2A2AFF]">
-          VP
-        </span>
+        <Mark className="h-10 w-12" />
         <div>
           <p className="font-mono text-lg leading-none">VirungaPay</p>
           <p className="mt-1 text-sm text-[#6c757d]">Payment processor</p>

@@ -31,7 +31,7 @@ export function PhoneField({
         id={`${id}-code`}
         value={code}
         onChange={(event) => onCode(event.target.value as CountryCode)}
-        className="h-12 shrink-0 border-2 border-[#1B2129] bg-white px-2 font-mono text-sm outline-none"
+        className="h-12 shrink-0 border-2 border-[#1C2416] bg-white px-2 font-mono text-sm outline-none"
       >
         {countryCodes.map((country) => (
           <option key={country.code} value={country.code}>
@@ -50,7 +50,7 @@ export function PhoneField({
         placeholder="Phone"
         value={number}
         onChange={(event) => onNumber(event.target.value)}
-        className="h-12 min-w-0 flex-1 border-2 border-[#1B2129] px-3 text-[15px] font-normal outline-none placeholder:text-[#28313D]/45"
+        className="h-12 min-w-0 flex-1 border-2 border-[#1C2416] px-3 text-[15px] font-normal outline-none placeholder:text-[#1C2416]/45"
       />
     </div>
   );

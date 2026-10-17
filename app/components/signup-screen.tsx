@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { useId, useState, type FormEvent } from "react";
 import { registerOperator } from "../lib/api";
+import { Mark } from "./mark";
 import { internationalPhone, PhoneField, type CountryCode } from "./phone-field";
 
 const points = [
   "Send itineraries tourists can pay",
-  "Take card payments in USD or EUR",
+  "Take card payments in USD",
   "Pay the lodge, driver, fuel supplier, and guide",
 ];
 
@@ -66,10 +67,10 @@ export function SignupScreen() {
   }
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-[#F8F8FF] text-[#28313D] lg:flex-row">
-      <section className="relative hidden flex-col justify-between overflow-hidden bg-[#2A2AFF] px-6 py-8 text-white sm:px-10 lg:flex lg:min-h-0 lg:w-1/2 lg:px-14 lg:py-10">
+    <div className="fixed inset-0 flex flex-col bg-[#F6F1E7] text-[#1C2416] lg:flex-row">
+      <section className="relative hidden flex-col justify-between overflow-hidden bg-[#1F4D3A] px-6 py-8 text-white sm:px-10 lg:flex lg:min-h-0 lg:w-1/2 lg:px-14 lg:py-10">
         <Link href="/" className="relative z-10 flex items-center gap-2 font-mono text-lg text-white">
-          <Mark />
+          <Mark tone="cream" />
           VirungaPay
         </Link>
         <div className="relative z-10 max-w-md py-10">
@@ -78,12 +79,12 @@ export function SignupScreen() {
           </h1>
           <p className="relative mt-8 pt-6 text-base font-semibold">
             <span className="caret absolute top-0 left-0" />
-            For tour operators in East Africa. Send the itinerary, then let the tourist pay in USD or EUR.
+            For tour operators in East Africa. Send the itinerary, then let the tourist pay in USD.
           </p>
           <ul className="mt-8 space-y-3 font-bold">
             {points.map((point) => (
               <li key={point} className="flex items-center gap-3">
-                <span className="grid size-6 place-items-center border-2 border-[#1B2129] bg-[#4BFF2A] text-sm text-[#1B2129]">
+                <span className="grid size-6 place-items-center border-2 border-[#1C2416] bg-[#E2B15A] text-sm text-[#1C2416]">
                   ✓
                 </span>
                 {point}
@@ -96,34 +97,34 @@ export function SignupScreen() {
 
       <section className="flex min-h-0 flex-1 flex-col overflow-auto bg-white px-6 py-6 sm:px-10 lg:w-1/2 lg:px-14">
         <header className="flex items-center justify-between">
-          <Link href="/" className="font-mono text-sm text-[#1B2129] hover:text-[#2A2AFF]">
+          <Link href="/" className="font-mono text-sm text-[#1C2416] hover:text-[#1F4D3A]">
             Back home
           </Link>
-          <Link href="/login" className="font-mono text-sm font-bold text-[#2A2AFF]">
+          <Link href="/login" className="font-mono text-sm font-bold text-[#1F4D3A]">
             Login
           </Link>
         </header>
 
         <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col justify-center py-8">
           {createdEmail ? (
-            <div className="border-2 border-[#1B2129] bg-white p-8 text-center shadow-[6px_6px_0_#4BFF2A]">
-              <h2 className="font-mono text-3xl font-medium text-[#1B2129]">Welcome</h2>
+            <div className="border-2 border-[#1C2416] bg-white p-8 text-center shadow-[6px_6px_0_#E2B15A]">
+              <h2 className="font-mono text-3xl font-medium text-[#1C2416]">Welcome</h2>
               <p className="mt-4 text-sm">
                 We sent an email to {createdEmail}. Verify it before you sign in.
               </p>
               <Link
                 href="/login"
-                className="mt-6 inline-flex h-12 items-center border-2 border-[#1B2129] bg-[#4BFF2A] px-8 text-sm font-bold uppercase text-[#1B2129] shadow-[3px_3px_0_#4BFF2A] hover:shadow-[6px_6px_0_#1B2129]"
+                className="mt-6 inline-flex h-12 items-center border-2 border-[#1C2416] bg-[#E2B15A] px-8 text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416]"
               >
                 Login
               </Link>
             </div>
           ) : (
             <>
-          <h2 className="text-center font-mono text-4xl font-medium text-[#1B2129] sm:text-5xl">Sign up</h2>
+          <h2 className="text-center font-mono text-4xl font-medium text-[#1C2416] sm:text-5xl">Sign up</h2>
           <p className="mt-3 text-center text-sm">Tourism operators</p>
-          <p className="mt-2 text-center font-mono text-xs tracking-[0.14em] text-[#2A2AFF] uppercase">
-            USD · EUR
+          <p className="mt-2 text-center font-mono text-xs tracking-[0.14em] text-[#1F4D3A] uppercase">
+            USD · UGX
           </p>
 
           <form className="mt-8 flex flex-col" onSubmit={onSubmit} noValidate>
@@ -138,7 +139,7 @@ export function SignupScreen() {
                 placeholder="First name"
                 value={firstName}
                 onChange={(event) => setFirstName(event.target.value)}
-                className="h-12 min-w-0 flex-1 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
+                className="h-12 min-w-0 flex-1 border-2 border-[#1C2416] px-3 text-[15px] outline-none placeholder:text-[#1C2416]/45"
               />
               <label htmlFor={lastNameId} className="sr-only">
                 Last name
@@ -150,7 +151,7 @@ export function SignupScreen() {
                 placeholder="Last name"
                 value={lastName}
                 onChange={(event) => setLastName(event.target.value)}
-                className="h-12 min-w-0 flex-1 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
+                className="h-12 min-w-0 flex-1 border-2 border-[#1C2416] px-3 text-[15px] outline-none placeholder:text-[#1C2416]/45"
               />
             </div>
             <label htmlFor={emailId} className="sr-only">
@@ -164,7 +165,7 @@ export function SignupScreen() {
               placeholder="Email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="mt-3 h-12 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
+              className="mt-3 h-12 border-2 border-[#1C2416] px-3 text-[15px] outline-none placeholder:text-[#1C2416]/45"
             />
             <div className="mt-3">
               <PhoneField id={phoneId} code={countryCode} onCode={setCountryCode} number={phone} onNumber={setPhone} />
@@ -180,7 +181,7 @@ export function SignupScreen() {
               placeholder="Password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="mt-3 h-12 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
+              className="mt-3 h-12 border-2 border-[#1C2416] px-3 text-[15px] outline-none placeholder:text-[#1C2416]/45"
             />
             <label htmlFor={confirmPasswordId} className="sr-only">
               Confirm password
@@ -193,13 +194,13 @@ export function SignupScreen() {
               placeholder="Confirm password"
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
-              className="mt-3 h-12 border-2 border-[#1B2129] px-3 text-[15px] outline-none placeholder:text-[#28313D]/45"
+              className="mt-3 h-12 border-2 border-[#1C2416] px-3 text-[15px] outline-none placeholder:text-[#1C2416]/45"
             />
 
             <button
               type="submit"
               disabled={pending}
-              className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] text-sm font-bold uppercase text-[#1B2129] shadow-[3px_3px_0_#4BFF2A] hover:shadow-[6px_6px_0_#1B2129] disabled:opacity-60"
+              className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416] disabled:opacity-60"
             >
               {pending ? "Please wait" : "Create account"}
             </button>
@@ -210,7 +211,7 @@ export function SignupScreen() {
 
             <p className="mt-2 text-center text-[13px]">
               Already have an account?{" "}
-              <Link href="/login" className="font-bold text-[#2A2AFF]">
+              <Link href="/login" className="font-bold text-[#1F4D3A]">
                 Login
               </Link>
             </p>
@@ -223,10 +224,3 @@ export function SignupScreen() {
   );
 }
 
-function Mark() {
-  return (
-    <span className="grid size-9 place-items-center border-2 border-[#1B2129] bg-[#4BFF2A] font-mono text-xs font-bold text-[#1B2129] shadow-[3px_3px_0_#1B2129]">
-      VP
-    </span>
-  );
-}

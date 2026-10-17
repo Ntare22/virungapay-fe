@@ -151,7 +151,7 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
 
   return (
     <DashboardShell title={item.title || "Itinerary"} active="Itineraries">
-      <Link href="/itineraries" className="mb-4 inline-block text-sm font-semibold text-[#2A2AFF]">
+      <Link href="/itineraries" className="mb-4 inline-block text-sm font-semibold text-[#1F4D3A]">
         Back to itineraries
       </Link>
       {item.invoice_number ? <p className="mb-4 text-sm font-semibold">Invoice {item.invoice_number}</p> : null}
@@ -159,7 +159,7 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
         <div className="grid gap-3 md:grid-cols-2">
           <label className="text-sm">
             Start from a package
-            <select value={item.package_id ?? ""} onChange={(event) => applyPackage(event.target.value)} disabled={locked} className="mt-1 h-11 w-full border-2 border-[#1B2129] bg-white px-3">
+            <select value={item.package_id ?? ""} onChange={(event) => applyPackage(event.target.value)} disabled={locked} className="mt-1 h-11 w-full border-2 border-[#1C2416] bg-white px-3">
               <option value="">Blank</option>
               {packages.map((pkg) => (
                 <option key={pkg.id} value={pkg.id}>
@@ -170,7 +170,7 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
           </label>
           <label className="text-sm">
             Customer inquiry
-            <select value={item.inquiry_id ?? ""} onChange={(event) => applyInquiry(event.target.value)} disabled={locked} className="mt-1 h-11 w-full border-2 border-[#1B2129] bg-white px-3">
+            <select value={item.inquiry_id ?? ""} onChange={(event) => applyInquiry(event.target.value)} disabled={locked} className="mt-1 h-11 w-full border-2 border-[#1C2416] bg-white px-3">
               <option value="">None</option>
               {inquiries.map((inquiry) => (
                 <option key={inquiry.id} value={inquiry.id}>
@@ -181,32 +181,32 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
           </label>
           <label className="text-sm">
             Title
-            <input value={item.title} disabled={locked} onChange={(event) => setItem({ ...item, title: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+            <input value={item.title} disabled={locked} onChange={(event) => setItem({ ...item, title: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
           <label className="text-sm">
             Customer name
-            <input value={item.customer_name} disabled={locked} onChange={(event) => setItem({ ...item, customer_name: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+            <input value={item.customer_name} disabled={locked} onChange={(event) => setItem({ ...item, customer_name: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
           <label className="text-sm">
             Customer email
-            <input type="email" value={item.customer_email} disabled={locked} onChange={(event) => setItem({ ...item, customer_email: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+            <input type="email" value={item.customer_email} disabled={locked} onChange={(event) => setItem({ ...item, customer_email: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
           <label className="text-sm">
             Travellers
-            <input type="number" min={1} value={item.party_size} disabled={locked} onChange={(event) => setItem({ ...item, party_size: Number(event.target.value) })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+            <input type="number" min={1} value={item.party_size} disabled={locked} onChange={(event) => setItem({ ...item, party_size: Number(event.target.value) })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
           <label className="text-sm">
             Starts
-            <input type="date" value={item.starts_on} disabled={locked} onChange={(event) => setItem({ ...item, starts_on: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+            <input type="date" value={item.starts_on} disabled={locked} onChange={(event) => setItem({ ...item, starts_on: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
           <label className="text-sm">
             Ends
-            <input type="date" value={item.ends_on} disabled={locked} onChange={(event) => setItem({ ...item, ends_on: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+            <input type="date" value={item.ends_on} disabled={locked} onChange={(event) => setItem({ ...item, ends_on: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
         </div>
         <label className="mt-3 block text-sm">
           Summary
-          <textarea value={item.summary} disabled={locked} onChange={(event) => setItem({ ...item, summary: event.target.value })} className="mt-1 min-h-24 w-full border-2 border-[#1B2129] px-3 py-2" />
+          <textarea value={item.summary} disabled={locked} onChange={(event) => setItem({ ...item, summary: event.target.value })} className="mt-1 min-h-24 w-full border-2 border-[#1C2416] px-3 py-2" />
         </label>
         <DayEditor days={item.days} onChange={(days) => setItem({ ...item, days })} disabled={locked} />
         <Lines label="Inclusions" value={item.inclusions} onChange={(inclusions) => setItem({ ...item, inclusions })} disabled={locked} />
@@ -215,22 +215,21 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
         <div className="mt-4 grid gap-3 md:grid-cols-2">
           <label className="text-sm">
             Currency
-            <select value={item.currency || "USD"} disabled={locked} onChange={(event) => setItem({ ...item, currency: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] bg-white px-3">
+            <select value={item.currency || "USD"} disabled={locked} onChange={(event) => setItem({ ...item, currency: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] bg-white px-3">
               <option>USD</option>
-              <option>EUR</option>
             </select>
           </label>
           <label className="text-sm">
             Amount due
-            <input value={item.amount_due} disabled={locked} onChange={(event) => setItem({ ...item, amount_due: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1B2129] px-3" />
+            <input value={item.amount_due} disabled={locked} onChange={(event) => setItem({ ...item, amount_due: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
         </div>
         {locked ? null : (
           <div className="mt-4 flex flex-wrap gap-3">
-            <button type="submit" disabled={pending} className="h-11 border-2 border-[#1B2129] bg-white px-4 text-sm font-bold uppercase disabled:opacity-60">
+            <button type="submit" disabled={pending} className="h-11 border-2 border-[#1C2416] bg-white px-4 text-sm font-bold uppercase disabled:opacity-60">
               Save draft
             </button>
-            <button type="button" disabled={pending || !item.id} onClick={onSend} className="h-11 border-2 border-[#1B2129] bg-[#4BFF2A] px-4 text-sm font-bold uppercase disabled:opacity-60">
+            <button type="button" disabled={pending || !item.id} onClick={onSend} className="h-11 border-2 border-[#1C2416] bg-[#E2B15A] px-4 text-sm font-bold uppercase disabled:opacity-60">
               {pending ? "Please wait" : "Send"}
             </button>
           </div>
@@ -246,7 +245,7 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
             <select
               value={item.tourist_user_id ?? ""}
               onChange={(event) => setItem({ ...item, tourist_user_id: event.target.value })}
-              className="mt-1 h-11 w-full border-2 border-[#1B2129] bg-white px-3"
+              className="mt-1 h-11 w-full border-2 border-[#1C2416] bg-white px-3"
             >
               <option value="">{tourists.length === 0 ? "No tourist accounts yet" : "Choose a tourist"}</option>
               {tourists.map((tourist) => (
@@ -268,7 +267,7 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
                 .catch((error: unknown) => setNotice(error instanceof Error ? error.message : "Something went wrong. Try again."))
                 .finally(() => setPending(false));
             }}
-            className="mt-4 h-11 border-2 border-[#1B2129] bg-[#4BFF2A] px-4 text-sm font-bold uppercase disabled:opacity-60"
+            className="mt-4 h-11 border-2 border-[#1C2416] bg-[#E2B15A] px-4 text-sm font-bold uppercase disabled:opacity-60"
           >
             {pending ? "Please wait" : "Assign"}
           </button>

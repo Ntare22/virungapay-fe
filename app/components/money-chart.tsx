@@ -1,13 +1,12 @@
 import type { ReactNode } from "react";
 
-const currencies = ["USD", "EUR", "UGX"] as const;
+const currencies = ["USD", "UGX"] as const;
 
 const shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const fills: Record<string, string> = {
-  USD: "#2A2AFF",
-  EUR: "#4BFF2A",
-  UGX: "#1B2129",
+  USD: "#1F4D3A",
+  UGX: "#1C2416",
 };
 
 export type MoneyPoint = {
@@ -27,7 +26,7 @@ export function moneyLines(totals: Record<string, number>) {
 
 export function HoverDetail({ text }: { text: string }) {
   return (
-    <p className="pointer-events-none absolute top-full left-4 z-20 mt-2 hidden w-[min(18rem,calc(100%-2rem))] border-2 border-[#1B2129] bg-[#F8F8FF] p-3 text-sm font-normal text-[#1B2129] shadow-[4px_4px_0_#4BFF2A] group-hover:block">
+    <p className="pointer-events-none absolute top-full left-4 z-20 mt-2 hidden w-[min(18rem,calc(100%-2rem))] border-2 border-[#1C2416] bg-[#F6F1E7] p-3 text-sm font-normal text-[#1C2416] shadow-[4px_4px_0_#E2B15A] group-hover:block">
       {text}
     </p>
   );
@@ -131,7 +130,7 @@ export function MoneyChart({
                     const height = (amount / peak) * 150;
                     const x = origin + bar * (barWidth + gap);
                     const y = 160 - height;
-                    return <rect key={currency} x={x} y={y} width={barWidth} height={height} fill={fills[currency]} stroke="#1B2129" strokeWidth="1" />;
+                    return <rect key={currency} x={x} y={y} width={barWidth} height={height} fill={fills[currency]} stroke="#1C2416" strokeWidth="1" />;
                   })}
                   <text x={index * groupWidth + groupWidth / 2} y="186" textAnchor="middle" fontSize={groups.length > 16 ? "9" : "11"} fill="#6c757d">
                     {group.label}
@@ -143,7 +142,7 @@ export function MoneyChart({
           <ul className="mt-2 flex flex-wrap gap-4 text-sm">
             {shown.map((currency) => (
               <li key={currency} className="flex items-center gap-2">
-                <span className="inline-block size-3 border border-[#1B2129]" style={{ background: fills[currency] }} />
+                <span className="inline-block size-3 border border-[#1C2416]" style={{ background: fills[currency] }} />
                 {currency}
               </li>
             ))}

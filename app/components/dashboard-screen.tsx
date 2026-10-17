@@ -108,7 +108,7 @@ function SetupForm({ onCreated }: { onCreated: (company: Company) => void }) {
 
   return (
     <form onSubmit={onSubmit} className="mx-auto max-w-lg bg-white p-6 shadow-sm" noValidate>
-      <h2 className="font-mono text-2xl text-[#1B2129]">Set up your business</h2>
+      <h2 className="font-mono text-2xl text-[#1C2416]">Set up your business</h2>
       <p className="mt-2 text-sm text-[#6c757d]">VirungaPay reviews the business before a wallet can receive payments.</p>
       <label className="mt-6 block text-sm font-semibold" htmlFor="business-name">
         Business name
@@ -117,7 +117,7 @@ function SetupForm({ onCreated }: { onCreated: (company: Company) => void }) {
         id="business-name"
         value={name}
         onChange={(event) => setName(event.target.value)}
-        className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 outline-none"
+        className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none"
       />
       <label className="mt-4 block text-sm font-semibold" htmlFor="business-country">
         Country
@@ -126,7 +126,7 @@ function SetupForm({ onCreated }: { onCreated: (company: Company) => void }) {
         id="business-country"
         value={country}
         onChange={(event) => setCountry(event.target.value as (typeof countries)[number]["code"])}
-        className="mt-2 h-12 w-full border-2 border-[#1B2129] bg-white px-3"
+        className="mt-2 h-12 w-full border-2 border-[#1C2416] bg-white px-3"
       >
         {countries.map((item) => (
           <option key={item.code} value={item.code}>
@@ -141,7 +141,7 @@ function SetupForm({ onCreated }: { onCreated: (company: Company) => void }) {
         id="business-association"
         value={association}
         onChange={(event) => setAssociation(event.target.value)}
-        className="mt-2 h-12 w-full border-2 border-[#1B2129] bg-white px-3"
+        className="mt-2 h-12 w-full border-2 border-[#1C2416] bg-white px-3"
       >
         <option value="">None</option>
         <option value="AUTO">AUTO</option>
@@ -150,7 +150,7 @@ function SetupForm({ onCreated }: { onCreated: (company: Company) => void }) {
       <button
         type="submit"
         disabled={pending}
-        className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-6 text-sm font-bold uppercase text-[#1B2129] disabled:opacity-60"
+        className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase text-[#1C2416] disabled:opacity-60"
       >
         {pending ? "Please wait" : "Create business"}
       </button>
@@ -161,8 +161,8 @@ function SetupForm({ onCreated }: { onCreated: (company: Company) => void }) {
 
 function StatusCard({ title, body }: { title: string; body: string }) {
   return (
-    <article className="mx-auto max-w-lg border-2 border-[#1B2129] bg-white p-8 shadow-[6px_6px_0_#4BFF2A]">
-      <h2 className="font-mono text-2xl text-[#1B2129]">{title}</h2>
+    <article className="mx-auto max-w-lg border-2 border-[#1C2416] bg-white p-8 shadow-[6px_6px_0_#E2B15A]">
+      <h2 className="font-mono text-2xl text-[#1C2416]">{title}</h2>
       <p className="mt-3 text-sm">{body}</p>
     </article>
   );
@@ -195,7 +195,7 @@ function CompanyStats({ company }: { company: Company }) {
             <p className="text-sm font-semibold text-[#98a6ad]">{stat.label}</p>
             <p className="mt-1 text-xl font-semibold">{stat.value}</p>
           </div>
-          <div className="bg-[#f8f9fa] px-5 py-4 text-sm font-semibold text-[#2A2AFF]">{stat.note}</div>
+          <div className="bg-[#f8f9fa] px-5 py-4 text-sm font-semibold text-[#1F4D3A]">{stat.note}</div>
           <HoverDetail text={stat.detail} />
         </article>
       ))}
@@ -256,12 +256,12 @@ function BusinessActivity({ operator }: { operator: boolean }) {
   function sortControls() {
     return (
       <div className="flex flex-wrap items-center justify-end gap-2">
-        <select value={span} onChange={(event) => setSpan(event.target.value as "month" | "year")} aria-label="Sort by" className="h-9 border-2 border-[#1B2129] bg-white px-2 text-sm">
+        <select value={span} onChange={(event) => setSpan(event.target.value as "month" | "year")} aria-label="Sort by" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
           <option value="month">By month</option>
           <option value="year">By year</option>
         </select>
         {span === "month" ? (
-          <select value={month} onChange={(event) => setMonth(Number(event.target.value))} aria-label="Month" className="h-9 border-2 border-[#1B2129] bg-white px-2 text-sm">
+          <select value={month} onChange={(event) => setMonth(Number(event.target.value))} aria-label="Month" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
             {monthNames.map((name, index) => (
               <option key={name} value={index + 1}>
                 {name}
@@ -269,7 +269,7 @@ function BusinessActivity({ operator }: { operator: boolean }) {
             ))}
           </select>
         ) : null}
-        <select value={year} onChange={(event) => setYear(Number(event.target.value))} aria-label="Year" className="h-9 border-2 border-[#1B2129] bg-white px-2 text-sm">
+        <select value={year} onChange={(event) => setYear(Number(event.target.value))} aria-label="Year" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
           {years.map((value) => (
             <option key={value} value={value}>
               {value}
@@ -297,7 +297,7 @@ function BusinessActivity({ operator }: { operator: boolean }) {
       <article className="overflow-x-auto bg-white shadow-sm">
         <div className="flex items-center justify-between border-b border-[#e5e7eb] px-5 py-4">
           <h2 className="text-base font-medium">Recent payments</h2>
-          <Link href="/payments" className="text-sm font-semibold text-[#2A2AFF]">
+          <Link href="/payments" className="text-sm font-semibold text-[#1F4D3A]">
             Payments
           </Link>
         </div>

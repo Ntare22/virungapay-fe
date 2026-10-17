@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Mark } from "./mark";
 
 export type Audience = "operator" | "admin";
 
@@ -59,15 +60,15 @@ export function SideNav({
     >
       <div className={`flex h-16 items-center border-b border-[#e5e7eb] ${expanded ? "gap-2 px-4" : "justify-center"}`}>
         <Link href="/" aria-label="VirungaPay" className={`group relative flex items-center gap-2 ${expanded ? "min-w-0 flex-1" : ""}`}>
-          <span className="grid size-8 shrink-0 place-items-center bg-[#4BFF2A] font-mono text-xs font-bold text-[#1B2129]">VP</span>
-          {expanded ? <span className="truncate font-mono text-lg text-[#1B2129]">VirungaPay</span> : <Tip label="VirungaPay" />}
+          <Mark className="h-8 w-10" />
+          {expanded ? <span className="truncate font-mono text-lg text-[#1C2416]">VirungaPay</span> : <Tip label="VirungaPay" />}
         </Link>
         {expanded ? (
           <button
             type="button"
             aria-label="Collapse menu"
             onClick={onToggle}
-            className="grid size-9 shrink-0 place-items-center rounded text-[#6c757d] hover:bg-[#f4f6f8] hover:text-[#1B2129]"
+            className="grid size-9 shrink-0 place-items-center rounded text-[#6c757d] hover:bg-[#f4f6f8] hover:text-[#1C2416]"
           >
             <Chevron left />
           </button>
@@ -80,7 +81,7 @@ export function SideNav({
               type="button"
               aria-label="Expand menu"
               onClick={onToggle}
-              className="grid size-11 place-items-center rounded text-[#6c757d] hover:bg-[#f4f6f8] hover:text-[#1B2129]"
+              className="grid size-11 place-items-center rounded text-[#6c757d] hover:bg-[#f4f6f8] hover:text-[#1C2416]"
             >
               <Chevron />
             </button>
@@ -88,7 +89,7 @@ export function SideNav({
           </span>
         )}
         {navItems(audience).map((item) => {
-          const tone = item.label === active ? "bg-[#f4f6f8] font-semibold text-[#2A2AFF]" : "text-[#6c757d] hover:bg-[#f4f6f8] hover:text-[#1B2129]";
+          const tone = item.label === active ? "bg-[#f4f6f8] font-semibold text-[#1F4D3A]" : "text-[#6c757d] hover:bg-[#f4f6f8] hover:text-[#1C2416]";
           const className = expanded
             ? `flex w-full items-center gap-3 rounded px-3 py-2.5 text-sm ${tone}`
             : `grid size-11 place-items-center rounded ${tone}`;
@@ -125,7 +126,7 @@ function Chevron({ left = false }: { left?: boolean }) {
 
 function Tip({ label }: { label: string }) {
   return (
-    <span className="pointer-events-none absolute top-1/2 left-full z-50 ml-2 -translate-y-1/2 border-2 border-[#1B2129] bg-[#1B2129] px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 group-hover:opacity-100 group-focus-within:opacity-100">
+    <span className="pointer-events-none absolute top-1/2 left-full z-50 ml-2 -translate-y-1/2 border-2 border-[#1C2416] bg-[#1C2416] px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 group-hover:opacity-100 group-focus-within:opacity-100">
       {label}
     </span>
   );

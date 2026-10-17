@@ -51,7 +51,7 @@ export function GuidesScreen() {
   return (
     <DashboardShell title="Guides and drivers" active="Guides">
       <div className="mb-4 flex justify-end">
-        <button type="button" onClick={() => setOpen(true)} className="h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-5 text-sm font-bold uppercase">
+        <button type="button" onClick={() => setOpen(true)} className="h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-5 text-sm font-bold uppercase">
           Add account
         </button>
       </div>
@@ -86,7 +86,7 @@ export function GuidesScreen() {
                   <td className="px-5 py-3 font-medium">{person.name || "—"}</td>
                   <td className="px-5 py-3">{roles[person.role] ?? person.role}</td>
                   <td className="px-5 py-3">{person.email}</td>
-                  <td className="px-5 py-3 font-mono text-[#2A2AFF]">{person.username ? `@${person.username}` : "—"}</td>
+                  <td className="px-5 py-3 font-mono text-[#1F4D3A]">{person.username ? `@${person.username}` : "—"}</td>
                   <td className="px-5 py-3 font-semibold">{person.wallet_currency || "UGX"} {person.wallet_balance || "0.00"}</td>
                 </tr>
               ))}
@@ -132,11 +132,11 @@ function AddAccount({ onClose, onAdded }: { onClose: () => void; onAdded: (messa
   }
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-[#1B2129]/40 p-4" onMouseDown={() => !pending && onClose()}>
+    <div className="fixed inset-0 z-50 grid place-items-center bg-[#1C2416]/40 p-4" onMouseDown={() => !pending && onClose()}>
       <form
         onSubmit={onSubmit}
         onMouseDown={(event) => event.stopPropagation()}
-        className="w-full max-w-lg border-2 border-[#1B2129] bg-white p-6 shadow-[6px_6px_0_#4BFF2A]"
+        className="w-full max-w-lg border-2 border-[#1C2416] bg-white p-6 shadow-[6px_6px_0_#E2B15A]"
         role="dialog"
         aria-modal="true"
         aria-labelledby="add-account-title"
@@ -153,11 +153,11 @@ function AddAccount({ onClose, onAdded }: { onClose: () => void; onAdded: (messa
         <div className="mt-4 grid gap-4">
           <label className="block text-sm font-semibold">
             Name
-            <input value={name} onChange={(event) => setName(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 font-normal outline-none" />
+            <input value={name} onChange={(event) => setName(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 font-normal outline-none" />
           </label>
           <label className="block text-sm font-semibold">
             Email
-            <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1B2129] px-3 font-normal outline-none" />
+            <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 font-normal outline-none" />
           </label>
           <div className="block text-sm font-semibold">
             Phone
@@ -167,14 +167,14 @@ function AddAccount({ onClose, onAdded }: { onClose: () => void; onAdded: (messa
           </div>
           <label className="block text-sm font-semibold">
             Role
-            <select value={role} onChange={(event) => setRole(event.target.value as "guide" | "driver")} className="mt-2 h-12 w-full border-2 border-[#1B2129] bg-white px-3 font-normal">
+            <select value={role} onChange={(event) => setRole(event.target.value as "guide" | "driver")} className="mt-2 h-12 w-full border-2 border-[#1C2416] bg-white px-3 font-normal">
               <option value="guide">Guide</option>
               <option value="driver">Driver</option>
             </select>
           </label>
         </div>
         {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
-        <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1B2129] bg-[#4BFF2A] px-6 text-sm font-bold uppercase disabled:opacity-60">
+        <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
           {pending ? "Adding" : "Add account"}
         </button>
       </form>

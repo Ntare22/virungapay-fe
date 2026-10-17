@@ -12,7 +12,7 @@ const groups = [
   { kind: "fee_fx", label: "FX fee", note: "Fees kept when a payment changes currency." },
 ];
 
-const currencyOrder = ["USD", "EUR", "UGX"];
+const currencyOrder = ["USD", "UGX"];
 
 export function PlatformWalletsScreen() {
   const router = useRouter();
@@ -76,7 +76,7 @@ function WalletCard({ wallet, label }: { wallet: Wallet; label: string }) {
       <p className="mt-3 text-2xl font-semibold tracking-tight">
         {wallet.currency} {wallet.balance || "0.00"}
       </p>
-      <p className="mt-4 text-sm font-semibold text-[#2A2AFF]">View statement</p>
+      <p className="mt-4 text-sm font-semibold text-[#1F4D3A]">View statement</p>
     </Link>
   );
 }

@@ -118,7 +118,7 @@ export function FeesScreen() {
                             <select
                               value={mode}
                               onChange={(event) => setModes((current) => ({ ...current, [feeKey(fee)]: event.target.value as FeeMode }))}
-                              className="h-10 border-2 border-[#1B2129] bg-white px-2"
+                              className="h-10 border-2 border-[#1C2416] bg-white px-2"
                             >
                               <option value="percent">Percentage</option>
                               <option value="fixed">Fixed amount</option>
@@ -132,7 +132,7 @@ export function FeesScreen() {
                                   <input
                                     value={fee.markup_bps}
                                     onChange={(event) => update(fee.kind, fee.currency, { markup_bps: Number(event.target.value) })}
-                                    className="h-10 w-24 border-2 border-[#1B2129] px-2"
+                                    className="h-10 w-24 border-2 border-[#1C2416] px-2"
                                     aria-label={`${fee.currency} basis points`}
                                   />
                                   <span className="text-[#6c757d]">basis points</span>
@@ -143,7 +143,7 @@ export function FeesScreen() {
                                   <input
                                     value={fee.flat}
                                     onChange={(event) => update(fee.kind, fee.currency, { flat: event.target.value })}
-                                    className="h-10 w-28 border-2 border-[#1B2129] px-2"
+                                    className="h-10 w-28 border-2 border-[#1C2416] px-2"
                                     aria-label={`${fee.currency} fixed amount`}
                                   />
                                   <span className="text-[#6c757d]">{fee.currency}</span>
@@ -156,7 +156,7 @@ export function FeesScreen() {
                               type="button"
                               disabled={busy === feeKey(fee)}
                               onClick={() => save(fee)}
-                              className="font-semibold text-[#2A2AFF] disabled:opacity-40"
+                              className="font-semibold text-[#1F4D3A] disabled:opacity-40"
                             >
                               Save
                             </button>

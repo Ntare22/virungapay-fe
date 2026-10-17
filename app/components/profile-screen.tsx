@@ -45,7 +45,7 @@ export function ProfileScreen() {
   return (
     <DashboardShell title="Profile" active="Profile" audience={audience}>
       <article className="max-w-xl bg-white p-6 shadow-sm">
-        <h2 className="font-mono text-2xl text-[#1B2129]">{user?.name ?? "Profile"}</h2>
+        <h2 className="font-mono text-2xl text-[#1C2416]">{user?.name ?? "Profile"}</h2>
         <dl className="mt-6 grid gap-4 text-sm">
           <div>
             <dt className="text-[#98a6ad]">Email</dt>
