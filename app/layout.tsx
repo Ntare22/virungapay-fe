@@ -36,13 +36,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans text-body">
-        {comingSoon() ? (
-          children
-        ) : (
-          <DeviceGate>
-            <NavPreferenceProvider>{children}</NavPreferenceProvider>
-          </DeviceGate>
-        )}
+        <NavPreferenceProvider>
+          {comingSoon() ? children : <DeviceGate>{children}</DeviceGate>}
+        </NavPreferenceProvider>
       </body>
     </html>
   );
