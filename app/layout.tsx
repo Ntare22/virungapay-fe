@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Open_Sans, Roboto_Mono } from "next/font/google";
 import { DeviceGate } from "./components/device-gate";
 import { NavPreferenceProvider } from "./components/dashboard-shell";
+import { comingSoon } from "./lib/site-mode";
 import "./globals.css";
 
 const openSans = Open_Sans({
@@ -35,9 +36,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans text-body">
-        <DeviceGate>
-          <NavPreferenceProvider>{children}</NavPreferenceProvider>
-        </DeviceGate>
+        {comingSoon() ? (
+          children
+        ) : (
+          <DeviceGate>
+            <NavPreferenceProvider>{children}</NavPreferenceProvider>
+          </DeviceGate>
+        )}
       </body>
     </html>
   );
