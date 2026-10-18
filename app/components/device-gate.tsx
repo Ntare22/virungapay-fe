@@ -1,12 +1,20 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState, type ReactNode } from "react";
+import { Suspense, useEffect, useState, type ReactNode } from "react";
 import { Mark } from "./mark";
 
 const phoneApp = process.env.NEXT_PUBLIC_PWA_URL ?? "http://localhost:3001";
 
 export function DeviceGate({ children }: { children: ReactNode }) {
+  return (
+    <Suspense fallback={children}>
+      <GatedShell>{children}</GatedShell>
+    </Suspense>
+  );
+}
+
+function GatedShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [phone, setPhone] = useState<boolean | null>(null);
 
