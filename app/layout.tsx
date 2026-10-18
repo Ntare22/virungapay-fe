@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   title: "VirungaPay",
   description:
     "Tour operators send an itinerary. Tourists pay by card in USD. The operator then pays lodges, drivers, fuel, and guides.",
+  icons: {
+    icon: [
+      { url: "/favicon-light.png", media: "(prefers-color-scheme: light)", type: "image/png" },
+      { url: "/favicon-dark.png", media: "(prefers-color-scheme: dark)", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
