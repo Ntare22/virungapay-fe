@@ -84,10 +84,10 @@ export function SignupScreen() {
           <ul className="mt-8 space-y-3 font-bold">
             {points.map((point) => (
               <li key={point} className="flex items-start gap-3">
-                <span className="grid size-6 place-items-center border-2 border-[#1C2416] bg-[#E2B15A] text-sm text-[#1C2416]">
+                <span className="mt-0.5 grid size-6 shrink-0 place-items-center border-2 border-[#1C2416] bg-[#E2B15A] text-sm leading-none text-[#1C2416]">
                   ✓
                 </span>
-                {point}
+                <span className="leading-snug">{point}</span>
               </li>
             ))}
           </ul>
