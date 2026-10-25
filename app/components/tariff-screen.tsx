@@ -100,9 +100,11 @@ function TariffBoard({
   return (
     <section className="grid gap-4 lg:grid-cols-2">
       <div className="grid gap-4">
-        <p className="text-sm text-[#6c757d]">
-          A basis point is 0.01%. 100 basis points is 1%. The customer rate is the quotation plus that markup, and it stays in place until a new rate is saved.
-        </p>
+        {staff ? (
+          <p className="text-sm text-[#6c757d]">
+            A basis point is 0.01%. 100 basis points is 1%. The customer rate is the quotation plus that markup, and it stays in place until a new rate is saved.
+          </p>
+        ) : null}
         {pairs.map((name) => {
           const tariff = tariffs.find((item) => item.pair === name);
           return (
@@ -111,8 +113,12 @@ function TariffBoard({
               <p className="mt-1 text-3xl font-semibold">{tariff ? trimRate(tariff.customer_rate) : "—"}</p>
               <p className="mt-4 text-sm text-[#6c757d]">
                 {tariff
-                  ? `Quotation ${trimRate(tariff.integrator_rate)} plus ${tariff.markup_bps} basis points. Set on ${setOn(tariff.quote_on)}.`
-                  : "No exchange rate has been set."}
+                  ? staff
+                    ? `Quotation ${trimRate(tariff.integrator_rate)} plus ${tariff.markup_bps} basis points. Set on ${setOn(tariff.quote_on)}.`
+                    : `Last Updated ${setOn(tariff.quote_on)}`
+                  : staff
+                    ? "No exchange rate has been set."
+                    : "No Rate Has Been Set"}
               </p>
             </article>
           );

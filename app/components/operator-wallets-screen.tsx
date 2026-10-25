@@ -2,7 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
-import { listOperatorPayments, moveWallets, myCompany, readSession, renameWallet, todayTariff, type Company, type OperatorPayment, type Tariff, type Wallet } from "../lib/api";
+import { actionNotice, listOperatorPayments, moveWallets, myCompany, readSession, renameWallet, todayTariff, type Company, type OperatorPayment, type Tariff, type Wallet } from "../lib/api";
+import { Toast } from "./toast";
 import { DashboardShell } from "./dashboard-shell";
 
 const currencyOrder = ["USD", "UGX"];
@@ -113,6 +114,7 @@ const movementKinds: Record<string, string> = {
   collection: "Payment in",
   withdraw: "Withdrawal",
   p2p: "Tip",
+  send: "Send",
   conversion: "Exchange",
 };
 
@@ -249,7 +251,7 @@ function UsernameModal({
     try {
       onSaved(await renameWallet(wallet.id, { name: name.trim(), username: username.trim() }));
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : "Something went wrong. Try again.");
+      setNotice(actionNotice(error));
       setPending(false);
     }
   }
@@ -301,10 +303,10 @@ function UsernameModal({
             className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 font-mono font-normal outline-none"
           />
         </label>
-        {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
         <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
           {pending ? "Saving" : "Save"}
         </button>
+        <Toast message={notice} onClose={() => setNotice("")} />
       </form>
     </div>
   );
@@ -375,7 +377,7 @@ function MoveModal({
       onMoved(await moveWallets(fromId, toId, amount.trim()));
       setAmount("");
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : "Something went wrong. Try again.");
+      setNotice(actionNotice(error));
     } finally {
       setPending(false);
     }
@@ -443,7 +445,7 @@ function MoveModal({
       <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
         {pending ? "Please wait" : "Move"}
       </button>
-      {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
+      <Toast message={notice} onClose={() => setNotice("")} />
     </form>
     </div>
   );

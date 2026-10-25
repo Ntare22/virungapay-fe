@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { loadPayPage, payItinerary, type Itinerary } from "../lib/api";
+import { actionNotice, loadPayPage, payItinerary, type Itinerary } from "../lib/api";
 import { Mark } from "./mark";
+import { Toast } from "./toast";
 
 export function PayScreen({ token }: { token: string }) {
   const [item, setItem] = useState<Itinerary | null>(null);
@@ -17,7 +18,7 @@ export function PayScreen({ token }: { token: string }) {
         if (!cancelled) setItem(loaded);
       })
       .catch((error) => {
-        if (!cancelled) setNotice(error instanceof Error ? error.message : "Something went wrong. Try again.");
+        if (!cancelled) setNotice(actionNotice(error));
       })
       .finally(() => {
         if (!cancelled) setReady(true);
@@ -33,7 +34,7 @@ export function PayScreen({ token }: { token: string }) {
     try {
       setItem(await payItinerary(token));
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : "Something went wrong. Try again.");
+      setNotice(actionNotice(error));
     } finally {
       setPending(false);
     }
@@ -88,7 +89,7 @@ export function PayScreen({ token }: { token: string }) {
             )}
           </>
         ) : null}
-        {notice ? <p className="mt-4 text-sm">{notice}</p> : null}
+        <Toast message={notice} onClose={() => setNotice("")} />
       </article>
     </main>
   );

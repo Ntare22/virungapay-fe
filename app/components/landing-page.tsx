@@ -209,11 +209,13 @@ export function LandingPage() {
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 lg:min-h-[640px] lg:grid-cols-[1.05fr_0.95fr] lg:px-6 lg:py-24">
             <div>
               <h1 className="max-w-xl font-mono text-4xl leading-[1.05] font-medium sm:text-6xl">
-                Pay the tour. Split the trip.
+                <span className="block">Send Itineraries.</span>
+                <span className="block">Accept Card Payments.</span>
+                <span className="block">Split Vendor Payouts Instantly.</span>
               </h1>
-              <p className="relative mt-8 max-w-xl pt-6 text-base font-semibold sm:text-lg">
+              <p className="relative mt-8 max-w-xl pt-6 text-base font-normal leading-relaxed sm:text-lg">
                 <span className="caret absolute top-0 left-0" />
-                The operator sends the itinerary. The tourist pays the deposit by card in USD. The operator then pays the lodge, the driver, the fuel supplier, and the guide.
+                The all-in-one payment gateway for East African Tour Operators and DMCs. Turn your itineraries into direct-payment links, accept international credit cards directly into your USD wallet, and instantly split local vendor payments to VirungaPay mobile wallets.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link

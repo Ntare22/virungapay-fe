@@ -112,6 +112,30 @@ export class ApiError extends Error {
   }
 }
 
+export function actionNotice(error: unknown) {
+  if (error instanceof ApiError) {
+    switch (error.code) {
+      case "insufficient_balance":
+        return "This wallet does not have enough for that amount.";
+      case "fee_too_large":
+        return "The fee is larger than the amount.";
+      case "fee_not_set":
+        return "No fee has been set for this payment.";
+      case "rate_not_set":
+        return "No exchange rate has been set.";
+      case "wallet_not_found":
+        return "That wallet was not found.";
+      case "not_ready":
+        return "A wallet needed for this payment is not set up yet.";
+      case "business_not_approved":
+        return "Approve the business before money can move.";
+      default:
+        return error.message || "Something went wrong. Try again.";
+    }
+  }
+  return error instanceof Error && error.message ? error.message : "Something went wrong. Try again.";
+}
+
 export async function login(email: string, password: string) {
   const session = await post<Session>("/v1/auth/login", { email, password });
   return { session, audience: "operator" as const };

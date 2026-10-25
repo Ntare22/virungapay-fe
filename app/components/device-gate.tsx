@@ -23,7 +23,7 @@ function GatedShell({ children }: { children: ReactNode }) {
   }, []);
 
   if (phone === null) return children;
-  if (phone && !pathname.startsWith("/pay")) {
+  if (phone && !pathname.startsWith("/pay") && !pathname.startsWith("/invites") && !pathname.startsWith("/verify-email")) {
     return (
       <main className="grid min-h-dvh place-items-center bg-[#F6F1E7] px-4">
         <section className="w-full max-w-md border-2 border-[#1C2416] bg-white p-6 shadow-[6px_6px_0_#E2B15A]">

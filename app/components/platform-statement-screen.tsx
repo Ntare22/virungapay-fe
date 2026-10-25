@@ -13,6 +13,7 @@ const labels: Record<string, string> = {
   collection: "Collection",
   withdraw: "Withdrawal",
   p2p: "Tip",
+  send: "Send",
   conversion: "Exchange",
 };
 

@@ -106,14 +106,15 @@ export function WalletsScreen() {
                     {wallet.currency === "UGX" && username ? (
                       <button
                         type="button"
+                        aria-label={`QR code for @${username}`}
                         onClick={() => setQr({
                           title: person ? person.holder_name : business?.name || wallet.name || "Wallet",
                           username,
                           currency: wallet.currency,
                         })}
-                        className="h-9 border-2 border-[#1C2416] bg-white px-3 text-xs font-bold uppercase"
+                        className="grid size-9 place-items-center border-2 border-[#1C2416] bg-white text-[#1C2416]"
                       >
-                        QR code
+                        <QrIcon />
                       </button>
                     ) : (
                       "—"
@@ -159,6 +160,17 @@ export function WalletsScreen() {
       {notice ? <p className="mt-4 text-sm">{notice}</p> : null}
       {qr ? <WalletQrSheet wallet={qr} onClose={() => setQr(null)} /> : null}
     </DashboardShell>
+  );
+}
+
+function QrIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm2 2h2v2h-2v-2zm2-2h2v4h-2v-4z"
+      />
+    </svg>
   );
 }
 
