@@ -7,9 +7,9 @@ import { Mark } from "./mark";
 import { internationalPhone, PhoneField, type CountryCode } from "./phone-field";
 
 const points = [
-  "Send Itineraries Tourists Can Pay",
-  "Take Card Payments In USD",
-  "Pay The Lodge, Driver, And Guide",
+  "Send Itinerary",
+  "Receive Payment In VirungaTrip USD Wallet",
+  "Push Forex Exchange To VirungaTrip UGX Wallet Seamlessly & Split Payments To Local Guides & Drivers",
 ];
 
 export function SignupScreen() {
@@ -83,7 +83,7 @@ export function SignupScreen() {
           </p>
           <ul className="mt-8 space-y-3 font-bold">
             {points.map((point) => (
-              <li key={point} className="flex items-center gap-3">
+              <li key={point} className="flex items-start gap-3">
                 <span className="grid size-6 place-items-center border-2 border-[#1C2416] bg-[#E2B15A] text-sm text-[#1C2416]">
                   ✓
                 </span>
