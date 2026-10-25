@@ -79,7 +79,7 @@ export function SignupScreen() {
           </h1>
           <p className="relative mt-8 pt-6 text-base font-semibold">
             <span className="caret absolute top-0 left-0" />
-            For tour operators in East Africa. Send the itinerary, then let the tourist pay in USD.
+            For The Tour Operator, Share Itinerary & Await Payment in USD.
           </p>
           <ul className="mt-8 space-y-3 font-bold">
             {points.map((point) => (
