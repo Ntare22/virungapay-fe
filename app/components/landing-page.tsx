@@ -5,7 +5,7 @@ import { useState, type FormEvent } from "react";
 import { Mark } from "./mark";
 
 const nav = [
-  { href: "#flow", label: "How it works" },
+  { href: "#flow", label: "How It Works" },
   { href: "#wallets", label: "Wallets" },
   { href: "#splits", label: "Splits" },
   { href: "#faq", label: "FAQ" },
@@ -13,35 +13,35 @@ const nav = [
 
 const steps = [
   {
-    title: "The operator sends the itinerary",
+    title: "The Operator Sends The Itinerary",
     text: "Dates, stays, the driver, and the guide go in one itinerary. The tourist opens it and sees what they are paying for.",
   },
   {
-    title: "The tourist pays by card",
+    title: "The Tourist Pays By Card",
     text: "They pay the deposit in USD. The money lands in a VirungaPass wallet, tied to that itinerary.",
   },
   {
-    title: "The operator pays the team",
-    text: "The same money shows up in the operator’s VirungaTrip wallet. From there they pay the lodge, driver, fuel supplier, and guide.",
+    title: "The Operator Pays The Team",
+    text: "The same money shows up in the operator’s VirungaTrip wallet. From there they pay the lodge, driver, and guide.",
   },
 ];
 
 const tripCards = [
   {
     label: "Itinerary",
-    title: "Sent to the tourist",
+    title: "Sent To The Tourist",
     rows: [
-      ["Trip", "4-day gorilla trek"],
-      ["Includes", "Lodge, driver, guide"],
-      ["Next", "Tourist pays"],
+      ["Trip", "4-Day Gorilla Trek"],
+      ["Includes", "Lodge, Driver, Guide"],
+      ["Next", "Tourist Pays"],
     ],
-    note: "They pay from this itinerary",
+    note: "They Pay From This Itinerary",
   },
   {
     label: "VirungaPass",
-    title: "Card payment",
+    title: "Card Payment",
     rows: [
-      ["From", "Tourist · card"],
+      ["From", "Tourist · Card"],
       ["Currency", "USD 1,240.00"],
       ["Wallet", "VirungaPass"],
     ],
@@ -49,34 +49,34 @@ const tripCards = [
   },
   {
     label: "VirungaTrip",
-    title: "Operator wallet",
+    title: "Operator Wallet",
     rows: [
       ["To", "Operator"],
-      ["Holds", "The tour deposit"],
-      ["Next", "Pay the team"],
+      ["Holds", "The Tour Deposit"],
+      ["Next", "Pay The Team"],
     ],
-    note: "One balance, many people",
+    note: "One Balance, Many People",
   },
   {
     label: "Payments",
-    title: "Down the chain",
+    title: "Down The Chain",
     rows: [
       ["Lodge", "Stay"],
       ["Driver", "Transport"],
-      ["Fuel", "Supplier"],
-      ["Guide", "Day rate"],
+      ["Fuel", "Diesel"],
+      ["Guide", "Day Rate"],
     ],
-    note: "Paid from the trip",
+    note: "Paid From The Trip",
   },
   {
-    label: "Park fees",
-    title: "Still paid in cash",
+    label: "Park Fees",
+    title: "Still Paid In Cash",
     rows: [
       ["Stays", "Cash"],
-      ["Noted", "With a receipt"],
-      ["Shown", "On the trip"],
+      ["Noted", "With A Receipt"],
+      ["Shown", "On The Trip"],
     ],
-    note: "Receipt attached",
+    note: "Receipt Attached",
   },
 ];
 
@@ -85,7 +85,7 @@ const quotes = [
     quote:
       "The deposit arrives before the group lands. I split the lodge and the driver from the same wallet instead of chasing mobile-money threads.",
     name: "Amina N.",
-    role: "Tour operator",
+    role: "Tour Operator",
   },
   {
     quote:
@@ -103,27 +103,27 @@ const quotes = [
 
 const faqs = [
   {
-    q: "How does a tourist pay?",
+    q: "How Does A Tourist Pay?",
     a: "The operator sends an itinerary. The tourist opens it and pays the deposit by card in USD.",
   },
   {
-    q: "Where does the money go?",
+    q: "Where Does The Money Go?",
     a: "The payment lands in a VirungaPass wallet. The operator then sees it in a VirungaTrip wallet and pays the people on the trip.",
   },
   {
-    q: "Who can the operator pay?",
-    a: "Lodges, drivers, fuel suppliers, and guides, from the VirungaTrip balance.",
+    q: "Who Can The Operator Pay?",
+    a: "Lodges, Drivers, And Guides, From The VirungaTrip Balance.",
   },
   {
-    q: "What about park fees?",
+    q: "What About Park Fees?",
     a: "Park fees mostly stay in cash. They are written down with a receipt, so the trip still shows where that money went.",
   },
   {
-    q: "How do guide tips work?",
+    q: "How Do Guide Tips Work?",
     a: "A guide carries a QR badge. A guest scans it and the tip is recorded against that guide.",
   },
   {
-    q: "How does VirungaPay earn?",
+    q: "How Does VirungaPay Earn?",
     a: "From changing USD for the trip, and a small fee on each payment. Part of that fee pays for health cover for AUTO and UHOA members.",
   },
 ];
@@ -208,7 +208,7 @@ export function LandingPage() {
         <section className="relative overflow-hidden bg-[#1F4D3A] text-white">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 lg:min-h-[640px] lg:grid-cols-[1.05fr_0.95fr] lg:px-6 lg:py-24">
             <div>
-              <h1 className="max-w-xl font-mono text-4xl leading-[1.05] font-medium sm:text-6xl">
+              <h1 className="max-w-xl font-mono text-2xl leading-tight font-medium sm:text-4xl">
                 <span className="block">Send Itineraries.</span>
                 <span className="block">Accept Card Payments.</span>
                 <span className="block">Split Vendor Payouts Instantly.</span>
@@ -222,13 +222,13 @@ export function LandingPage() {
                   href="/login"
                   className="inline-flex h-12 items-center justify-center border-2 border-[#1C2416] bg-[#E2B15A] px-8 text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416]"
                 >
-                  Try the demo
+                  Try The Demo
                 </Link>
                 <a
                   href="#flow"
                   className="inline-flex h-12 items-center justify-center border-2 border-white px-8 text-sm font-bold uppercase"
                 >
-                  See the flow
+                  See The Flow
                 </a>
               </div>
             </div>
@@ -239,7 +239,7 @@ export function LandingPage() {
         <section id="flow" className="mx-auto grid max-w-6xl gap-12 px-4 py-16 lg:grid-cols-2 lg:px-6 lg:py-24">
           <div>
             <h2 className="font-mono text-3xl leading-tight font-medium text-[#1C2416] sm:text-4xl">
-              Built for East Africa’s tourism chain
+              Built For East Africa’s Tourism Chain
             </h2>
             <p className="relative mt-6 max-w-md pt-6 text-base">
               <span className="caret absolute top-0 left-0" />
@@ -263,7 +263,7 @@ export function LandingPage() {
                 href="#wallets"
                 className="inline-flex h-12 items-center justify-center border-2 border-[#1C2416] bg-white px-6 text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416]"
               >
-                View wallets
+                View Wallets
               </a>
               <Link
                 href="/login"
@@ -276,15 +276,15 @@ export function LandingPage() {
           <div className="relative">
             <div className="absolute -bottom-6 -left-6 hidden h-40 w-40 rotate-12 border-2 border-[#E2B15A] lg:block" />
             <div className="relative border-2 border-[#1C2416] bg-[#F6F1E7] p-6 shadow-[8px_8px_0_#1F4D3A]">
-              <p className="font-mono text-xs tracking-[0.2em] text-[#1F4D3A] uppercase">One trip</p>
+              <p className="font-mono text-xs tracking-[0.2em] text-[#1F4D3A] uppercase">One Trip</p>
               <ol className="mt-6 space-y-4">
                 {[
-                  ["01", "Itinerary", "Operator sends it to the tourist"],
-                  ["02", "Card payment", "USD into VirungaPass"],
-                  ["03", "Trip wallet", "Operator sees it in VirungaTrip"],
-                  ["04", "Team payments", "Lodge, driver, fuel, guide"],
-                  ["05", "Park fee", "Cash, with a receipt"],
-                  ["06", "Guide tip", "Guest scans the QR badge"],
+                  ["01", "Itinerary", "Operator Sends It To The Tourist"],
+                  ["02", "Card Payment", "USD Into VirungaPass"],
+                  ["03", "Trip Wallet", "Operator Sees It In VirungaTrip"],
+                  ["04", "Team Payments", "Lodge, Driver, Fuel, Guide"],
+                  ["05", "Park Fee", "Cash, With A Receipt"],
+                  ["06", "Guide Tip", "Guest Scans The QR Badge"],
                 ].map(([n, title, text]) => (
                   <li key={n} className="grid grid-cols-[auto_1fr] gap-4 border-b border-[#1C2416]/15 pb-4 last:border-0">
                     <span className="font-mono text-[#1F4D3A]">{n}</span>
@@ -302,7 +302,7 @@ export function LandingPage() {
         <section id="wallets" className="bg-[#1F4D3A] py-16 text-white lg:py-24">
           <div className="mx-auto max-w-6xl px-4 lg:px-6">
             <h2 className="text-center font-mono text-3xl font-medium sm:text-4xl">
-              From itinerary to payment
+              From Itinerary To Payment
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-white/85">
               The tourist pays from the itinerary. The operator pays the team. Park fees stay in cash, with a receipt. Guide tips come through a QR badge.
@@ -310,7 +310,7 @@ export function LandingPage() {
             <div className="relative mt-12">
               <button
                 type="button"
-                aria-label="Previous trip card"
+                aria-label="Previous Trip Card"
                 onClick={() => setCard((current) => (current === 0 ? tripCards.length - 1 : current - 1))}
                 className="absolute top-1/2 left-0 z-10 hidden -translate-y-1/2 text-3xl hover:text-[#E2B15A] sm:block"
               >
@@ -318,7 +318,7 @@ export function LandingPage() {
               </button>
               <button
                 type="button"
-                aria-label="Next trip card"
+                aria-label="Next Trip Card"
                 onClick={() => setCard((current) => (current + 1) % tripCards.length)}
                 className="absolute top-1/2 right-0 z-10 hidden -translate-y-1/2 text-3xl hover:text-[#E2B15A] sm:block"
               >
@@ -348,11 +348,11 @@ export function LandingPage() {
         <section id="splits" className="bg-[#F6F1E7] py-16 lg:py-24">
           <div className="mx-auto max-w-3xl px-4 text-center lg:px-6">
             <h2 className="font-mono text-3xl leading-tight font-medium text-[#1C2416] sm:text-5xl">
-              Operators, guides, and suppliers on{" "}
-              <span className="bg-[#E2B15A] px-1">one trip</span>
+              Operators, Guides, And Drivers On{" "}
+              <span className="bg-[#E2B15A] px-1">One Trip</span>
             </h2>
             <ul className="mt-8 flex flex-col items-center gap-3 font-bold text-[#1C2416] sm:flex-row sm:justify-center sm:gap-10">
-              {["Itinerary the tourist can pay", "USD card payments", "Park fees noted with a receipt"].map((item) => (
+              {["Itinerary The Tourist Can Pay", "USD Card Payments", "Park Fees Noted With A Receipt"].map((item) => (
                 <li key={item} className="flex items-center gap-2">
                   <span className="text-[#1F4D3A]">✓</span>
                   {item}
@@ -363,18 +363,18 @@ export function LandingPage() {
               href="/signup"
               className="mx-auto mt-8 inline-flex h-12 items-center border-2 border-[#1C2416] bg-[#E2B15A] px-8 text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416]"
             >
-              Get started
+              Get Started
             </Link>
           </div>
         </section>
 
         <section className="mx-auto max-w-6xl px-4 py-16 lg:px-6 lg:py-24">
           <div className="flex items-end justify-between gap-4">
-            <h2 className="font-mono text-3xl font-medium text-[#1C2416] sm:text-4xl">What the chain says</h2>
+            <h2 className="font-mono text-3xl font-medium text-[#1C2416] sm:text-4xl">What The Chain Says</h2>
             <div className="flex gap-2">
               <button
                 type="button"
-                aria-label="Previous quote"
+                aria-label="Previous Quote"
                 onClick={() => setQuote((current) => (current === 0 ? quotes.length - 1 : current - 1))}
                 className="grid size-11 place-items-center border-2 border-[#1C2416] hover:bg-[#F6F1E7]"
               >
@@ -382,7 +382,7 @@ export function LandingPage() {
               </button>
               <button
                 type="button"
-                aria-label="Next quote"
+                aria-label="Next Quote"
                 onClick={() => setQuote((current) => (current + 1) % quotes.length)}
                 className="grid size-11 place-items-center border-2 border-[#1C2416] hover:bg-[#F6F1E7]"
               >
@@ -402,7 +402,7 @@ export function LandingPage() {
         <section id="faq" className="border-t-2 border-[#1C2416] bg-[#F6F1E7]">
           <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 lg:grid-cols-2 lg:px-6 lg:py-24">
             <div>
-              <h2 className="font-mono text-3xl font-medium text-[#1C2416]">Ask us any</h2>
+              <h2 className="font-mono text-3xl font-medium text-[#1C2416]">Ask Us Any</h2>
               <p className="relative mt-6 max-w-md pt-6">
                 <span className="caret absolute top-0 left-0" />
                 Questions about itineraries, card payments, park fees, or the guide badge.
@@ -484,7 +484,7 @@ export function LandingPage() {
               </a>
             ))}
             <Link href="/login" className="hover:text-[#1F4D3A]">
-              Sign in
+              Login
             </Link>
           </nav>
           <div className="text-sm">
@@ -517,28 +517,28 @@ function FlowCard() {
   return (
     <div className="border-2 border-[#1C2416] bg-white p-5 text-[#1C2416] shadow-[10px_10px_0_#E2B15A]">
       <div className="flex items-center justify-between border-b-2 border-[#1C2416] pb-3">
-        <p className="font-mono text-sm">Gorilla trek · 4 days</p>
+        <p className="font-mono text-sm">Gorilla Trek · 4 Days</p>
         <p className="text-xs font-bold text-[#1F4D3A]">DEMO</p>
       </div>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="border-2 border-[#1C2416] p-3">
           <p className="text-xs uppercase">VirungaPass</p>
           <p className="mt-1 font-mono text-2xl">USD 1,240</p>
-          <p className="text-xs">Paid from the itinerary</p>
+          <p className="text-xs">Paid From The Itinerary</p>
         </div>
         <div className="border-2 border-[#1C2416] bg-[#F6F1E7] p-3">
           <p className="text-xs uppercase">VirungaTrip</p>
           <p className="mt-1 font-mono text-2xl">Ready</p>
-          <p className="text-xs">Operator wallet</p>
+          <p className="text-xs">Operator Wallet</p>
         </div>
       </div>
       <ul className="mt-4 space-y-2 text-sm">
         {[
           ["Lodge", "Stay"],
           ["Driver", "Transport"],
-          ["Fuel supplier", "Diesel"],
-          ["Guide", "Day rate + QR tip"],
-          ["Park", "Cash · receipt"],
+          ["Fuel", "Diesel"],
+          ["Guide", "Day Rate + QR Tip"],
+          ["Park", "Cash · Receipt"],
         ].map(([name, detail]) => (
           <li key={name} className="flex items-center justify-between border-b border-[#1C2416]/10 pb-2">
             <span className="font-semibold">{name}</span>

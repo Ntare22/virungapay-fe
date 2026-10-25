@@ -63,7 +63,7 @@ export function AcceptInvite({ token }: { token: string }) {
       <section className="flex min-h-0 flex-1 flex-col overflow-auto bg-white px-6 py-6 sm:px-10 lg:w-1/2 lg:px-14">
         <header className="flex items-center justify-between">
           <Link href="/" className="font-mono text-sm text-[#1C2416]">
-            Back home
+            Back Home
           </Link>
           <Link href="/login" className="font-mono text-sm font-bold text-[#1F4D3A]">
             Login
@@ -78,7 +78,7 @@ export function AcceptInvite({ token }: { token: string }) {
                 href={phoneApp}
                 className="mt-6 inline-flex h-12 items-center border-2 border-[#1C2416] bg-[#E2B15A] px-8 text-sm font-bold uppercase text-[#1C2416]"
               >
-                Open the phone app
+                Open The Phone App
               </a>
             </div>
           ) : (
@@ -97,7 +97,7 @@ export function AcceptInvite({ token }: { token: string }) {
                 />
               </label>
               <label className="mt-4 block text-sm font-semibold" htmlFor="invite-confirm">
-                Confirm password
+                Confirm Password
                 <input
                   id="invite-confirm"
                   type="password"
@@ -109,7 +109,7 @@ export function AcceptInvite({ token }: { token: string }) {
               </label>
               {notice ? <p className="mt-4 text-sm">{notice}</p> : null}
               <button type="submit" disabled={pending || !token} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
-                {pending ? "Please wait" : "Accept invite"}
+                {pending ? "Please Wait" : "Accept Invite"}
               </button>
             </form>
           )}

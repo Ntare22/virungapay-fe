@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ItineraryEditor } from "../../components/itinerary-editor";
 
-export const metadata: Metadata = { title: "New itinerary · VirungaPay" };
+export const metadata: Metadata = { title: "New Itinerary · VirungaPay" };
 
 export default function NewItineraryPage({ searchParams }: { searchParams: Promise<{ package?: string; inquiry?: string }> }) {
   return (

@@ -25,7 +25,7 @@ export function PhoneField({
   return (
     <div className="flex gap-2">
       <label htmlFor={`${id}-code`} className="sr-only">
-        Country code
+        Country Code
       </label>
       <select
         id={`${id}-code`}

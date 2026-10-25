@@ -75,7 +75,7 @@ export function OperatorsScreen({ bureau = false }: { bureau?: boolean }) {
   }
 
   return (
-    <DashboardShell title={bureau ? "Forex bureaus" : "Tour operators"} active={bureau ? "Forex bureaus" : "Tour operators"} audience="admin">
+    <DashboardShell title={bureau ? "Forex Bureaus" : "Tour Operators"} active={bureau ? "Forex Bureaus" : "Tour Operators"} audience="admin">
       {bureau ? (
         <AddBureau
           onCreated={(created) => {
@@ -107,7 +107,7 @@ export function OperatorsScreen({ bureau = false }: { bureau?: boolean }) {
                 {rows.length === 0 ? (
                   <tr>
                     <td className="px-5 py-6 text-[#6c757d]" colSpan={6}>
-                      {bureau ? "No forex bureaus yet." : "No tour operators yet."}
+                      {bureau ? "No Forex Bureaus Yet." : "No Tour Operators Yet."}
                     </td>
                   </tr>
                 ) : null}
@@ -205,7 +205,7 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2 id="add-bureau-title" className="text-lg font-medium">
-                  Add a forex bureau
+                  Add A Forex Bureau
                 </h2>
                 <p className="mt-1 text-sm text-[#6c757d]">The owner gets an email to set a password. The bureau stays pending until you approve it.</p>
               </div>
@@ -215,7 +215,7 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
             </div>
             <div className="mt-4 grid gap-4">
               <label className="block text-sm font-semibold">
-                Bureau name
+                Bureau Name
                 <input value={name} onChange={(event) => setName(event.target.value)} className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none" />
               </label>
               <label className="block text-sm font-semibold">
@@ -243,7 +243,7 @@ function AddBureau({ onCreated }: { onCreated: (business: Business) => void }) {
               </div>
             </div>
             <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
-              {pending ? "Please wait" : "Add bureau"}
+              {pending ? "Please Wait" : "Add Bureau"}
             </button>
             {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
           </form>

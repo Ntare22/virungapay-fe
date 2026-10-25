@@ -81,7 +81,7 @@ export function WalletsScreen() {
                 <th className="px-5 py-3 font-medium">Currency</th>
                 <th className="px-5 py-3 font-medium">Balance</th>
                 <th className="px-5 py-3 font-medium">Role</th>
-                <th className="px-5 py-3 font-medium">Business status</th>
+                <th className="px-5 py-3 font-medium">Business Status</th>
                 <th className="px-5 py-3 font-medium">Code</th>
               </tr>
             </thead>
@@ -98,7 +98,7 @@ export function WalletsScreen() {
                   <td className="px-5 py-3 font-mono text-[#1F4D3A]">{username ? `@${username}` : "—"}</td>
                   <td className="px-5 py-3 font-semibold">{wallet.currency}</td>
                   <td className="px-5 py-3">{wallet.balance || "0.00"}</td>
-                  <td className="px-5 py-3">{person ? walletRole(person) : wallet.is_default ? "Default · receives payments" : "Open"}</td>
+                  <td className="px-5 py-3">{person ? walletRole(person) : wallet.is_default ? "Default · Receives Payments" : "Open"}</td>
                   <td className="px-5 py-3 font-semibold uppercase">
                     {person ? person.holder_status : business?.status === "disabled" ? "Stopped" : business?.status}
                   </td>

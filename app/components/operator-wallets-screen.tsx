@@ -111,7 +111,7 @@ export function OperatorWalletsScreen() {
 }
 
 const movementKinds: Record<string, string> = {
-  collection: "Payment in",
+  collection: "Payment In",
   withdraw: "Withdrawal",
   p2p: "Tip",
   send: "Send",
@@ -274,7 +274,7 @@ function UsernameModal({
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h2 id="edit-username-title" className="text-lg font-medium">Edit username</h2>
+            <h2 id="edit-username-title" className="text-lg font-medium">Edit Username</h2>
             <p className="mt-1 text-sm text-[#6c757d]">Senders find this wallet by the username.</p>
           </div>
           <button type="button" onClick={close} aria-label="Close" className="grid size-9 shrink-0 place-items-center text-xl leading-none">
@@ -324,7 +324,7 @@ function ExchangeButton({ pair, rate, disabled, onOpen }: { pair: string; rate?:
         className="border-2 border-[#1C2416] bg-white px-4 py-3 text-center shadow-[4px_4px_0_#E2B15A] disabled:opacity-60"
       >
         <span className="block text-xs font-bold uppercase">{pair}</span>
-        <span className="mt-1 block text-lg font-semibold">{rate ? showRate(rate) : "No rate"}</span>
+        <span className="mt-1 block text-lg font-semibold">{rate ? showRate(rate) : "No Rate"}</span>
       </button>
       <Arrow direction="left" />
     </div>
@@ -401,7 +401,7 @@ function MoveModal({
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 id="move-money-title" className="text-lg font-medium">Move money</h2>
+          <h2 id="move-money-title" className="text-lg font-medium">Move Money</h2>
           <p className="mt-2 text-sm text-[#6c757d]">
             {tariff ? `Using ${tariff.pair} at ${showRate(tariff.customer_rate)}.` : "USD moves to or from UGX."}
           </p>
@@ -443,7 +443,7 @@ function MoveModal({
         className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none"
       />
       <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
-        {pending ? "Please wait" : "Move"}
+        {pending ? "Please Wait" : "Move"}
       </button>
       <Toast message={notice} onClose={() => setNotice("")} />
     </form>

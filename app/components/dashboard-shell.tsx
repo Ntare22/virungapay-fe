@@ -46,7 +46,7 @@ export function DashboardShell({
   children,
 }: {
   title: string;
-  active: "Dashboard" | "Profile" | "Tariffs" | "Itineraries" | "Payments" | "Guides" | "Tour operators" | "Wallets" | "Platform wallets" | "Fees" | "Transactions" | "Forex bureaus";
+  active: "Dashboard" | "Profile" | "Tariffs" | "Itineraries" | "Payments" | "Guides" | "Tour Operators" | "Wallets" | "Platform Wallets" | "Fees" | "Transactions" | "Forex Bureaus";
   audience?: Audience;
   children: ReactNode;
 }) {
@@ -70,7 +70,7 @@ export function DashboardShell({
       {menuOpen ? (
         <button
           type="button"
-          aria-label="Close menu"
+          aria-label="Close Menu"
           className="fixed inset-0 z-30 bg-[#1C2416]/40 lg:hidden"
           onClick={() => setMenuOpen(false)}
         />

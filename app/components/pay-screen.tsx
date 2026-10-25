@@ -52,11 +52,11 @@ export function PayScreen({ token }: { token: string }) {
             <p className="mt-2 text-sm text-[#6c757d]">{item.business_name}</p>
             <dl className="mt-4 space-y-1 text-sm">
               <div className="flex justify-between gap-4">
-                <dt className="text-[#6c757d]">Billed to</dt>
+                <dt className="text-[#6c757d]">Billed To</dt>
                 <dd className="font-semibold">{item.customer_name}</dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt className="text-[#6c757d]">Received by</dt>
+                <dt className="text-[#6c757d]">Received By</dt>
                 <dd className="font-semibold">{item.business_name}</dd>
               </div>
             </dl>
@@ -75,7 +75,7 @@ export function PayScreen({ token }: { token: string }) {
               ))}
             </ol>
             {item.inclusions.length > 0 ? <List title="Included" lines={item.inclusions} /> : null}
-            {item.exclusions.length > 0 ? <List title="Not included" lines={item.exclusions} /> : null}
+            {item.exclusions.length > 0 ? <List title="Not Included" lines={item.exclusions} /> : null}
             {item.notes.length > 0 ? <List title="Notes" lines={item.notes} /> : null}
             <p className="mt-6 text-2xl font-semibold">
               {item.currency} {item.amount_due}
@@ -84,7 +84,7 @@ export function PayScreen({ token }: { token: string }) {
               <p className="mt-4 font-semibold">Payment received. This is a simulated card payment. The receipt is on its way to your email.</p>
             ) : (
               <button type="button" disabled={pending} onClick={onPay} className="mt-4 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-5 text-sm font-bold uppercase disabled:opacity-60">
-                {pending ? "Please wait" : `Pay ${item.currency} ${item.amount_due}`}
+                {pending ? "Please Wait" : `Pay ${item.currency} ${item.amount_due}`}
               </button>
             )}
           </>
@@ -102,7 +102,7 @@ function Processor() {
         <Mark className="h-10 w-12" />
         <div>
           <p className="font-mono text-lg leading-none">VirungaPay</p>
-          <p className="mt-1 text-sm text-[#6c757d]">Payment processor</p>
+          <p className="mt-1 text-sm text-[#6c757d]">Payment Processor</p>
         </div>
       </div>
       <div className="text-right text-sm">

@@ -152,13 +152,13 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
   return (
     <DashboardShell title={item.title || "Itinerary"} active="Itineraries">
       <Link href="/itineraries" className="mb-4 inline-block text-sm font-semibold text-[#1F4D3A]">
-        Back to itineraries
+        Back To Itineraries
       </Link>
       {item.invoice_number ? <p className="mb-4 text-sm font-semibold">Invoice {item.invoice_number}</p> : null}
       <form onSubmit={onSave} className="bg-white p-5 shadow-sm">
         <div className="grid gap-3 md:grid-cols-2">
           <label className="text-sm">
-            Start from a package
+            Start From A Package
             <select value={item.package_id ?? ""} onChange={(event) => applyPackage(event.target.value)} disabled={locked} className="mt-1 h-11 w-full border-2 border-[#1C2416] bg-white px-3">
               <option value="">Blank</option>
               {packages.map((pkg) => (
@@ -169,7 +169,7 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
             </select>
           </label>
           <label className="text-sm">
-            Customer inquiry
+            Customer Inquiry
             <select value={item.inquiry_id ?? ""} onChange={(event) => applyInquiry(event.target.value)} disabled={locked} className="mt-1 h-11 w-full border-2 border-[#1C2416] bg-white px-3">
               <option value="">None</option>
               {inquiries.map((inquiry) => (
@@ -184,11 +184,11 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
             <input value={item.title} disabled={locked} onChange={(event) => setItem({ ...item, title: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
           <label className="text-sm">
-            Customer name
+            Customer Name
             <input value={item.customer_name} disabled={locked} onChange={(event) => setItem({ ...item, customer_name: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
           <label className="text-sm">
-            Customer email
+            Customer Email
             <input type="email" value={item.customer_email} disabled={locked} onChange={(event) => setItem({ ...item, customer_email: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
           <label className="text-sm">
@@ -220,17 +220,17 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
             </select>
           </label>
           <label className="text-sm">
-            Amount due
+            Amount Due
             <input value={item.amount_due} disabled={locked} onChange={(event) => setItem({ ...item, amount_due: event.target.value })} className="mt-1 h-11 w-full border-2 border-[#1C2416] px-3" />
           </label>
         </div>
         {locked ? null : (
           <div className="mt-4 flex flex-wrap gap-3">
             <button type="submit" disabled={pending} className="h-11 border-2 border-[#1C2416] bg-white px-4 text-sm font-bold uppercase disabled:opacity-60">
-              Save draft
+              Save Draft
             </button>
             <button type="button" disabled={pending || !item.id} onClick={onSend} className="h-11 border-2 border-[#1C2416] bg-[#E2B15A] px-4 text-sm font-bold uppercase disabled:opacity-60">
-              {pending ? "Please wait" : "Send"}
+              {pending ? "Please Wait" : "Send"}
             </button>
           </div>
         )}
@@ -238,16 +238,16 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
       </form>
       {item.status === "paid" ? (
         <section className="mt-4 bg-white p-5 shadow-sm">
-          <h2 className="text-lg font-medium">Assign to a tourist</h2>
+          <h2 className="text-lg font-medium">Assign To A Tourist</h2>
           <p className="mt-1 text-sm text-[#6c757d]">The trip is paid. Choose their account and it shows on their Home. If they sign up later with {item.customer_email}, it is assigned on its own.</p>
           <label className="mt-4 block text-sm">
-            Tourist account
+            Tourist Account
             <select
               value={item.tourist_user_id ?? ""}
               onChange={(event) => setItem({ ...item, tourist_user_id: event.target.value })}
               className="mt-1 h-11 w-full border-2 border-[#1C2416] bg-white px-3"
             >
-              <option value="">{tourists.length === 0 ? "No tourist accounts yet" : "Choose a tourist"}</option>
+              <option value="">{tourists.length === 0 ? "No Tourist Accounts Yet" : "Choose A Tourist"}</option>
               {tourists.map((tourist) => (
                 <option key={tourist.id} value={tourist.id}>
                   {tourist.name} · {tourist.email}{tourist.username ? ` · @${tourist.username}` : ""}
@@ -269,7 +269,7 @@ export function ItineraryEditor({ itineraryId, packageId, inquiryId }: { itinera
             }}
             className="mt-4 h-11 border-2 border-[#1C2416] bg-[#E2B15A] px-4 text-sm font-bold uppercase disabled:opacity-60"
           >
-            {pending ? "Please wait" : "Assign"}
+            {pending ? "Please Wait" : "Assign"}
           </button>
         </section>
       ) : null}

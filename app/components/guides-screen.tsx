@@ -49,10 +49,10 @@ export function GuidesScreen() {
   }, [router]);
 
   return (
-    <DashboardShell title="Guides and drivers" active="Guides">
+    <DashboardShell title="Guides And Drivers" active="Guides">
       <div className="mb-4 flex justify-end">
         <button type="button" onClick={() => setOpen(true)} className="h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-5 text-sm font-bold uppercase">
-          Add account
+          Add Account
         </button>
       </div>
       {open ? (
@@ -143,7 +143,7 @@ function AddAccount({ onClose, onAdded }: { onClose: () => void; onAdded: (messa
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h2 id="add-account-title" className="text-lg font-medium">Add an account</h2>
+            <h2 id="add-account-title" className="text-lg font-medium">Add An Account</h2>
             <p className="mt-1 text-sm text-[#6c757d]">A new guide or driver gets a UGX wallet straight away, so they can receive money for the trip.</p>
           </div>
           <button type="button" onClick={onClose} aria-label="Close" className="grid size-9 shrink-0 place-items-center text-xl leading-none">
@@ -175,7 +175,7 @@ function AddAccount({ onClose, onAdded }: { onClose: () => void; onAdded: (messa
         </div>
         {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
         <button type="submit" disabled={pending} className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60">
-          {pending ? "Adding" : "Add account"}
+          {pending ? "Adding" : "Add Account"}
         </button>
       </form>
     </div>

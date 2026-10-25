@@ -41,7 +41,7 @@ export function ComingSoon() {
     <main className="grid min-h-dvh place-items-center bg-[#1F4D3A] px-4 py-16 text-[#F6F1E7]">
       <section className="w-full max-w-lg">
         <Mark tone="cream" className="h-12 w-14" />
-        <h1 className="mt-8 font-mono text-5xl font-medium tracking-tight sm:text-6xl">Coming soon</h1>
+        <h1 className="mt-8 font-mono text-5xl font-medium tracking-tight sm:text-6xl">Coming Soon</h1>
         <p className="mt-6 max-w-md text-lg leading-8">
           Tour operators will send the itinerary. Tourists will pay by card in USD. Join the waitlist and we will write when VirungaPay opens.
         </p>
@@ -70,7 +70,7 @@ export function ComingSoon() {
               disabled={pending}
               className="h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-5 text-sm font-bold uppercase tracking-wide text-[#1C2416] disabled:opacity-60"
             >
-              {pending ? "Joining" : "Join the waitlist"}
+              {pending ? "Joining" : "Join The Waitlist"}
             </button>
           </form>
         )}

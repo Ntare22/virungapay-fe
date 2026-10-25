@@ -23,13 +23,13 @@ const operatorNav: NavItem[] = [
 
 const adminNav: NavItem[] = [
   { label: "Dashboard", href: "/admin" },
-  { label: "Tour operators", href: "/admin/operators" },
+  { label: "Tour Operators", href: "/admin/operators" },
   { label: "Wallets", href: "/admin/wallets" },
-  { label: "Platform wallets", href: "/admin/platform" },
+  { label: "Platform Wallets", href: "/admin/platform" },
   { label: "Tariffs", href: "/admin/tariffs" },
   { label: "Fees", href: "/admin/fees" },
   { label: "Transactions", href: "/admin/transactions" },
-  { label: "Forex bureaus", href: "/admin/bureaus" },
+  { label: "Forex Bureaus", href: "/admin/bureaus" },
   { label: "Profile", href: "/profile" },
 ];
 
@@ -66,7 +66,7 @@ export function SideNav({
         {expanded ? (
           <button
             type="button"
-            aria-label="Collapse menu"
+            aria-label="Collapse Menu"
             onClick={onToggle}
             className="grid size-9 shrink-0 place-items-center rounded text-[#6c757d] hover:bg-[#f4f6f8] hover:text-[#1C2416]"
           >
@@ -79,13 +79,13 @@ export function SideNav({
           <span className="group relative">
             <button
               type="button"
-              aria-label="Expand menu"
+              aria-label="Expand Menu"
               onClick={onToggle}
               className="grid size-11 place-items-center rounded text-[#6c757d] hover:bg-[#f4f6f8] hover:text-[#1C2416]"
             >
               <Chevron />
             </button>
-            <Tip label="Expand menu" />
+            <Tip label="Expand Menu" />
           </span>
         )}
         {navItems(audience).map((item) => {
@@ -161,7 +161,7 @@ function NavIcon({ name }: { name: string }) {
         <path d="M16 15h3" />
       </>
     ),
-    "Platform wallets": (
+    "Platform Wallets": (
       <>
         <rect x="3" y="4" width="18" height="6" />
         <rect x="5" y="12" width="14" height="8" />
@@ -179,7 +179,7 @@ function NavIcon({ name }: { name: string }) {
         <path d="M6 19c1.2-3 3.2-4.5 6-4.5S16.8 16 18 19" />
       </>
     ),
-    "Tour operators": (
+    "Tour Operators": (
       <>
         <circle cx="9" cy="8" r="2.5" />
         <circle cx="16" cy="9" r="2" />
@@ -204,7 +204,7 @@ function NavIcon({ name }: { name: string }) {
         <path d="M4 10h16M8 14h4" />
       </>
     ),
-    "Forex bureaus": (
+    "Forex Bureaus": (
       <>
         <path d="M4 18V8l8-4 8 4v10" />
         <path d="M9 18v-5h6v5" />

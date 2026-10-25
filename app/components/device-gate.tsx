@@ -28,7 +28,7 @@ function GatedShell({ children }: { children: ReactNode }) {
       <main className="grid min-h-dvh place-items-center bg-[#F6F1E7] px-4">
         <section className="w-full max-w-md border-2 border-[#1C2416] bg-white p-6 shadow-[6px_6px_0_#E2B15A]">
           <Mark />
-          <h1 className="mt-4 text-2xl font-bold text-[#1C2416]">This site is for a computer</h1>
+          <h1 className="mt-4 text-2xl font-bold text-[#1C2416]">This Site Is For A Computer</h1>
           <p className="mt-3 text-sm text-[#1C2416]">
             On a phone, open the VirungaPay app to sign in, see a wallet, and withdraw.
           </p>
@@ -36,7 +36,7 @@ function GatedShell({ children }: { children: ReactNode }) {
             href={phoneApp}
             className="mt-6 flex h-12 items-center justify-center border-2 border-[#1C2416] bg-[#E2B15A] text-sm font-bold uppercase tracking-wide text-[#1C2416]"
           >
-            Open the phone app
+            Open The Phone App
           </a>
         </section>
       </main>

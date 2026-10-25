@@ -89,11 +89,11 @@ export function PackagesScreen({ packageId }: { packageId?: string }) {
     <DashboardShell title="Packages" active="Itineraries">
       <div className="mb-4 flex items-center justify-between gap-3">
         <Link href="/itineraries" className="text-sm font-semibold text-[#1F4D3A]">
-          Back to itineraries
+          Back To Itineraries
         </Link>
         {packageId ? null : (
           <button type="button" onClick={() => setOpen(true)} className="h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-5 text-sm font-bold uppercase">
-            New package
+            New Package
           </button>
         )}
       </div>
@@ -149,7 +149,7 @@ export function PackagesScreen({ packageId }: { packageId?: string }) {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2 id="package-form-title" className="text-base font-medium">
-                  {packageId ? "Edit package" : "New package"}
+                  {packageId ? "Edit Package" : "New Package"}
                 </h2>
                 <p className="mt-1 text-sm text-[#6c757d]">Days, inclusions, and notes have no price. You set the amount when you send an itinerary.</p>
               </div>
@@ -179,7 +179,7 @@ export function PackagesScreen({ packageId }: { packageId?: string }) {
             <Lines label="Exclusions" value={current.exclusions} onChange={(exclusions) => setCurrent({ ...current, exclusions })} />
             <Lines label="Notes" value={current.notes} onChange={(notes) => setCurrent({ ...current, notes })} />
             <button type="submit" disabled={pending} className="mt-4 h-11 border-2 border-[#1C2416] bg-[#E2B15A] px-4 text-sm font-bold uppercase disabled:opacity-60">
-              {pending ? "Please wait" : "Save package"}
+              {pending ? "Please Wait" : "Save Package"}
             </button>
             {formNotice ? <p className="mt-3 text-sm">{formNotice}</p> : null}
           </form>
@@ -197,7 +197,7 @@ export function DayEditor({ days, onChange, disabled = false }: { days: TripDay[
       {days.map((day, index) => (
         <div key={index} className="mt-3 grid gap-2 border-2 border-[#1C2416] p-3">
           <label className="text-sm">
-            Day {index + 1} title
+            Day {index + 1} Title
             <input
               value={day.title}
               onChange={(event) => onChange(days.map((item, itemIndex) => (itemIndex === index ? { ...item, title: event.target.value, day_number: index + 1 } : item)))}
@@ -206,7 +206,7 @@ export function DayEditor({ days, onChange, disabled = false }: { days: TripDay[
             />
           </label>
           <label className="text-sm">
-            What happens this day
+            What Happens This Day
             <textarea
               value={day.body}
               readOnly={disabled}
@@ -216,14 +216,14 @@ export function DayEditor({ days, onChange, disabled = false }: { days: TripDay[
           </label>
           {disabled ? null : (
             <button type="button" onClick={() => onChange(days.filter((_, itemIndex) => itemIndex !== index))} className="text-left text-sm font-semibold text-[#1F4D3A]">
-              Remove day
+              Remove Day
             </button>
           )}
         </div>
       ))}
       {disabled ? null : (
         <button type="button" onClick={() => onChange([...days, { day_number: days.length + 1, title: "", body: "" }])} className="mt-3 text-sm font-semibold text-[#1F4D3A]">
-          Add day
+          Add Day
         </button>
       )}
     </fieldset>
@@ -237,7 +237,7 @@ export function Lines({ label, value, onChange, disabled = false }: { label: str
       <textarea
         value={value.join("\n")}
         onChange={(event) => onChange(event.target.value.split("\n"))}
-        placeholder="One item on each line"
+        placeholder="One Item On Each Line"
         className="mt-1 min-h-24 w-full border-2 border-[#1C2416] px-3 py-2"
         readOnly={disabled}
       />

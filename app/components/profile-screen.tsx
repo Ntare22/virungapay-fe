@@ -8,15 +8,15 @@ import type { Audience } from "./sidenav";
 
 const roles: Record<string, string> = {
   operator_owner: "Operator",
-  operator_staff: "Operator staff",
+  operator_staff: "Operator Staff",
   tourist: "Tourist",
   guide: "Guide",
   driver: "Driver",
   va_superadmin: "Staff",
   va_ops: "Staff",
   va_finance: "Staff",
-  auto_admin: "AUTO admin",
-  uhoa_admin: "UHOA admin",
+  auto_admin: "AUTO Admin",
+  uhoa_admin: "UHOA Admin",
 };
 
 export function ProfileScreen() {
@@ -53,7 +53,7 @@ export function ProfileScreen() {
           </div>
           <div>
             <dt className="text-[#98a6ad]">Phone</dt>
-            <dd className="mt-1 font-medium">{user?.phone || "Not added"}</dd>
+            <dd className="mt-1 font-medium">{user?.phone || "Not Added"}</dd>
           </div>
           <div>
             <dt className="text-[#98a6ad]">Role</dt>
@@ -61,7 +61,7 @@ export function ProfileScreen() {
           </div>
           <div>
             <dt className="text-[#98a6ad]">Verification</dt>
-            <dd className="mt-1 font-medium">{user?.email_verified ? "Verified" : "Not verified yet"}</dd>
+            <dd className="mt-1 font-medium">{user?.email_verified ? "Verified" : "Not Verified Yet"}</dd>
           </div>
         </dl>
         {notice ? <p className="mt-4 text-sm">{notice}</p> : null}

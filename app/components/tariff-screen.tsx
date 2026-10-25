@@ -117,7 +117,7 @@ function TariffBoard({
                     ? `Quotation ${trimRate(tariff.integrator_rate)} plus ${tariff.markup_bps} basis points. Set on ${setOn(tariff.quote_on)}.`
                     : `Last Updated ${setOn(tariff.quote_on)}`
                   : staff
-                    ? "No exchange rate has been set."
+                    ? "No Exchange Rate Has Been Set."
                     : "No Rate Has Been Set"}
               </p>
             </article>
@@ -126,7 +126,7 @@ function TariffBoard({
       </div>
       {staff ? (
         <form onSubmit={onSubmit} className="h-fit bg-white p-6 shadow-sm" noValidate>
-          <h2 className="text-lg font-medium">Set today’s tariff</h2>
+          <h2 className="text-lg font-medium">Set Today’s Tariff</h2>
           <label className="mt-4 block text-sm font-semibold" htmlFor="pair">
             Pair
           </label>
@@ -153,7 +153,7 @@ function TariffBoard({
             className="mt-2 h-12 w-full border-2 border-[#1C2416] px-3 outline-none"
           />
           <label className="mt-4 block text-sm font-semibold" htmlFor="markup">
-            Markup in basis points
+            Markup In Basis Points
           </label>
           <input
             id="markup"
@@ -168,7 +168,7 @@ function TariffBoard({
             disabled={pending}
             className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase disabled:opacity-60"
           >
-            {pending ? "Please wait" : "Save tariff"}
+            {pending ? "Please Wait" : "Save Tariff"}
           </button>
           {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
         </form>

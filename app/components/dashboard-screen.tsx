@@ -108,10 +108,10 @@ function SetupForm({ onCreated }: { onCreated: (company: Company) => void }) {
 
   return (
     <form onSubmit={onSubmit} className="mx-auto max-w-lg bg-white p-6 shadow-sm" noValidate>
-      <h2 className="font-mono text-2xl text-[#1C2416]">Set up your business</h2>
+      <h2 className="font-mono text-2xl text-[#1C2416]">Set Up Your Business</h2>
       <p className="mt-2 text-sm text-[#6c757d]">VirungaPay reviews the business before a wallet can receive payments.</p>
       <label className="mt-6 block text-sm font-semibold" htmlFor="business-name">
-        Business name
+        Business Name
       </label>
       <input
         id="business-name"
@@ -152,7 +152,7 @@ function SetupForm({ onCreated }: { onCreated: (company: Company) => void }) {
         disabled={pending}
         className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-6 text-sm font-bold uppercase text-[#1C2416] disabled:opacity-60"
       >
-        {pending ? "Please wait" : "Create business"}
+        {pending ? "Please Wait" : "Create Business"}
       </button>
       {notice ? <p className="mt-3 text-sm">{notice}</p> : null}
     </form>
@@ -178,12 +178,12 @@ function CompanyStats({ company }: { company: Company }) {
   const receiving = company.wallets.find((wallet) => wallet.is_default);
   const stats = [
     { label: "Business", value: company.name, note: company.country, detail: "The company signed in on this account, and the country it is registered in." },
-    { label: "Status", value: statusLabel(company.status), note: company.association_member_of ?? "No association", detail: "Whether VirungaPay has approved this business to receive payments, and which association it belongs to." },
-    { label: "Wallets", value: String(company.wallets.length), note: company.wallets.map((wallet) => wallet.currency).join(" · ") || "None yet", detail: "How many currency accounts are open, and which currencies they hold." },
+    { label: "Status", value: statusLabel(company.status), note: company.association_member_of ?? "No Association", detail: "Whether VirungaPay has approved this business to receive payments, and which association it belongs to." },
+    { label: "Wallets", value: String(company.wallets.length), note: company.wallets.map((wallet) => wallet.currency).join(" · ") || "None Yet", detail: "How many currency accounts are open, and which currencies they hold." },
     {
-      label: "Receives payments",
+      label: "Receives Payments",
       value: company.status === "approved" ? (receiving?.currency ?? "None") : "None",
-      note: company.status === "disabled" ? "Business is stopped" : receiving ? "Default wallet" : "Waiting on approval",
+      note: company.status === "disabled" ? "Business Is Stopped" : receiving ? "Default Wallet" : "Waiting On Approval",
       detail: "The wallet tourist card payments are paid into.",
     },
   ];
@@ -256,9 +256,9 @@ function BusinessActivity({ operator }: { operator: boolean }) {
   function sortControls() {
     return (
       <div className="flex flex-wrap items-center justify-end gap-2">
-        <select value={span} onChange={(event) => setSpan(event.target.value as "month" | "year")} aria-label="Sort by" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
-          <option value="month">By month</option>
-          <option value="year">By year</option>
+        <select value={span} onChange={(event) => setSpan(event.target.value as "month" | "year")} aria-label="Sort By" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
+          <option value="month">By Month</option>
+          <option value="year">By Year</option>
         </select>
         {span === "month" ? (
           <select value={month} onChange={(event) => setMonth(Number(event.target.value))} aria-label="Month" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
@@ -286,17 +286,17 @@ function BusinessActivity({ operator }: { operator: boolean }) {
   return (
     <div className="mt-6 space-y-6">
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        <Summary label="Money in" value={moneyText(moneyIn)} detail={`Money received into your wallets during ${periodLabel}. Each currency stays separate.`} />
-        <Summary label="Money out" value={moneyText(moneyOut)} detail={`Money paid out of your wallets during ${periodLabel}. Each currency stays separate.`} />
+        <Summary label="Money In" value={moneyText(moneyIn)} detail={`Money received into your wallets during ${periodLabel}. Each currency stays separate.`} />
+        <Summary label="Money Out" value={moneyText(moneyOut)} detail={`Money paid out of your wallets during ${periodLabel}. Each currency stays separate.`} />
         {operator ? <Summary label="Itineraries" value={`${drafts} draft · ${waiting} awaiting payment · ${paid} paid`} detail="Trip plans that are still a draft, waiting for the tourist to pay, or already paid." /> : null}
       </section>
       <div className="grid gap-4 xl:grid-cols-2">
-        <MoneyChart title="Money in" detail="Each bar is money received on that day, or in that month when you sort by year." points={moneyInPoints} empty={`No money in during ${periodLabel}.`} year={year} month={month} span={span} controls={sortControls()} />
-        <MoneyChart title="Money out" detail="Each bar is money paid out on that day, or in that month when you sort by year." points={moneyOutPoints} empty={`No money out during ${periodLabel}.`} year={year} month={month} span={span} controls={sortControls()} />
+        <MoneyChart title="Money In" detail="Each bar is money received on that day, or in that month when you sort by year." points={moneyInPoints} empty={`No money in during ${periodLabel}.`} year={year} month={month} span={span} controls={sortControls()} />
+        <MoneyChart title="Money Out" detail="Each bar is money paid out on that day, or in that month when you sort by year." points={moneyOutPoints} empty={`No money out during ${periodLabel}.`} year={year} month={month} span={span} controls={sortControls()} />
       </div>
       <article className="overflow-x-auto bg-white shadow-sm">
         <div className="flex items-center justify-between border-b border-[#e5e7eb] px-5 py-4">
-          <h2 className="text-base font-medium">Recent payments</h2>
+          <h2 className="text-base font-medium">Recent Payments</h2>
           <Link href="/payments" className="text-sm font-semibold text-[#1F4D3A]">
             Payments
           </Link>
@@ -306,7 +306,7 @@ function BusinessActivity({ operator }: { operator: boolean }) {
             <tr>
               <th className="px-5 py-3 font-medium">When</th>
               <th className="px-5 py-3 font-medium">Type</th>
-              <th className="px-5 py-3 font-medium">Other party</th>
+              <th className="px-5 py-3 font-medium">Other Party</th>
               <th className="px-5 py-3 font-medium">Amount</th>
             </tr>
           </thead>
@@ -379,7 +379,7 @@ function WalletTable({ company }: { company: Company }) {
             <tr key={wallet.id} className="border-b border-[#e5e7eb]">
               <td className="px-5 py-3 font-semibold">{wallet.currency}</td>
               <td className="px-5 py-3">{wallet.balance || "0.00"}</td>
-              <td className="px-5 py-3">{wallet.is_default ? "Default · receives payments" : "Open"}</td>
+              <td className="px-5 py-3">{wallet.is_default ? "Default · Receives Payments" : "Open"}</td>
             </tr>
           ))}
         </tbody>

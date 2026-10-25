@@ -86,7 +86,7 @@ export function FeesScreen() {
   }
 
   return (
-    <DashboardShell title="Transaction fees" active="Fees" audience="admin">
+    <DashboardShell title="Transaction Fees" active="Fees" audience="admin">
       <p className="mb-4 max-w-2xl text-sm text-[#6c757d]">
         These fees are separate from the day’s exchange rate. Charge a percentage of the transaction, a fixed amount, or both. A basis point is 0.01%.
       </p>
@@ -121,8 +121,8 @@ export function FeesScreen() {
                               className="h-10 border-2 border-[#1C2416] bg-white px-2"
                             >
                               <option value="percent">Percentage</option>
-                              <option value="fixed">Fixed amount</option>
-                              <option value="both">Fixed plus percentage</option>
+                              <option value="fixed">Fixed Amount</option>
+                              <option value="both">Fixed Plus Percentage</option>
                             </select>
                           </td>
                           <td className="px-5 py-3">
@@ -133,9 +133,9 @@ export function FeesScreen() {
                                     value={fee.markup_bps}
                                     onChange={(event) => update(fee.kind, fee.currency, { markup_bps: Number(event.target.value) })}
                                     className="h-10 w-24 border-2 border-[#1C2416] px-2"
-                                    aria-label={`${fee.currency} basis points`}
+                                    aria-label={`${fee.currency} Basis Points`}
                                   />
-                                  <span className="text-[#6c757d]">basis points</span>
+                                  <span className="text-[#6c757d]">Basis Points</span>
                                 </label>
                               ) : null}
                               {mode !== "percent" ? (

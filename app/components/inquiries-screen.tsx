@@ -78,10 +78,10 @@ export function InquiriesScreen() {
     <DashboardShell title="Inquiries" active="Itineraries">
       <div className="mb-4 flex items-center justify-between gap-3">
         <Link href="/itineraries" className="text-sm font-semibold text-[#1F4D3A]">
-          Back to itineraries
+          Back To Itineraries
         </Link>
         <button type="button" onClick={() => setOpen(true)} className="h-12 border-2 border-[#1C2416] bg-[#E2B15A] px-5 text-sm font-bold uppercase">
-          Record an inquiry
+          Record An Inquiry
         </button>
       </div>
       {open ? (
@@ -98,7 +98,7 @@ export function InquiriesScreen() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2 id="record-inquiry-title" className="text-lg font-medium">
-                  Record an inquiry
+                  Record An Inquiry
                 </h2>
                 <p className="mt-1 text-sm text-[#6c757d]">Write down what the customer asked for. The price is set later, on the itinerary.</p>
               </div>
@@ -107,17 +107,17 @@ export function InquiriesScreen() {
               </button>
             </div>
             <div className="mt-4 grid gap-3">
-              <input value={name} onChange={(event) => setName(event.target.value)} placeholder="Customer name" aria-label="Customer name" className="h-11 border-2 border-[#1C2416] px-3" />
+              <input value={name} onChange={(event) => setName(event.target.value)} placeholder="Customer Name" aria-label="Customer Name" className="h-11 border-2 border-[#1C2416] px-3" />
               <input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" aria-label="Email" className="h-11 border-2 border-[#1C2416] px-3" />
               <div className="grid gap-3 sm:grid-cols-2">
-                <input type="date" value={startsOn} onChange={(event) => setStartsOn(event.target.value)} aria-label="Starts on" className="h-11 border-2 border-[#1C2416] px-3" />
-                <input type="date" value={endsOn} onChange={(event) => setEndsOn(event.target.value)} aria-label="Ends on" className="h-11 border-2 border-[#1C2416] px-3" />
+                <input type="date" value={startsOn} onChange={(event) => setStartsOn(event.target.value)} aria-label="Starts On" className="h-11 border-2 border-[#1C2416] px-3" />
+                <input type="date" value={endsOn} onChange={(event) => setEndsOn(event.target.value)} aria-label="Ends On" className="h-11 border-2 border-[#1C2416] px-3" />
               </div>
-              <input value={partySize} onChange={(event) => setPartySize(event.target.value)} placeholder="Party size" aria-label="Party size" className="h-11 border-2 border-[#1C2416] px-3" />
-              <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="What they asked for" aria-label="What they asked for" className="min-h-24 w-full border-2 border-[#1C2416] px-3 py-2" />
+              <input value={partySize} onChange={(event) => setPartySize(event.target.value)} placeholder="Party Size" aria-label="Party Size" className="h-11 border-2 border-[#1C2416] px-3" />
+              <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="What They Asked For" aria-label="What They Asked For" className="min-h-24 w-full border-2 border-[#1C2416] px-3 py-2" />
             </div>
             <button type="submit" disabled={pending} className="mt-4 h-11 border-2 border-[#1C2416] bg-[#E2B15A] px-4 text-sm font-bold uppercase disabled:opacity-60">
-              {pending ? "Please wait" : "Save inquiry"}
+              {pending ? "Please Wait" : "Save Inquiry"}
             </button>
             {formNotice ? <p className="mt-3 text-sm">{formNotice}</p> : null}
           </form>

@@ -13,9 +13,18 @@ const languages = [
 ] as const;
 
 const points = [
-  "Operator sends the itinerary",
-  "Tourist pays by card in USD",
-  "Operator pays the lodge, driver, fuel, and guide",
+  {
+    title: "Build & Send",
+    text: "Draft Your Safari Or Tour Itinerary And Send It Directly To Your Tourist Client Or Partner DMC Through VirungaPay.",
+  },
+  {
+    title: "Client Pays Instantly",
+    text: "The Tourist Views The Itinerary And Pays Securely Using Their International Credit Or Debit Card.",
+  },
+  {
+    title: "Automatic Reconciliation & Payout",
+    text: "Your USD Wallet Is Credited, And Your Pre-Configured Back-End Splits Instantly Dispatch UGX To Your Local Drivers' Mobile Money Accounts.",
+  },
 ];
 
 export function LoginScreen({ audience = "operator" }: { audience?: "operator" | "admin" }) {
@@ -96,21 +105,18 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
           <Mark tone="cream" />
           VirungaPay
         </Link>
-        <div className="relative z-10 max-w-md py-10">
-          <h1 className="font-mono text-4xl leading-[1.05] font-medium sm:text-5xl">
-            Send the itinerary. They pay from it.
-          </h1>
-          <p className="relative mt-8 pt-6 text-base font-semibold">
-            <span className="caret absolute top-0 left-0" />
-            Sign in to send a trip plan, take a card payment in USD, and pay the people on the tour.
-          </p>
-          <ul className="mt-8 space-y-3 font-bold">
+        <div className="relative z-10 max-w-lg py-10">
+          <h1 className="font-mono text-4xl leading-[1.05] font-medium sm:text-5xl">VirungaTrip Wallet</h1>
+          <ul className="mt-8 space-y-5">
             {points.map((point) => (
-              <li key={point} className="flex items-center gap-3">
-                <span className="grid size-6 place-items-center border-2 border-[#1C2416] bg-[#E2B15A] text-sm text-[#1C2416]">
+              <li key={point.title} className="flex items-start gap-3">
+                <span className="mt-0.5 grid size-6 shrink-0 place-items-center border-2 border-[#1C2416] bg-[#E2B15A] text-sm text-[#1C2416]">
                   ✓
                 </span>
-                {point}
+                <span>
+                  <span className="block font-bold">{point.title}</span>
+                  <span className="mt-1 block text-sm font-normal leading-relaxed">{point.text}</span>
+                </span>
               </li>
             ))}
           </ul>
@@ -121,7 +127,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
       <section className="flex min-h-0 flex-1 flex-col overflow-auto bg-white px-6 py-6 sm:px-10 lg:w-1/2 lg:px-14">
         <header className="flex items-center justify-between">
           <Link href="/" className="font-mono text-sm text-[#1C2416] hover:text-[#1F4D3A]">
-            Back home
+            Back Home
           </Link>
           <div className="relative" ref={menuRef}>
             <button
@@ -164,10 +170,10 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
 
         <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col justify-center py-8">
           <h2 className="text-center font-mono text-4xl font-medium text-[#1C2416] sm:text-5xl">
-            {resetting ? "Reset password" : "Sign in"}
+            {resetting ? "Reset Password" : "Login"}
           </h2>
           <p className="mt-3 text-center text-sm">
-            {resetting ? "We’ll email you a reset link" : staff ? "VirungaPay staff" : "Operators, guides, and suppliers"}
+            {resetting ? "We’ll Email You A Reset Link" : staff ? "VirungaPay Staff" : "Operators, Guides, And Drivers"}
           </p>
           <p className="mt-2 text-center font-mono text-xs tracking-[0.14em] text-[#1F4D3A] uppercase">
             USD · UGX
@@ -193,7 +199,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
                 disabled={pending}
                 className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416] disabled:opacity-60"
               >
-                {pending ? "Please wait" : "Send link"}
+                {pending ? "Please Wait" : "Send Link"}
               </button>
               <p role="status" className="mt-3 min-h-5 text-center text-[13px]">
                 {notice}
@@ -207,7 +213,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
                   }}
                   className="font-bold text-[#1F4D3A]"
                 >
-                  Back to sign in
+                  Back To Login
                 </button>
               </p>
             </form>
@@ -248,7 +254,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
                 }}
                 className="text-[13px] font-bold text-[#1F4D3A]"
               >
-                Forgot password?
+                Forgot Password?
               </button>
             </div>
 
@@ -257,7 +263,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
               disabled={pending}
               className="mt-6 h-12 border-2 border-[#1C2416] bg-[#E2B15A] text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416] disabled:opacity-60"
             >
-              {pending ? "Please wait" : "Login"}
+              {pending ? "Please Wait" : "Go"}
             </button>
 
             <p role="status" className="mt-3 min-h-5 text-center text-[13px]">
@@ -267,14 +273,14 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
             {staff ? (
               <p className="mt-2 text-center text-[13px]">
                 <Link href="/login" className="font-bold text-[#1F4D3A]">
-                  Operator login
+                  Operator Login
                 </Link>
               </p>
             ) : (
               <p className="mt-2 text-center text-[13px]">
-                Don&apos;t have an account?{" "}
+                Don&apos;t Have An Account?{" "}
                 <Link href="/signup" className="font-bold text-[#1F4D3A]">
-                  Sign up
+                  Sign Up
                 </Link>
               </p>
             )}

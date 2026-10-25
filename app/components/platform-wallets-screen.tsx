@@ -7,9 +7,9 @@ import { listPlatformWallets, readAdminSession, readSession, type Wallet } from 
 import { DashboardShell } from "./dashboard-shell";
 
 const groups = [
-  { kind: "ova", label: "Provider account", note: "Money held with the payment provider." },
-  { kind: "fee_transaction", label: "Transaction fee", note: "Fees from collections, withdrawals, and tips." },
-  { kind: "fee_fx", label: "FX fee", note: "Fees kept when a payment changes currency." },
+  { kind: "ova", label: "Provider Account", note: "Money held with the payment provider." },
+  { kind: "fee_transaction", label: "Transaction Fee", note: "Fees from collections, withdrawals, and tips." },
+  { kind: "fee_fx", label: "FX Fee", note: "Fees kept when a payment changes currency." },
 ];
 
 const currencyOrder = ["USD", "UGX"];
@@ -46,7 +46,7 @@ export function PlatformWalletsScreen() {
   }, [router]);
 
   return (
-    <DashboardShell title="Platform wallets" active="Platform wallets" audience="admin">
+    <DashboardShell title="Platform Wallets" active="Platform Wallets" audience="admin">
       {!ready ? <p className="text-sm text-[#6c757d]">Loading platform wallets.</p> : null}
       {ready && !notice
         ? groups.map((group) => (
@@ -76,7 +76,7 @@ function WalletCard({ wallet, label }: { wallet: Wallet; label: string }) {
       <p className="mt-3 text-2xl font-semibold tracking-tight">
         {wallet.currency} {wallet.balance || "0.00"}
       </p>
-      <p className="mt-4 text-sm font-semibold text-[#1F4D3A]">View statement</p>
+      <p className="mt-4 text-sm font-semibold text-[#1F4D3A]">View Statement</p>
     </Link>
   );
 }

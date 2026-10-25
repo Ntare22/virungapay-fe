@@ -7,9 +7,9 @@ import { platformStatement, readAdminSession, readSession, type StatementLine, t
 import { DashboardShell } from "./dashboard-shell";
 
 const labels: Record<string, string> = {
-  ova: "Provider account",
-  fee_fx: "FX fee",
-  fee_transaction: "Transaction fee",
+  ova: "Provider Account",
+  fee_fx: "FX Fee",
+  fee_transaction: "Transaction Fee",
   collection: "Collection",
   withdraw: "Withdrawal",
   p2p: "Tip",
@@ -54,7 +54,7 @@ export function PlatformStatementScreen({ walletId }: { walletId: string }) {
   const title = wallet ? `${labels[wallet.kind ?? ""] ?? "Wallet"} · ${wallet.currency}` : "Statement";
 
   return (
-    <DashboardShell title={title} active="Platform wallets" audience="admin">
+    <DashboardShell title={title} active="Platform Wallets" audience="admin">
       <Link href="/admin/platform" className="mb-4 inline-block text-sm font-semibold text-[#1F4D3A]">
         Back to platform wallets
       </Link>

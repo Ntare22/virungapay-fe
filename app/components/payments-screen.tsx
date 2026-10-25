@@ -88,7 +88,7 @@ export function PaymentsScreen() {
           onClick={openStatement}
           className="h-10 border-2 border-[#1C2416] bg-[#E2B15A] px-3 text-xs font-bold uppercase disabled:opacity-60"
         >
-          {pending ? "Generating" : "Generate statement"}
+          {pending ? "Generating" : "Generate Statement"}
         </button>
       </div>
       {statementNotice && !choosing ? <p className="mb-4 text-sm">{statementNotice}</p> : null}
@@ -102,7 +102,7 @@ export function PaymentsScreen() {
             className="w-full max-w-lg border-2 border-[#1C2416] bg-white p-6 shadow-[6px_6px_0_#E2B15A]"
           >
             <div className="flex items-start justify-between gap-4">
-              <h2 id="statement-wallet-title" className="text-lg font-medium">Choose a wallet</h2>
+              <h2 id="statement-wallet-title" className="text-lg font-medium">Choose A Wallet</h2>
               <button type="button" onClick={() => !pending && setChoosing(false)} aria-label="Close" className="grid size-9 shrink-0 place-items-center text-xl leading-none">
                 ×
               </button>
@@ -134,7 +134,7 @@ export function PaymentsScreen() {
                 <th className="px-5 py-3 font-medium">When</th>
                 <th className="px-5 py-3 font-medium">Type</th>
                 <th className="px-5 py-3 font-medium">Invoice</th>
-                <th className="px-5 py-3 font-medium">Other party</th>
+                <th className="px-5 py-3 font-medium">Other Party</th>
                 <th className="px-5 py-3 font-medium">Amount</th>
               </tr>
             </thead>

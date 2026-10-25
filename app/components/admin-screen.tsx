@@ -99,9 +99,9 @@ export function AdminScreen() {
   function sortControls() {
     return (
       <div className="flex flex-wrap items-center justify-end gap-2">
-        <select value={span} onChange={(event) => setSpan(event.target.value as "month" | "year")} aria-label="Sort by" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
-          <option value="month">By month</option>
-          <option value="year">By year</option>
+        <select value={span} onChange={(event) => setSpan(event.target.value as "month" | "year")} aria-label="Sort By" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
+          <option value="month">By Month</option>
+          <option value="year">By Year</option>
         </select>
         {span === "month" ? (
           <select value={selectedMonth} onChange={(event) => setMonth(Number(event.target.value))} aria-label="Month" className="h-9 border-2 border-[#1C2416] bg-white px-2 text-sm">
@@ -129,20 +129,20 @@ export function AdminScreen() {
       {ready ? (
         <>
           <section className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            <Summary label="Money in" lines={moneyLines(moneyIn)} detail={`Card payments collected into the USD and UGX wallets during ${periodLabel}.`} />
-            <Summary label="Money out" lines={moneyLines(moneyOut)} detail={`Withdrawals and tips paid out of the USD and UGX wallets during ${periodLabel}.`} />
-            <Summary label="VirungaPay revenue" lines={moneyLines(fees)} detail={`Revenue VirungaPay earned on payments in each wallet during ${periodLabel}.`} />
+            <Summary label="Money In" lines={moneyLines(moneyIn)} detail={`Card payments collected into the USD and UGX wallets during ${periodLabel}.`} />
+            <Summary label="Money Out" lines={moneyLines(moneyOut)} detail={`Withdrawals and tips paid out of the USD and UGX wallets during ${periodLabel}.`} />
+            <Summary label="VirungaPay Revenue" lines={moneyLines(fees)} detail={`Revenue VirungaPay earned on payments in each wallet during ${periodLabel}.`} />
             {counts.map((item) => (
               <Summary key={item.label} label={item.label} value={item.value} detail={item.detail} />
             ))}
           </section>
           <div className="mt-6 grid gap-4 xl:grid-cols-2">
-            <MoneyChart title="Money in" detail={`Each bar is card payments collected on that day, or in that month when you sort by year.`} points={moneyInPoints} empty={`No money in during ${periodLabel}.`} year={selectedYear} month={selectedMonth} span={span} controls={sortControls()} />
-            <MoneyChart title="Money out" detail={`Each bar is withdrawals and tips paid out on that day, or in that month when you sort by year.`} points={moneyOutPoints} empty={`No money out during ${periodLabel}.`} year={selectedYear} month={selectedMonth} span={span} controls={sortControls()} />
+            <MoneyChart title="Money In" detail={`Each bar is card payments collected on that day, or in that month when you sort by year.`} points={moneyInPoints} empty={`No money in during ${periodLabel}.`} year={selectedYear} month={selectedMonth} span={span} controls={sortControls()} />
+            <MoneyChart title="Money Out" detail={`Each bar is withdrawals and tips paid out on that day, or in that month when you sort by year.`} points={moneyOutPoints} empty={`No money out during ${periodLabel}.`} year={selectedYear} month={selectedMonth} span={span} controls={sortControls()} />
           </div>
           <article className="mt-6 overflow-x-auto bg-white shadow-sm">
             <div className="flex items-center justify-between border-b border-[#e5e7eb] px-5 py-4">
-              <h2 className="text-base font-medium">Recent transactions</h2>
+              <h2 className="text-base font-medium">Recent Transactions</h2>
               <Link href="/admin/transactions" className="text-sm font-semibold text-[#1F4D3A]">
                 Transactions
               </Link>
@@ -214,10 +214,10 @@ function AdminStats({ businesses }: { businesses: Business[] }) {
   const stopped = businesses.filter((business) => business.status === "disabled").length;
   const wallets = businesses.reduce((count, business) => count + business.wallets.length, 0);
   const stats = [
-    { label: "Businesses", value: String(businesses.length), note: "Tour operators", detail: "How many businesses are registered on VirungaPay." },
-    { label: "Awaiting approval", value: String(pending), note: "Not receiving payments yet", detail: "Businesses waiting for approval. They cannot receive payments yet." },
+    { label: "Businesses", value: String(businesses.length), note: "Tour Operators", detail: "How many businesses are registered on VirungaPay." },
+    { label: "Awaiting Approval", value: String(pending), note: "Not Receiving Payments Yet", detail: "Businesses waiting for approval. They cannot receive payments yet." },
     { label: "Approved", value: String(approved), note: `${wallets} wallets open`, detail: "Businesses that can receive payments, and how many wallets they have open." },
-    { label: "Stopped", value: String(stopped), note: "Disabled operators", detail: "Businesses you have stopped. They cannot receive payments until you approve them again." },
+    { label: "Stopped", value: String(stopped), note: "Disabled Operators", detail: "Businesses you have stopped. They cannot receive payments until you approve them again." },
   ];
   return (
     <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

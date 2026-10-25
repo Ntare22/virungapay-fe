@@ -6,7 +6,7 @@ import { comingSoon } from "./lib/site-mode";
 export function generateMetadata(): Metadata {
   if (!comingSoon()) return {};
   return {
-    title: "Coming soon · VirungaPay",
+    title: "Coming Soon · VirungaPay",
     description: "Join the VirungaPay waitlist.",
   };
 }

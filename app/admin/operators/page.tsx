@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { OperatorsScreen } from "../../components/operators-screen";
 
 export const metadata: Metadata = {
-  title: "Tour operators · VirungaPay",
+  title: "Tour Operators · VirungaPay",
 };
 
 export default function OperatorsPage() {

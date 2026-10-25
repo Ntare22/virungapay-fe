@@ -48,7 +48,7 @@ export function ItinerariesScreen() {
           Inquiries
         </Link>
         <Link href="/itineraries/new" className="border-2 border-[#1C2416] bg-[#E2B15A] px-4 py-2 text-sm font-bold uppercase">
-          New itinerary
+          New Itinerary
         </Link>
       </div>
       {!ready ? <p className="text-sm text-[#6c757d]">Loading itineraries.</p> : null}
@@ -87,7 +87,7 @@ export function ItinerariesScreen() {
               {rows.length === 0 ? (
                 <tr>
                   <td className="px-5 py-6 text-[#6c757d]" colSpan={5}>
-                    No itineraries yet. Start from a package, an inquiry, or a blank plan.
+                    No itineraries yet. Start From A Package, an inquiry, or a blank plan.
                   </td>
                 </tr>
               ) : null}
