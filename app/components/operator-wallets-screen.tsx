@@ -5,6 +5,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { actionNotice, listOperatorPayments, moveWallets, myCompany, readSession, renameWallet, todayTariff, type Company, type OperatorPayment, type Tariff, type Wallet } from "../lib/api";
 import { Toast } from "./toast";
 import { DashboardShell } from "./dashboard-shell";
+import { LogoLoader } from "./logo-loader";
 
 const currencyOrder = ["USD", "UGX"];
 
@@ -56,7 +57,7 @@ export function OperatorWalletsScreen() {
 
   return (
     <DashboardShell title="Wallets" active="Wallets">
-      {!ready ? <p className="text-sm text-[#6c757d]">Loading wallets.</p> : null}
+      {!ready ? <LogoLoader label="Loading wallets" /> : null}
       {ready && slots.length > 0 ? (
         <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center">
           {slots.map((slot) =>

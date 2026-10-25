@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { PayScreen } from "../../components/pay-screen";
+import { LogoLoader } from "../../components/logo-loader";
 
 export const metadata: Metadata = { title: "Pay · VirungaPay" };
 
 export default function PayPage({ params }: { params: Promise<{ token: string }> }) {
   return (
-    <Suspense fallback={<p className="p-6 text-sm text-[#6c757d]">Loading the itinerary.</p>}>
+    <Suspense fallback={<LogoLoader label="Loading the itinerary" className="min-h-dvh bg-[#F6F1E7]" />}>
       <PayLink params={params} />
     </Suspense>
   );

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { listTransactions, readAdminSession, readSession, type PlatformTransaction } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
+import { LogoLoader } from "./logo-loader";
 
 const kinds: Record<string, string> = {
   collection: "Collection",
@@ -52,7 +53,7 @@ export function TransactionsScreen() {
 
   return (
     <DashboardShell title="Transactions" active="Transactions" audience="admin">
-      {!ready ? <p className="text-sm text-[#6c757d]">Loading transactions.</p> : null}
+      {!ready ? <LogoLoader label="Loading transactions" /> : null}
       {ready ? (
         <article className="overflow-x-auto bg-white shadow-sm">
           <table className="min-w-full text-sm">

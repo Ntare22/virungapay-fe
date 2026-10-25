@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { listBusinesses, listBureaus, listPersonWallets, readAdminSession, readSession, type Business, type PersonWallet, type Wallet } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
 import { WalletQrSheet, type QrSheet } from "./wallet-qr-sheet";
+import { LogoLoader } from "./logo-loader";
 
 const pageSize = 8;
 
@@ -69,7 +70,7 @@ export function WalletsScreen() {
 
   return (
     <DashboardShell title="Wallets" active="Wallets" audience="admin">
-      {!ready ? <p className="text-sm text-[#6c757d]">Loading wallets.</p> : null}
+      {!ready ? <LogoLoader label="Loading wallets" /> : null}
       <article className="overflow-hidden bg-white shadow-sm">
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">

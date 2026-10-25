@@ -5,6 +5,7 @@ import { useEffect, useId, useState, type FormEvent } from "react";
 import { inviteCrew, listCrew, readSession, type CrewMember } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
 import { internationalPhone, PhoneField, type CountryCode } from "./phone-field";
+import { LogoLoader } from "./logo-loader";
 
 const roles: Record<string, string> = { guide: "Guide", driver: "Driver" };
 
@@ -67,7 +68,7 @@ export function GuidesScreen() {
       ) : null}
       {notice ? <p className="mb-4 text-sm">{notice}</p> : null}
       {loadError ? <p className="mb-4 text-sm">{loadError}</p> : null}
-      {!ready ? <p className="text-sm text-[#6c757d]">Loading guides and drivers.</p> : null}
+      {!ready ? <LogoLoader label="Loading guides and drivers" /> : null}
       {ready && !loadError ? (
         <article className="overflow-hidden bg-white shadow-sm">
           <table className="min-w-full text-sm">

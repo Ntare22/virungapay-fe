@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { platformStatement, readAdminSession, readSession, type StatementLine, type Wallet } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
+import { LogoLoader } from "./logo-loader";
 
 const labels: Record<string, string> = {
   ova: "Provider Account",
@@ -58,7 +59,7 @@ export function PlatformStatementScreen({ walletId }: { walletId: string }) {
       <Link href="/admin/platform" className="mb-4 inline-block text-sm font-semibold text-[#1F4D3A]">
         Back to platform wallets
       </Link>
-      {!ready ? <p className="text-sm text-[#6c757d]">Loading statement.</p> : null}
+      {!ready ? <LogoLoader label="Loading statement" /> : null}
       {wallet ? (
         <article className="mb-4 bg-white p-5 shadow-sm">
           <p className="text-sm text-[#6c757d]">{labels[wallet.kind ?? ""] ?? wallet.kind}</p>

@@ -16,6 +16,7 @@ import {
 } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
 import { internationalPhone, PhoneField, type CountryCode } from "./phone-field";
+import { LogoLoader } from "./logo-loader";
 
 const pageSize = 8;
 
@@ -85,7 +86,7 @@ export function OperatorsScreen({ bureau = false }: { bureau?: boolean }) {
           }}
         />
       ) : null}
-      {!ready ? <p className="text-sm text-[#6c757d]">{bureau ? "Loading forex bureaus." : "Loading tour operators."}</p> : null}
+      {!ready ? <LogoLoader label={bureau ? "Loading forex bureaus" : "Loading tour operators"} /> : null}
       {ready ? (
         <article className="overflow-hidden bg-white shadow-sm">
           <div className="overflow-x-auto">

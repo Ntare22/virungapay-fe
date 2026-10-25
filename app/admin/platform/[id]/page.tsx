@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { PlatformStatementScreen } from "../../../components/platform-statement-screen";
+import { LogoLoader } from "../../../components/logo-loader";
 
 export const metadata: Metadata = { title: "Statement · VirungaPay" };
 
 export default function PlatformStatementPage({ params }: { params: Promise<{ id: string }> }) {
   return (
-    <Suspense fallback={<p className="p-6 text-sm text-[#6c757d]">Loading statement.</p>}>
+    <Suspense fallback={<LogoLoader label="Loading statement" className="p-6" />}>
       <Statement params={params} />
     </Suspense>
   );

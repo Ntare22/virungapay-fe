@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { ApiError, readAdminSession, readSession, saveTariff, staffTariff, todayTariff, type Tariff } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
+import { LogoLoader } from "./logo-loader";
 
 export function TariffScreen({ audience }: { audience: "operator" | "admin" }) {
   const router = useRouter();
@@ -54,7 +55,7 @@ export function TariffScreen({ audience }: { audience: "operator" | "admin" }) {
 
   return (
     <DashboardShell title="Tariffs" active="Tariffs" audience={audience}>
-      {!ready ? <p className="text-sm text-[#6c757d]">Loading the exchange rate.</p> : null}
+      {!ready ? <LogoLoader label="Loading the exchange rate" /> : null}
       {ready ? <TariffBoard tariffs={tariffs} staff={staff} onSaved={(saved) => setTariffs((current) => upsertTariff(current, saved))} /> : null}
       {notice ? <p className="mt-4 text-sm">{notice}</p> : null}
     </DashboardShell>

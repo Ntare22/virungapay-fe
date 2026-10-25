@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { listBusinesses, listTransactions, readAdminSession, readSession, type Business, type PlatformTransaction } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
 import { MoneyChart, HoverDetail, addMoney, moneyLines, type MoneyPoint } from "./money-chart";
+import { LogoLoader } from "./logo-loader";
 
 const kinds: Record<string, string> = {
   collection: "Collection",
@@ -125,7 +126,7 @@ export function AdminScreen() {
 
   return (
     <DashboardShell title="Dashboard" active="Dashboard" audience="admin">
-      {ready ? <AdminStats businesses={businesses} /> : <p className="text-sm text-[#6c757d]">Loading the dashboard.</p>}
+      {ready ? <AdminStats businesses={businesses} /> : <LogoLoader label="Loading the dashboard" />}
       {ready ? (
         <>
           <section className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">

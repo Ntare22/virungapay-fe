@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ItineraryEditor } from "../../components/itinerary-editor";
+import { LogoLoader } from "../../components/logo-loader";
 
 export const metadata: Metadata = { title: "New Itinerary · VirungaPay" };
 
 export default function NewItineraryPage({ searchParams }: { searchParams: Promise<{ package?: string; inquiry?: string }> }) {
   return (
-    <Suspense fallback={<p className="p-6 text-sm text-[#6c757d]">Loading itinerary.</p>}>
+    <Suspense fallback={<LogoLoader label="Loading itinerary" className="p-6" />}>
       <NewItinerary searchParams={searchParams} />
     </Suspense>
   );

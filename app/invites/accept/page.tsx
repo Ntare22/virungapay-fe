@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AcceptInvite } from "../../components/accept-invite";
+import { LogoLoader } from "../../components/logo-loader";
 
 export const metadata: Metadata = {
   title: "Accept Invite · VirungaPay",
@@ -13,7 +14,7 @@ export default function AcceptInvitePage({
   searchParams: Promise<{ token?: string | string[] }>;
 }) {
   return (
-    <Suspense fallback={<p className="p-8 text-sm text-[#1C2416]">Loading the invite.</p>}>
+    <Suspense fallback={<LogoLoader label="Loading the invite" className="p-8" />}>
       <InviteToken searchParams={searchParams} />
     </Suspense>
   );

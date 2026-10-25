@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { listFees, readAdminSession, readSession, saveFee, type FeeSchedule } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
+import { LogoLoader } from "./logo-loader";
 
 const kinds = [
   { id: "collection", label: "Collection" },
@@ -90,7 +91,7 @@ export function FeesScreen() {
       <p className="mb-4 max-w-2xl text-sm text-[#6c757d]">
         These fees are separate from the day’s exchange rate. Charge a percentage of the transaction, a fixed amount, or both. A basis point is 0.01%.
       </p>
-      {!ready ? <p className="text-sm text-[#6c757d]">Loading fee schedules.</p> : null}
+      {!ready ? <LogoLoader label="Loading fee schedules" /> : null}
       {ready
         ? kinds.map((kind) => (
             <article key={kind.id} className="mb-4 overflow-hidden bg-white shadow-sm">

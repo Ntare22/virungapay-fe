@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { actionNotice, loadPayPage, payItinerary, type Itinerary } from "../lib/api";
 import { Mark } from "./mark";
 import { Toast } from "./toast";
+import { LogoLoader } from "./logo-loader";
 
 export function PayScreen({ token }: { token: string }) {
   const [item, setItem] = useState<Itinerary | null>(null);
@@ -44,7 +45,7 @@ export function PayScreen({ token }: { token: string }) {
     <main className="min-h-screen bg-[#F6F1E7] px-4 py-10 text-[#1C2416]">
       <article className="mx-auto max-w-2xl border-2 border-[#1C2416] bg-white p-6">
         <Processor />
-        {!ready ? <p className="mt-6 text-sm text-[#6c757d]">Loading the itinerary.</p> : null}
+        {!ready ? <LogoLoader label="Loading the itinerary" className="mt-6 py-6" /> : null}
         {item ? (
           <>
             <p className="mt-6 text-xs font-bold uppercase tracking-widest text-[#1F4D3A]">{item.invoice_number}</p>

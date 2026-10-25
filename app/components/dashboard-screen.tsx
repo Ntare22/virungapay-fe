@@ -6,6 +6,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { ApiError, createCompany, listItineraries, listOperatorPayments, myCompany, readSession, type Company, type Itinerary, type OperatorPayment } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
 import { MoneyChart, HoverDetail, addMoney, moneyText, type MoneyPoint } from "./money-chart";
+import { LogoLoader } from "./logo-loader";
 
 const countries = [
   { code: "UG", label: "Uganda" },
@@ -58,7 +59,7 @@ export function DashboardScreen() {
 
   return (
     <DashboardShell title="Dashboard" active="Dashboard">
-      {!ready ? <p className="text-sm text-[#6c757d]">Loading your business.</p> : null}
+      {!ready ? <LogoLoader label="Loading your business" /> : null}
       {ready && missing ? (
         <SetupForm
           onCreated={(created) => {

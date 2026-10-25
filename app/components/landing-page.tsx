@@ -243,7 +243,7 @@ export function LandingPage() {
             </h2>
             <p className="relative mt-6 max-w-md pt-6 text-base">
               <span className="caret absolute top-0 left-0" />
-              Send the plan, take the payment, then pay everyone on the trip from one place.
+              Send the itinerary, receive the payment, then pay everyone on the trip from one place.
             </p>
             <ul className="mt-8 flex flex-col gap-6">
               {steps.map((step) => (
