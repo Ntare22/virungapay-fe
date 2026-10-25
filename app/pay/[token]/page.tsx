@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Pay · VirungaPay" };
 
 export default function PayPage({ params }: { params: Promise<{ token: string }> }) {
   return (
-    <Suspense fallback={<LogoLoader label="Loading the itinerary" className="min-h-dvh bg-[#F6F1E7]" />}>
+    <Suspense fallback={<LogoLoader label="Loading the itinerary" />}>
       <PayLink params={params} />
     </Suspense>
   );

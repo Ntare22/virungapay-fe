@@ -14,7 +14,7 @@ export default function AcceptInvitePage({
   searchParams: Promise<{ token?: string | string[] }>;
 }) {
   return (
-    <Suspense fallback={<LogoLoader label="Loading the invite" className="p-8" />}>
+    <Suspense fallback={<LogoLoader label="Loading the invite" />}>
       <InviteToken searchParams={searchParams} />
     </Suspense>
   );

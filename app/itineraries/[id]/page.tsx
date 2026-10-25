@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Itinerary · VirungaPay" };
 
 export default function ItineraryPage({ params }: { params: Promise<{ id: string }> }) {
   return (
-    <Suspense fallback={<LogoLoader label="Loading itinerary" className="p-6" />}>
+    <Suspense fallback={<LogoLoader label="Loading itinerary" />}>
       <SavedItinerary params={params} />
     </Suspense>
   );

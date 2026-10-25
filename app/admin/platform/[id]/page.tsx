@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Statement · VirungaPay" };
 
 export default function PlatformStatementPage({ params }: { params: Promise<{ id: string }> }) {
   return (
-    <Suspense fallback={<LogoLoader label="Loading statement" className="p-6" />}>
+    <Suspense fallback={<LogoLoader label="Loading statement" />}>
       <Statement params={params} />
     </Suspense>
   );

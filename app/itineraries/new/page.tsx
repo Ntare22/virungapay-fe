@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "New Itinerary · VirungaPay" };
 
 export default function NewItineraryPage({ searchParams }: { searchParams: Promise<{ package?: string; inquiry?: string }> }) {
   return (
-    <Suspense fallback={<LogoLoader label="Loading itinerary" className="p-6" />}>
+    <Suspense fallback={<LogoLoader label="Loading itinerary" />}>
       <NewItinerary searchParams={searchParams} />
     </Suspense>
   );

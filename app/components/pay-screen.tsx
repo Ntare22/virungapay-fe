@@ -45,7 +45,7 @@ export function PayScreen({ token }: { token: string }) {
     <main className="min-h-screen bg-[#F6F1E7] px-4 py-10 text-[#1C2416]">
       <article className="mx-auto max-w-2xl border-2 border-[#1C2416] bg-white p-6">
         <Processor />
-        {!ready ? <LogoLoader label="Loading the itinerary" className="mt-6 py-6" /> : null}
+        {!ready ? <LogoLoader label="Loading the itinerary" /> : null}
         {item ? (
           <>
             <p className="mt-6 text-xs font-bold uppercase tracking-widest text-[#1F4D3A]">{item.invoice_number}</p>

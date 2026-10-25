@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Package · VirungaPay" };
 
 export default function PackagePage({ params }: { params: Promise<{ id: string }> }) {
   return (
-    <Suspense fallback={<LogoLoader label="Loading package" className="p-6" />}>
+    <Suspense fallback={<LogoLoader label="Loading package" />}>
       <SavedPackage params={params} />
     </Suspense>
   );
