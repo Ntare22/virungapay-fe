@@ -23,7 +23,7 @@ const points = [
   },
   {
     title: "Automatic Reconciliation & Payout",
-    text: "Your USD Wallet Is Credited, And Your Pre-Configured Back-End Splits Instantly Dispatch UGX To Your Local Drivers And Guides.",
+    text: "Your USD Wallet Is Credited, And Your Pre-Configured Back-End Splits Instantly Dispatch UGX To Your Local Guides And Drivers.",
   },
 ];
 
