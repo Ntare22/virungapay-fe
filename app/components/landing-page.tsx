@@ -119,7 +119,7 @@ const faqs = [
     a: "Park fees mostly stay in cash. They are written down with a receipt, so the trip still shows where that money went.",
   },
   {
-    q: "How Do Guide Tips Work?",
+    q: "How Do Guide/Driver Tips Work?",
     a: "A guide carries a QR badge. A guest scans it and the tip is recorded against that guide.",
   },
   {
@@ -284,7 +284,7 @@ export function LandingPage() {
                   ["03", "Trip Wallet", "Operator Sees It In VirungaTrip"],
                   ["04", "Team Payments", "Lodge, Driver, Fuel, Guide"],
                   ["05", "Park Fee", "Cash, With A Receipt"],
-                  ["06", "Guide Tip", "Guest Scans The QR Badge"],
+                  ["06", "Guide/Driver Tip", "Guest Scans The QR Badge"],
                 ].map(([n, title, text]) => (
                   <li key={n} className="grid grid-cols-[auto_1fr] gap-4 border-b border-[#1C2416]/15 pb-4 last:border-0">
                     <span className="font-mono text-[#1F4D3A]">{n}</span>
@@ -305,7 +305,7 @@ export function LandingPage() {
               From Itinerary To Payment
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-white/85">
-              The tourist pays from the itinerary. The operator pays the team. Park fees stay in cash, with a receipt. Guide tips come through a QR badge.
+              The tourist pays from the itinerary. The operator pays the team. Park fees stay in cash, with a receipt. Guide or Driver tips come through a QR badge.
             </p>
             <div className="relative mt-12">
               <button
