@@ -222,7 +222,7 @@ export function LandingPage() {
                   href="/login"
                   className="inline-flex h-12 items-center justify-center border-2 border-[#1C2416] bg-[#E2B15A] px-8 text-sm font-bold uppercase text-[#1C2416] shadow-[3px_3px_0_#E2B15A] hover:shadow-[6px_6px_0_#1C2416]"
                 >
-                  Try The Demo
+                  New Transaction
                 </Link>
                 <a
                   href="#flow"
