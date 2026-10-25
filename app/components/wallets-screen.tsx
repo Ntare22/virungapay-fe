@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { listBusinesses, listBureaus, listPersonWallets, readAdminSession, readSession, type Business, type PersonWallet, type Wallet } from "../lib/api";
 import { DashboardShell } from "./dashboard-shell";
+import { WalletQrSheet, type QrSheet } from "./wallet-qr-sheet";
 
 const pageSize = 8;
 
@@ -19,6 +20,7 @@ export function WalletsScreen() {
   const [notice, setNotice] = useState("");
   const [ready, setReady] = useState(false);
   const [page, setPage] = useState(0);
+  const [qr, setQr] = useState<QrSheet | null>(null);
 
   useEffect(() => {
     if (readSession()?.audience === "operator") {
@@ -80,28 +82,49 @@ export function WalletsScreen() {
                 <th className="px-5 py-3 font-medium">Balance</th>
                 <th className="px-5 py-3 font-medium">Role</th>
                 <th className="px-5 py-3 font-medium">Business status</th>
+                <th className="px-5 py-3 font-medium">Code</th>
               </tr>
             </thead>
             <tbody>
-              {visible.map(({ wallet, business, person }) => (
+              {visible.map(({ wallet, business, person }) => {
+                const username = wallet.username?.trim() ?? "";
+                return (
                 <tr key={wallet.id} className="border-b border-[#e5e7eb]">
                   <td className="px-5 py-3 font-medium">{person ? holderLabel(person.holder_role) : business?.name}</td>
                   <td className="px-5 py-3">
                     <div>{person ? person.holder_name : business?.owner_name}</div>
                     <div className="text-xs text-[#98a6ad]">{person ? person.holder_email : business?.owner_email}</div>
                   </td>
-                  <td className="px-5 py-3 font-mono text-[#1F4D3A]">{wallet.username ? `@${wallet.username}` : "—"}</td>
+                  <td className="px-5 py-3 font-mono text-[#1F4D3A]">{username ? `@${username}` : "—"}</td>
                   <td className="px-5 py-3 font-semibold">{wallet.currency}</td>
                   <td className="px-5 py-3">{wallet.balance || "0.00"}</td>
                   <td className="px-5 py-3">{person ? walletRole(person) : wallet.is_default ? "Default · receives payments" : "Open"}</td>
                   <td className="px-5 py-3 font-semibold uppercase">
                     {person ? person.holder_status : business?.status === "disabled" ? "Stopped" : business?.status}
                   </td>
+                  <td className="px-5 py-3">
+                    {wallet.currency === "UGX" && username ? (
+                      <button
+                        type="button"
+                        onClick={() => setQr({
+                          title: person ? person.holder_name : business?.name || wallet.name || "Wallet",
+                          username,
+                          currency: wallet.currency,
+                        })}
+                        className="h-9 border-2 border-[#1C2416] bg-white px-3 text-xs font-bold uppercase"
+                      >
+                        QR code
+                      </button>
+                    ) : (
+                      "—"
+                    )}
+                  </td>
                 </tr>
-              ))}
+                );
+              })}
               {visible.length === 0 ? (
                 <tr>
-                  <td className="px-5 py-6 text-[#6c757d]" colSpan={7}>
+                  <td className="px-5 py-6 text-[#6c757d]" colSpan={8}>
                     No wallets yet. Approving a business opens a UGX wallet. A tourist signup opens a VirungaPass wallet.
                   </td>
                 </tr>
@@ -134,6 +157,7 @@ export function WalletsScreen() {
         </footer>
       </article>
       {notice ? <p className="mt-4 text-sm">{notice}</p> : null}
+      {qr ? <WalletQrSheet wallet={qr} onClose={() => setQr(null)} /> : null}
     </DashboardShell>
   );
 }

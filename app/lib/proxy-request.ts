@@ -11,6 +11,7 @@ export async function proxyRequest(request: NextRequest, prefix: string, path: s
   if (accept) headers.set("accept", accept);
   const authorization = request.headers.get("authorization");
   if (authorization) headers.set("authorization", authorization);
+  headers.set("x-app-origin", siteOrigin(request));
 
   let response: Response;
   try {
@@ -31,4 +32,12 @@ export async function proxyRequest(request: NextRequest, prefix: string, path: s
     status: response.status,
     headers: { "content-type": response.headers.get("content-type") ?? "application/json" },
   });
+}
+
+function siteOrigin(request: NextRequest) {
+  const forwarded = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
+  if (!forwarded) return request.nextUrl.origin;
+  const host = forwarded.split(",")[0].trim();
+  const proto = (request.headers.get("x-forwarded-proto") ?? request.nextUrl.protocol.replace(":", "")).split(",")[0].trim();
+  return `${proto}://${host}`;
 }
