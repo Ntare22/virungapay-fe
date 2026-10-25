@@ -23,7 +23,7 @@ const points = [
   },
   {
     title: "Automatic Reconciliation & Payout",
-    text: "Your USD Wallet Is Credited, And Your Pre-Configured Back-End Splits Instantly Dispatch UGX To Your Local Drivers' Mobile Money Accounts.",
+    text: "Your USD Wallet Is Credited, And Your Pre-Configured Back-End Splits Instantly Dispatch UGX To Your Local Drivers And Guides.",
   },
 ];
 
@@ -173,7 +173,7 @@ export function LoginScreen({ audience = "operator" }: { audience?: "operator" |
             {resetting ? "Reset Password" : "Login"}
           </h2>
           <p className="mt-3 text-center text-sm">
-            {resetting ? "We’ll Email You A Reset Link" : staff ? "VirungaPay Staff" : "Operators, Guides, And Drivers"}
+            {resetting ? "We’ll Email You A Reset Link" : staff ? "VirungaPay Staff" : "Operators Guides Drivers"}
           </p>
           <p className="mt-2 text-center font-mono text-xs tracking-[0.14em] text-[#1F4D3A] uppercase">
             USD · UGX
