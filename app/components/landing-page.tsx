@@ -17,12 +17,12 @@ const steps = [
     text: "Dates, stays, the driver, and the guide go in one itinerary. The tourist opens it and sees what they are paying for.",
   },
   {
-    title: "The Tourist Pays By Card",
-    text: "They pay the deposit in USD. The money lands in a VirungaPass wallet, tied to that itinerary.",
+    title: "Card Payment Into VirungaTrip USD",
+    text: "A tourist card or a DMC card pays the tour operator’s VirungaTrip USD wallet.",
   },
   {
-    title: "The Operator Pays The Team",
-    text: "The same money shows up in the operator’s VirungaTrip wallet. From there they pay the lodge, driver, and guide.",
+    title: "USD Moves To UGX, Then Vendors",
+    text: "The operator moves USD out of the VirungaTrip USD wallet into the VirungaTrip UGX wallet and pays vendors. VirungaPass is always a UGX wallet, and the person can load it.",
   },
 ];
 
@@ -38,24 +38,25 @@ const tripCards = [
     note: "They Pay From This Itinerary",
   },
   {
-    label: "VirungaPass",
-    title: "Card Payment",
+    label: "Card Payment",
+    title: "Into VirungaTrip USD",
     rows: [
-      ["From", "Tourist · Card"],
-      ["Currency", "USD 1,240.00"],
-      ["Wallet", "VirungaPass"],
+      ["From", "Tourist Or DMC Card"],
+      ["To", "Tour Operator"],
+      ["Wallet", "VirungaTrip USD"],
     ],
-    note: "USD",
+    note: "USD Lands In The Operator Wallet",
   },
   {
     label: "VirungaTrip",
-    title: "Operator Wallet",
+    title: "USD To UGX, Then Vendors",
     rows: [
-      ["To", "Operator"],
-      ["Holds", "The Tour Deposit"],
-      ["Next", "Pay The Team"],
+      ["From", "VirungaTrip USD"],
+      ["To", "VirungaTrip UGX"],
+      ["Then", "Vendor Payments"],
+      ["VirungaPass", "Always UGX"],
     ],
-    note: "One Balance, Many People",
+    note: "The Person Can Load It",
   },
   {
     label: "Payments",
@@ -104,27 +105,27 @@ const quotes = [
 const faqs = [
   {
     q: "How Does A Tourist Pay?",
-    a: "The operator sends an itinerary. The tourist opens it and pays the deposit by card in USD.",
+    a: "The operator sends an itinerary. The tourist or a DMC pays by card in USD into the operator’s VirungaTrip USD wallet.",
   },
   {
     q: "Where Does The Money Go?",
-    a: "The payment lands in a VirungaPass wallet. The operator then sees it in a VirungaTrip wallet and pays the people on the trip.",
+    a: "The card payment lands in the tour operator’s VirungaTrip USD wallet. The operator moves that USD into the VirungaTrip UGX wallet and pays vendors. VirungaPass is always a UGX wallet, and the person can load it.",
   },
   {
     q: "Who Can The Operator Pay?",
-    a: "Lodges, Drivers, And Guides, From The VirungaTrip Balance.",
+    a: "Either from USD or UGX Wallets of VirungTrip, Operator can pay Lodges,Drivers, Guides.",
   },
   {
     q: "What About Park Fees?",
-    a: "Park fees mostly stay in cash. They are written down with a receipt, so the trip still shows where that money went.",
+    a: "Park Entrance fees paid out of VirungaTrip wallet to Park’s Wallet or by Cash by the Driver/Guide",
+  },
+  {
+    q: "How To Pay for Gorilla Permit?",
+    a: "Gorilla Permits purchased in cash or Mobile Money by Tour Operator from UWA.",
   },
   {
     q: "How Do Guide/Driver Tips Work?",
-    a: "A guide carries a QR badge. A guest scans it and the tip is recorded against that guide.",
-  },
-  {
-    q: "How Does VirungaPay Earn?",
-    a: "From changing USD for the trip, and a small fee on each payment. Part of that fee pays for health cover for AUTO and UHOA members.",
+    a: "A guide carried a QR badge. A guest scans it to push tip from their VirungaPass Wallet to guides phone wallet.",
   },
 ];
 
@@ -279,9 +280,9 @@ export function LandingPage() {
               <p className="font-mono text-xs tracking-[0.2em] text-[#1F4D3A] uppercase">One Trip</p>
               <ol className="mt-6 space-y-4">
                 {[
-                  ["01", "Itinerary", "Operator Sends It To The Tourist"],
-                  ["02", "Card Payment", "USD Into VirungaPass"],
-                  ["03", "Trip Wallet", "Operator Sees It In VirungaTrip"],
+                  ["01", "Itinerary", "Sent To The Tourist"],
+                  ["02", "Card Payment", "Tourist Card Or DMC Card Into VirungaTrip USD"],
+                  ["03", "Forex Move", "USD Out To The VirungaTrip UGX Wallet"],
                   ["04", "Team Payments", "Lodge, Driver, Fuel, Guide"],
                   ["05", "Park Fee", "Cash, With A Receipt"],
                   ["06", "Guide/Driver Tip", "Guest Scans The QR Badge"],
@@ -305,7 +306,7 @@ export function LandingPage() {
               From Itinerary To Payment
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-white/85">
-              The tourist pays from the itinerary. The operator pays the team. Park fees stay in cash, with a receipt. Guide or Driver tips come through a QR badge.
+              The itinerary goes to the tourist. A tourist card or a DMC card pays the operator’s VirungaTrip USD wallet. The operator moves that USD into the VirungaTrip UGX wallet and pays vendors. VirungaPass is always a UGX wallet, and the person can load it.
             </p>
             <div className="relative mt-12">
               <button
@@ -522,14 +523,14 @@ function FlowCard() {
       </div>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="border-2 border-[#1C2416] p-3">
-          <p className="text-xs uppercase">VirungaPass</p>
+          <p className="text-xs uppercase">VirungaTrip USD</p>
           <p className="mt-1 font-mono text-2xl">USD 1,240</p>
-          <p className="text-xs">Paid From The Itinerary</p>
+          <p className="text-xs">Card From Tourist Or DMC</p>
         </div>
         <div className="border-2 border-[#1C2416] bg-[#F6F1E7] p-3">
-          <p className="text-xs uppercase">VirungaTrip</p>
-          <p className="mt-1 font-mono text-2xl">Ready</p>
-          <p className="text-xs">Operator Wallet</p>
+          <p className="text-xs uppercase">VirungaPass</p>
+          <p className="mt-1 font-mono text-2xl">UGX</p>
+          <p className="text-xs">The Person Can Load It</p>
         </div>
       </div>
       <ul className="mt-4 space-y-2 text-sm">
